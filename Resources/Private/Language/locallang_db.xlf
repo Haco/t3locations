@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-11-26T11:17:02Z" product-name="t3locations">
+		<header/>
+		<body>
+			<trans-unit id="tx_t3locations_domain_model_standard">
+				<source>Standard</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_territory">
+				<source>Territory</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_territory.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_territory.verified">
+				<source>Verified</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_country">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_country.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_country.iso_code_a2">
+				<source>Iso Code A2</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_country.iso_code_a3">
+				<source>Iso Code A3</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_country.flag_icon_name">
+				<source>Flag Icon Name</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_country.verified">
+				<source>Verified</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_country.territory">
+				<source>Territory</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region">
+				<source>Region</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.flag_icon_name">
+				<source>Flag Icon Name</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.verified">
+				<source>Verified</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.countries">
+				<source>Countries</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.territory">
+				<source>Territory</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state">
+				<source>State</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state.verified">
+				<source>Verified</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state.country">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location">
+				<source>Location</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.logo">
+				<source>Logo</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.freetext">
+				<source>Freetext</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_search_mask">
+				<source>Field To Use In Search Mask</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_headline">
+				<source>Field To Use In Headline</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.user_defined_headline">
+				<source>User Defined Headline</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.contact_person">
+				<source>Contact Person</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.zip">
+				<source>Zip</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.facsimile">
+				<source>Facsimile</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.mobile">
+				<source>Mobile</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.web">
+				<source>Web</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.social_media">
+				<source>Social Media</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.google_maps">
+				<source>Google Maps</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.state">
+				<source>State</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.country">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.coverage">
+				<source>Coverage</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.region">
+				<source>Region</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_locationtype">
+				<source>Location Type</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_locationtype.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia">
+				<source>Social Media</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia.mode">
+				<source>Mode</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia.icon_or_class_name">
+				<source>Icon Or Class Name</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map">
+				<source>Map</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.coordinates">
+				<source>Coordinates</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.link_query_param">
+				<source>Link Query Param</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedialink">
+				<source>Social Media Link</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedialink.link">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedialink.social_media">
+				<source>Social Media</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

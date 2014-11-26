@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-11-26T11:17:02Z" product-name="t3locations">
+		<header/>
+		<body>
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="iso_code_a2.description">
+				<source>isoCodeA2</source>
+			</trans-unit>
+			<trans-unit id="iso_code_a3.description">
+				<source>isoCodeA3</source>
+			</trans-unit>
+			<trans-unit id="flag_icon_name.description">
+				<source>flagIconName</source>
+			</trans-unit>
+			<trans-unit id="verified.description">
+				<source>verified</source>
+			</trans-unit>
+			<trans-unit id="territory.description">
+				<source>Assign corresponding territory</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

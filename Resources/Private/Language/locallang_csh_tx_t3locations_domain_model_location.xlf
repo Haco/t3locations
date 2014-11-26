@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-11-26T11:17:02Z" product-name="t3locations">
+		<header/>
+		<body>
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="logo.description">
+				<source>logo</source>
+			</trans-unit>
+			<trans-unit id="freetext.description">
+				<source>freetext</source>
+			</trans-unit>
+			<trans-unit id="field_to_use_in_search_mask.description">
+				<source>fieldToUseInSearchMask</source>
+			</trans-unit>
+			<trans-unit id="field_to_use_in_headline.description">
+				<source>fieldToUseInHeadline</source>
+			</trans-unit>
+			<trans-unit id="user_defined_headline.description">
+				<source>userDefinedHeadline</source>
+			</trans-unit>
+			<trans-unit id="contact_person.description">
+				<source>contactPerson</source>
+			</trans-unit>
+			<trans-unit id="address.description">
+				<source>address</source>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<source>zip</source>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<source>city</source>
+			</trans-unit>
+			<trans-unit id="phone.description">
+				<source>phone</source>
+			</trans-unit>
+			<trans-unit id="facsimile.description">
+				<source>facsimile</source>
+			</trans-unit>
+			<trans-unit id="mobile.description">
+				<source>mobile</source>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<source>email</source>
+			</trans-unit>
+			<trans-unit id="web.description">
+				<source>web</source>
+			</trans-unit>
+			<trans-unit id="social_media.description">
+				<source>socialMedia</source>
+			</trans-unit>
+			<trans-unit id="google_maps.description">
+				<source>googleMaps</source>
+			</trans-unit>
+			<trans-unit id="state.description">
+				<source>state</source>
+			</trans-unit>
+			<trans-unit id="country.description">
+				<source>country</source>
+			</trans-unit>
+			<trans-unit id="coverage.description">
+				<source>coverage</source>
+			</trans-unit>
+			<trans-unit id="region.description">
+				<source>region</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

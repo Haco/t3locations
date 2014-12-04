@@ -3,68 +3,71 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2014-11-26T11:17:02Z" product-name="t3locations">
 		<header/>
 		<body>
+			<trans-unit id="type.description">
+				<source>Type of location</source>
+			</trans-unit>
 			<trans-unit id="title.description">
-				<source>title</source>
+				<source>Location title</source>
 			</trans-unit>
 			<trans-unit id="logo.description">
-				<source>logo</source>
+				<source>Location logo, if any</source>
 			</trans-unit>
 			<trans-unit id="freetext.description">
-				<source>freetext</source>
+				<source>The subtitle, if any (see Headline field)</source>
 			</trans-unit>
 			<trans-unit id="field_to_use_in_search_mask.description">
-				<source>fieldToUseInSearchMask</source>
+				<source>Field to use in Search mask</source>
 			</trans-unit>
 			<trans-unit id="field_to_use_in_headline.description">
-				<source>fieldToUseInHeadline</source>
+				<source>Field to use in Headline</source>
 			</trans-unit>
 			<trans-unit id="user_defined_headline.description">
-				<source>userDefinedHeadline</source>
+				<source>User-defined Headline</source>
 			</trans-unit>
 			<trans-unit id="contact_person.description">
-				<source>contactPerson</source>
+				<source>The contact person</source>
 			</trans-unit>
 			<trans-unit id="address.description">
-				<source>address</source>
+				<source>Address</source>
 			</trans-unit>
 			<trans-unit id="zip.description">
-				<source>zip</source>
+				<source>Zip</source>
 			</trans-unit>
 			<trans-unit id="city.description">
-				<source>city</source>
+				<source>City</source>
 			</trans-unit>
 			<trans-unit id="phone.description">
-				<source>phone</source>
+				<source>Phone</source>
 			</trans-unit>
 			<trans-unit id="facsimile.description">
-				<source>facsimile</source>
+				<source>Facsimile</source>
 			</trans-unit>
 			<trans-unit id="mobile.description">
-				<source>mobile</source>
+				<source>Mobile</source>
 			</trans-unit>
 			<trans-unit id="email.description">
-				<source>email</source>
+				<source>E-Mail</source>
 			</trans-unit>
 			<trans-unit id="web.description">
-				<source>web</source>
+				<source>Web-address</source>
 			</trans-unit>
 			<trans-unit id="social_media.description">
-				<source>socialMedia</source>
+				<source>Social media links</source>
 			</trans-unit>
 			<trans-unit id="google_maps.description">
-				<source>googleMaps</source>
+				<source>Google Maps™</source>
 			</trans-unit>
 			<trans-unit id="state.description">
-				<source>state</source>
+				<source>State / Province</source>
 			</trans-unit>
 			<trans-unit id="country.description">
-				<source>country</source>
+				<source>Country</source>
 			</trans-unit>
 			<trans-unit id="coverage.description">
-				<source>coverage</source>
+				<source>Covered countries</source>
 			</trans-unit>
 			<trans-unit id="region.description">
-				<source>region</source>
+				<source>Covered region</source>
 			</trans-unit>
 		</body>
 	</file>

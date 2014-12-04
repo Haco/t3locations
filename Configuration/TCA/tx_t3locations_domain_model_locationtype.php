@@ -11,7 +11,7 @@ return array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
-
+		'sortby' => 'sorting',
 		'versioningWS' => 2,
 		'versioning_followPages' => TRUE,
 
@@ -121,7 +121,8 @@ return array(
 		),
 
 		'title' => array(
-			'exclude' => 1,
+			'l10n_mode' => 'prefixLangTitle',
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_locationtype.title',
 			'config' => array(
 				'type' => 'input',

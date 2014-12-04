@@ -46,8 +46,6 @@ CREATE TABLE tx_t3locations_domain_model_country (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	region int(11) unsigned DEFAULT '0' NOT NULL,
-
 	title varchar(255) DEFAULT '' NOT NULL,
 	iso_code_a2 varchar(255) DEFAULT '' NOT NULL,
 	iso_code_a3 varchar(255) DEFAULT '' NOT NULL,
@@ -95,7 +93,7 @@ CREATE TABLE tx_t3locations_domain_model_region (
 	title varchar(255) DEFAULT '' NOT NULL,
 	flag_icon_name varchar(255) DEFAULT '' NOT NULL,
 	verified tinyint(1) unsigned DEFAULT '0' NOT NULL,
-	countries int(11) unsigned DEFAULT '0' NOT NULL,
+	countries text NOT NULL,
 	territory int(11) unsigned DEFAULT '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -136,6 +134,7 @@ CREATE TABLE tx_t3locations_domain_model_state (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
+	abbreviation varchar(255) DEFAULT '' NOT NULL,
 	verified tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	country int(11) unsigned DEFAULT '0',
 
@@ -176,6 +175,7 @@ CREATE TABLE tx_t3locations_domain_model_location (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
+	type int(11) unsigned DEFAULT '0',
 	title varchar(255) DEFAULT '' NOT NULL,
 	logo int(11) unsigned NOT NULL default '0',
 	freetext text NOT NULL,
@@ -215,7 +215,7 @@ CREATE TABLE tx_t3locations_domain_model_location (
 	t3ver_count int(11) DEFAULT '0' NOT NULL,
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
-
+	sorting int(11) DEFAULT '0' NOT NULL,
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
 	l10n_diffsource mediumblob,
@@ -254,7 +254,7 @@ CREATE TABLE tx_t3locations_domain_model_locationtype (
 	t3ver_count int(11) DEFAULT '0' NOT NULL,
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
-
+	sorting int(11) DEFAULT '0' NOT NULL,
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
 	l10n_diffsource mediumblob,
@@ -296,14 +296,9 @@ CREATE TABLE tx_t3locations_domain_model_socialmedia (
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
 
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l10n_parent int(11) DEFAULT '0' NOT NULL,
-	l10n_diffsource mediumblob,
-
 	PRIMARY KEY (uid),
 	KEY parent (pid),
-	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY t3ver_oid (t3ver_oid,t3ver_wsid)
 
 );
 
@@ -337,14 +332,9 @@ CREATE TABLE tx_t3locations_domain_model_map (
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
 
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l10n_parent int(11) DEFAULT '0' NOT NULL,
-	l10n_diffsource mediumblob,
-
 	PRIMARY KEY (uid),
 	KEY parent (pid),
-	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY t3ver_oid (t3ver_oid,t3ver_wsid)
 
 );
 
@@ -378,33 +368,11 @@ CREATE TABLE tx_t3locations_domain_model_socialmedialink (
 	t3ver_count int(11) DEFAULT '0' NOT NULL,
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
-
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l10n_parent int(11) DEFAULT '0' NOT NULL,
-	l10n_diffsource mediumblob,
+	sorting int(11) DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid),
-	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
-
-);
-
-#
-# Table structure for table 'tx_t3locations_domain_model_country'
-#
-CREATE TABLE tx_t3locations_domain_model_country (
-
-	region  int(11) unsigned DEFAULT '0' NOT NULL,
-
-);
-
-#
-# Table structure for table 'tx_t3locations_domain_model_socialmedialink'
-#
-CREATE TABLE tx_t3locations_domain_model_socialmedialink (
-
-	location  int(11) unsigned DEFAULT '0' NOT NULL,
+	KEY t3ver_oid (t3ver_oid,t3ver_wsid)
 
 );
 

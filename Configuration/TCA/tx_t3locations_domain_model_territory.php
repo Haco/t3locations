@@ -11,7 +11,7 @@ return array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
-
+		'default_sortby' => 'ORDER BY title',
 		'versioningWS' => 2,
 		'versioning_followPages' => TRUE,
 
@@ -24,7 +24,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,verified,',
+		'searchFields' => 'title,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Configuration/TCA/Territory.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('static_info_tables') ? \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('static_info_tables') . 'Resources/Public/Images/Icons/icon_static_territories.gif' : \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_territory.gif'
 	),
@@ -121,7 +121,8 @@ return array(
 		),
 
 		'title' => array(
-			'exclude' => 1,
+			'l10n_mode' => 'prefixLangTitle',
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_territory.title',
 			'config' => array(
 				'type' => 'input',
@@ -130,11 +131,12 @@ return array(
 			),
 		),
 		'verified' => array(
+			'l10n_mode' => 'exclude',
 			'exclude' => 1,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_territory.verified',
 			'config' => array(
 				'type' => 'check',
-				'default' => 0
+				'default' => 1
 			)
 		),
 

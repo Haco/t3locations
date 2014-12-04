@@ -40,6 +40,13 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $title = '';
 
 	/**
+	 * abbreviation
+	 *
+	 * @var string
+	 */
+	protected $abbreviation = '';
+
+	/**
 	 * verified
 	 *
 	 * @var boolean
@@ -70,6 +77,25 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+	}
+
+	/**
+	 * Returns the abbreviation
+	 *
+	 * @return string $abbreviation
+	 */
+	public function getAbbreviation() {
+		return $this->abbreviation;
+	}
+
+	/**
+	 * Sets the abbreviation
+	 *
+	 * @param string $abbreviation
+	 * @return void
+	 */
+	public function setAbbreviation($abbreviation) {
+		$this->abbreviation = $abbreviation;
 	}
 
 	/**

@@ -4,10 +4,13 @@
 		<header/>
 		<body>
 			<trans-unit id="title.description">
-				<source>title</source>
+				<source>State name</source>
+			</trans-unit>
+			<trans-unit id="abbreviation">
+				<source>An abbreviation (i.e. TX for Texas), if any.</source>
 			</trans-unit>
 			<trans-unit id="verified.description">
-				<source>verified</source>
+				<source>Verify record</source>
 			</trans-unit>
 			<trans-unit id="country.description">
 				<source>Assign corresponding country</source>

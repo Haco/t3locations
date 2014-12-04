@@ -4,13 +4,13 @@
 		<header/>
 		<body>
 			<trans-unit id="title.description">
-				<source>title</source>
+				<source>Region name</source>
 			</trans-unit>
 			<trans-unit id="flag_icon_name.description">
-				<source>flagIconName</source>
+				<source>Flag icon name (path is defined in TS + _name_, i.e. »Europe.jpg«)</source>
 			</trans-unit>
 			<trans-unit id="verified.description">
-				<source>verified</source>
+				<source>Verify record</source>
 			</trans-unit>
 			<trans-unit id="countries.description">
 				<source>Assign corresponding countries</source>

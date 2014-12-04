@@ -11,13 +11,11 @@ return array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
-
+		'default_sortby' => 'ORDER BY title',
+		'rootLevel' => 1,
 		'versioningWS' => 2,
 		'versioning_followPages' => TRUE,
 
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
 		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
@@ -29,47 +27,15 @@ return array(
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_socialmedia.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, mode, icon_or_class_name',
+		'showRecordFieldList' => 'hidden, title, mode, icon_or_class_name',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, mode, icon_or_class_name, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'hidden;;1, title, mode, icon_or_class_name, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
 	),
 	'columns' => array(
-
-		'sys_language_uid' => array(
-			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
-				),
-			),
-		),
-		'l10n_parent' => array(
-			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
-			'config' => array(
-				'type' => 'select',
-				'items' => array(
-					array('', 0),
-				),
-				'foreign_table' => 'tx_t3locations_domain_model_socialmedia',
-				'foreign_table_where' => 'AND tx_t3locations_domain_model_socialmedia.pid=###CURRENT_PID### AND tx_t3locations_domain_model_socialmedia.sys_language_uid IN (-1,0)',
-			),
-		),
-		'l10n_diffsource' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
 
 		't3ver_label' => array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
@@ -121,7 +87,7 @@ return array(
 		),
 
 		'title' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedia.title',
 			'config' => array(
 				'type' => 'input',
@@ -130,12 +96,13 @@ return array(
 			),
 		),
 		'mode' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedia.mode',
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
-					array('-- Label --', 0),
+					array('Icon', 0),
+					array('Class name', 1)
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -143,7 +110,7 @@ return array(
 			),
 		),
 		'icon_or_class_name' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedia.icon_or_class_name',
 			'config' => array(
 				'type' => 'input',

@@ -11,7 +11,7 @@ return array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
-
+		'default_sortby' => 'ORDER BY title',
 		'versioningWS' => 2,
 		'versioning_followPages' => TRUE,
 
@@ -24,7 +24,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,flag_icon_name,verified,countries,territory,',
+		'searchFields' => 'title,flag_icon_name,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Configuration/TCA/Region.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('static_info_tables') ? \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('static_info_tables') . 'Resources/Public/Images/Icons/icon_static_countries.gif' : \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_region.gif'
 	),
@@ -32,10 +32,11 @@ return array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, flag_icon_name, verified, countries, territory',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, flag_icon_name, verified, countries, territory, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;2, territory, countries, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
+		'2' => array('showitem' => 'flag_icon_name, verified')
 	),
 	'columns' => array(
 
@@ -121,7 +122,8 @@ return array(
 		),
 
 		'title' => array(
-			'exclude' => 1,
+			'l10n_mode' => 'prefixLangTitle',
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_region.title',
 			'config' => array(
 				'type' => 'input',
@@ -130,55 +132,59 @@ return array(
 			),
 		),
 		'flag_icon_name' => array(
+			'l10n_mode' => 'exclude',
 			'exclude' => 1,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_region.flag_icon_name',
 			'config' => array(
 				'type' => 'input',
-				'size' => 30,
+				'size' => 20,
 				'eval' => 'trim'
 			),
 		),
 		'verified' => array(
+			'l10n_mode' => 'exclude',
 			'exclude' => 1,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_region.verified',
 			'config' => array(
 				'type' => 'check',
-				'default' => 0
+				'default' => 1
 			)
 		),
 		'countries' => array(
-			'exclude' => 1,
+			'l10n_mode' => 'exclude',
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_region.countries',
 			'config' => array(
-				'type' => 'inline',
+				'type' => 'select',
 				'foreign_table' => 'tx_t3locations_domain_model_country',
-				'foreign_field' => 'region',
-				'maxitems'      => 9999,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
+				'foreign_table_where' => 'AND tx_t3locations_domain_model_country.sys_language_uid IN (-1,0) AND tx_t3locations_domain_model_country.deleted=0 ORDER BY tx_t3locations_domain_model_country.title',
+				'size' => 10,
+				'maxitems' => 9999,
+				'wizards' => array(
+					'_VALIGN' => 'middle',
+					'suggest' => array(
+						'type' => 'suggest',
+						'default' => array(
+							'searchWholePhrase' => 1
+						)
+					)
+				)
 			),
 
 		),
 		'territory' => array(
-			'exclude' => 1,
+			'l10n_mode' => 'exclude',
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_region.territory',
 			'config' => array(
-				'type' => 'inline',
+				'type' => 'select',
 				'foreign_table' => 'tx_t3locations_domain_model_territory',
+				'foreign_table_where' => 'AND tx_t3locations_domain_model_territory.sys_language_uid IN (-1,0) AND tx_t3locations_domain_model_territory.deleted=0 ORDER BY tx_t3locations_domain_model_territory.title',
 				'minitems' => 0,
 				'maxitems' => 1,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
+				'items' => array(
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:empty_selector', 0)
+				)
 			),
 		),
 

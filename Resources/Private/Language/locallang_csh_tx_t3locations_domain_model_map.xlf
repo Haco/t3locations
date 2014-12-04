@@ -4,13 +4,13 @@
 		<header/>
 		<body>
 			<trans-unit id="title.description">
-				<source>title</source>
+				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="coordinates.description">
-				<source>coordinates</source>
+				<source>Coordinates (Latitude/Longitude)</source>
 			</trans-unit>
 			<trans-unit id="link_query_param.description">
-				<source>linkQueryParam</source>
+				<source>Query string to append on corresponding link</source>
 			</trans-unit>
 		</body>
 	</file>

@@ -4,13 +4,13 @@
 		<header/>
 		<body>
 			<trans-unit id="title.description">
-				<source>title</source>
+				<source>Social Media Platform</source>
 			</trans-unit>
 			<trans-unit id="mode.description">
-				<source>mode</source>
+				<source>Select Mode</source>
 			</trans-unit>
 			<trans-unit id="icon_or_class_name.description">
-				<source>iconOrClassName</source>
+				<source>Depending on mode selected either specify an icon source (relative path to site root or kind of "path:EXT:myext/path/to/file") or a CSS class name for wrapping div-container.</source>
 			</trans-unit>
 		</body>
 	</file>

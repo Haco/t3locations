@@ -10,7 +10,7 @@
  * "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF['t3locations'] = array(
 	'title' => 'Location Tools',
 	'description' => 'Provides you with various tools for displaying/managing your customers locations.',
 	'category' => 'plugin',

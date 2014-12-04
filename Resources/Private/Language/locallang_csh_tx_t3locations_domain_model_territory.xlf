@@ -4,10 +4,10 @@
 		<header/>
 		<body>
 			<trans-unit id="title.description">
-				<source>title</source>
+				<source>Territory name</source>
 			</trans-unit>
 			<trans-unit id="verified.description">
-				<source>verified</source>
+				<source>Verify record</source>
 			</trans-unit>
 		</body>
 	</file>

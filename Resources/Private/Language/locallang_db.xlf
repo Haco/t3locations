@@ -28,7 +28,7 @@
 				<source>Iso Code A3</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_country.flag_icon_name">
-				<source>Flag Icon Name</source>
+				<source>Flag</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_country.verified">
 				<source>Verified</source>
@@ -43,7 +43,7 @@
 				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region.flag_icon_name">
-				<source>Flag Icon Name</source>
+				<source>Flag Icon</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region.verified">
 				<source>Verified</source>
@@ -60,6 +60,9 @@
 			<trans-unit id="tx_t3locations_domain_model_state.title">
 				<source>Title</source>
 			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state.abbreviation">
+				<source>Abbreviation</source>
+			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_state.verified">
 				<source>Verified</source>
 			</trans-unit>
@@ -69,6 +72,9 @@
 			<trans-unit id="tx_t3locations_domain_model_location">
 				<source>Location</source>
 			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.type">
+				<source>Type</source>
+			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.title">
 				<source>Title</source>
 			</trans-unit>
@@ -76,16 +82,16 @@
 				<source>Logo</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.freetext">
-				<source>Freetext</source>
+				<source>Subtitle</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_search_mask">
-				<source>Field To Use In Search Mask</source>
+				<source>Search field</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_headline">
-				<source>Field To Use In Headline</source>
+				<source>Headline field</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.user_defined_headline">
-				<source>User Defined Headline</source>
+				<source>User-defined Headline</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.contact_person">
 				<source>Contact Person</source>
@@ -118,7 +124,7 @@
 				<source>Social Media</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.google_maps">
-				<source>Google Maps</source>
+				<source>Google Maps™</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.state">
 				<source>State</source>
@@ -148,7 +154,7 @@
 				<source>Mode</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_socialmedia.icon_or_class_name">
-				<source>Icon Or Class Name</source>
+				<source>Icon source or class name</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_map">
 				<source>Map</source>
@@ -170,6 +176,10 @@
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_socialmedialink.social_media">
 				<source>Social Media</source>
+			</trans-unit>
+
+			<trans-unit id="empty_selector">
+				<source>-- NONE --</source>
 			</trans-unit>
 		</body>
 	</file>

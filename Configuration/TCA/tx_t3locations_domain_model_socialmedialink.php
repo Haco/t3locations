@@ -6,18 +6,17 @@ if (!defined ('TYPO3_MODE')) {
 return array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedialink',
-		'label' => 'link',
+		'label' => 'social_media',
+		'label_alt' => 'link',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
-
+		'sortby' => 'sorting',
 		'versioningWS' => 2,
 		'versioning_followPages' => TRUE,
+		'hideTable' => TRUE,
 
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
 		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
@@ -121,21 +120,45 @@ return array(
 		),
 
 		'link' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedialink.link',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required',
+				'wizards'  => array(
+					'_PADDING' => 5,
+					'link'  => array(
+						'type'          => 'popup',
+						'title'         => 'Link',
+						'icon'          => 'link_popup.gif',
+						'module'        => array(
+							'name' => 'wizard_element_browser',
+							'urlParameters' => array(
+								'mode' => 'wizard'
+							)
+						),
+/**
+ * 						'params' => array (
+ *							'target' => '_blank',
+ *							'blindLinkOptions' => 'url,page,file,spec,folder,upload,media_upload',
+ *						),
+ */
+						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
+					)
+				),
 			),
 		),
 		'social_media' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedialink.social_media',
 			'config' => array(
 				'type' => 'select',
+				'items' => array(
+					array('')
+				),
 				'foreign_table' => 'tx_t3locations_domain_model_socialmedia',
-				'minitems' => 0,
+				'minitems' => 1,
 				'maxitems' => 1,
 			),
 		),

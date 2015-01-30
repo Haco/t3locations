@@ -508,7 +508,7 @@ class LocationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setCountryForCountrySetsCountry() {
-		$countryFixture = new \S3b0\T3locations\Domain\Model\Country();
+		$countryFixture = new \S3b0\T3locations\Domain\Model\Region();
 		$this->subject->setCountry($countryFixture);
 
 		$this->assertAttributeEquals(
@@ -533,7 +533,7 @@ class LocationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setCoverageForObjectStorageContainingCountrySetsCoverage() {
-		$coverage = new \S3b0\T3locations\Domain\Model\Country();
+		$coverage = new \S3b0\T3locations\Domain\Model\Region();
 		$objectStorageHoldingExactlyOneCoverage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneCoverage->attach($coverage);
 		$this->subject->setCoverage($objectStorageHoldingExactlyOneCoverage);
@@ -549,7 +549,7 @@ class LocationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function addCoverageToObjectStorageHoldingCoverage() {
-		$coverage = new \S3b0\T3locations\Domain\Model\Country();
+		$coverage = new \S3b0\T3locations\Domain\Model\Region();
 		$coverageObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
 		$coverageObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($coverage));
 		$this->inject($this->subject, 'coverage', $coverageObjectStorageMock);
@@ -561,7 +561,7 @@ class LocationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function removeCoverageFromObjectStorageHoldingCoverage() {
-		$coverage = new \S3b0\T3locations\Domain\Model\Country();
+		$coverage = new \S3b0\T3locations\Domain\Model\Region();
 		$coverageObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
 		$coverageObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($coverage));
 		$this->inject($this->subject, 'coverage', $coverageObjectStorageMock);

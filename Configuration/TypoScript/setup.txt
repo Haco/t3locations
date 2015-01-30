@@ -1,9 +1,19 @@
+[applicationContext = Development]
+page.includeCSSLibs {
+	fontawesome = //maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css
+	fontawesome.external = 1
+}
+[global]
+page.includeJSlibs.googlemaps = https://maps.googleapis.com/maps/api/js?v=3&sensor=true
+page.includeJSlibs.googlemaps.external = 1
+page.includeCSSLibs.main = EXT:t3locations/Resources/Public/Stylesheets/main.css
 
 plugin.tx_t3locations {
+	mvc.callDefaultActionIfActionCantBeResolved = 1
 	view {
-		templateRootPath = {$plugin.tx_t3locations.view.templateRootPath}
-		partialRootPath = {$plugin.tx_t3locations.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_t3locations.view.layoutRootPath}
+		templateRootPaths = {$plugin.tx_t3locations.view.templateRootPaths}
+		partialRootPaths = {$plugin.tx_t3locations.view.partialRootPaths}
+		layoutRootPaths = {$plugin.tx_t3locations.view.layoutRootPaths}
 	}
 	persistence {
 		storagePid = {$plugin.tx_t3locations.persistence.storagePid}
@@ -11,6 +21,9 @@ plugin.tx_t3locations {
 	features {
 		# uncomment the following line to enable the new Property Mapper.
 		# rewrittenPropertyMapper = 1
+	}
+	settings {
+
 	}
 }
 

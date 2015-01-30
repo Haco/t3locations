@@ -157,7 +157,8 @@ return array(
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_state.country',
 			'config' => array(
 				'type' => 'select',
-				'foreign_table' => 'tx_t3locations_domain_model_country',
+				'foreign_table' => 'tx_t3locations_domain_model_region',
+				'foreign_table_where' => 'AND tx_t3locations_domain_model_region.sys_language_uid IN (-1,0) AND tx_t3locations_domain_model_region.type=0 AND tx_t3locations_domain_model_region.deleted=0 ORDER BY tx_t3locations_domain_model_region.title',
 				'minitems' => 0,
 				'maxitems' => 1,
 			),

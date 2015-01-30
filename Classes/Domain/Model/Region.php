@@ -40,6 +40,27 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $title = '';
 
 	/**
+	 * type
+	 *
+	 * @var integer
+	 */
+	protected $type = 0;
+
+	/**
+	 * isoCodeA2
+	 *
+	 * @var string
+	 */
+	protected $isoCodeA2 = '';
+
+	/**
+	 * isoCodeA3
+	 *
+	 * @var string
+	 */
+	protected $isoCodeA3 = '';
+
+	/**
 	 * flagIconName
 	 *
 	 * @var string
@@ -56,7 +77,7 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Assign corresponding countries
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Country>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Region>
 	 * @cascade remove
 	 */
 	protected $countries = NULL;
@@ -108,12 +129,79 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
+	 * Returns the type
+	 *
+	 * @return int
+	 */
+	public function getType() {
+		return $this->type;
+	}
+
+	/**
+	 * Sets the type
+	 *
+	 * @param int $type
+	 */
+	public function setType($type) {
+		$this->type = $type;
+	}
+
+	/**
+	 * Returns the isoCodeA2
+	 *
+	 * @return string $isoCodeA2
+	 */
+	public function getIsoCodeA2() {
+		return $this->isoCodeA2;
+	}
+
+	/**
+	 * Sets the isoCodeA2
+	 *
+	 * @param string $isoCodeA2
+	 * @return void
+	 */
+	public function setIsoCodeA2($isoCodeA2) {
+		$this->isoCodeA2 = $isoCodeA2;
+	}
+
+	/**
+	 * Returns the isoCodeA3
+	 *
+	 * @return string $isoCodeA3
+	 */
+	public function getIsoCodeA3() {
+		return $this->isoCodeA3;
+	}
+
+	/**
+	 * Sets the isoCodeA3
+	 *
+	 * @param string $isoCodeA3
+	 * @return void
+	 */
+	public function setIsoCodeA3($isoCodeA3) {
+		$this->isoCodeA3 = $isoCodeA3;
+	}
+
+	/**
 	 * Returns the flagIconName
 	 *
 	 * @return string $flagIconName
 	 */
 	public function getFlagIconName() {
-		return $this->flagIconName;
+		if ( $this->_languageUid ) {
+			/** @var \TYPO3\CMS\Core\Database\DatabaseConnection $db */
+			$db = $GLOBALS['TYPO3_DB'];
+			/** @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObjectRenderer */
+			$contentObjectRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+			/** @var array $originalRecord */
+			if ( $originalRecord = $db->exec_SELECTgetSingleRow('title', 'tx_t3locations_domain_model_region', 'uid=' . $this->uid . $contentObjectRenderer->enableFields('tx_t3locations_domain_model_region')) ) {
+				return $this->flagIconName ?: $originalRecord['title'];
+			}
+		}
+
+		return $this->flagIconName ?: $this->title;
 	}
 
 	/**
@@ -157,27 +245,29 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Adds a Country
 	 *
-	 * @param \S3b0\T3locations\Domain\Model\Country $country
+	 * @param \S3b0\T3locations\Domain\Model\Region $country
 	 * @return void
 	 */
-	public function addCountry(\S3b0\T3locations\Domain\Model\Country $country) {
-		$this->countries->attach($country);
+	public function addCountry(\S3b0\T3locations\Domain\Model\Region $country) {
+		if ( $country->getType() === 0 ) {
+			$this->countries->attach($country);
+		}
 	}
 
 	/**
 	 * Removes a Country
 	 *
-	 * @param \S3b0\T3locations\Domain\Model\Country $countryToRemove The Country to be removed
+	 * @param \S3b0\T3locations\Domain\Model\Region $countryToRemove The Country to be removed
 	 * @return void
 	 */
-	public function removeCountry(\S3b0\T3locations\Domain\Model\Country $countryToRemove) {
+	public function removeCountry(\S3b0\T3locations\Domain\Model\Region $countryToRemove) {
 		$this->countries->detach($countryToRemove);
 	}
 
 	/**
 	 * Returns the countries
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Country> $countries
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Region> $countries
 	 */
 	public function getCountries() {
 		return $this->countries;
@@ -186,11 +276,18 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the countries
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Country> $countries
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Region> $countries
 	 * @return void
 	 */
-	public function setCountries(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $countries) {
-		$this->countries = $countries;
+	public function setCountries(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $countries = NULL) {
+		if ( $countries instanceof \TYPO3\CMS\Extbase\Persistence\ObjectStorage && $countries->count() ) {
+			/** @var \S3b0\T3locations\Domain\Model\Region $region */
+			foreach ( $countries as $region ) {
+				if ( $region->getType() === 0 ) {
+					$this->addCountry($region);
+				}
+			}
+		}
 	}
 
 	/**

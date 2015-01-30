@@ -1,0 +1,7 @@
+#t3locations-map-canvas {
+	background-color: #fff;
+	height: 450px;
+	overflow: hidden;
+	position: relative;
+	width: 600px;
+}

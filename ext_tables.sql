@@ -39,50 +39,6 @@ CREATE TABLE tx_t3locations_domain_model_territory (
 );
 
 #
-# Table structure for table 'tx_t3locations_domain_model_country'
-#
-CREATE TABLE tx_t3locations_domain_model_country (
-
-	uid int(11) NOT NULL auto_increment,
-	pid int(11) DEFAULT '0' NOT NULL,
-
-	title varchar(255) DEFAULT '' NOT NULL,
-	iso_code_a2 varchar(255) DEFAULT '' NOT NULL,
-	iso_code_a3 varchar(255) DEFAULT '' NOT NULL,
-	flag_icon_name varchar(255) DEFAULT '' NOT NULL,
-	verified tinyint(1) unsigned DEFAULT '0' NOT NULL,
-	territory int(11) unsigned DEFAULT '0',
-
-	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
-	crdate int(11) unsigned DEFAULT '0' NOT NULL,
-	cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
-	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	starttime int(11) unsigned DEFAULT '0' NOT NULL,
-	endtime int(11) unsigned DEFAULT '0' NOT NULL,
-
-	t3ver_oid int(11) DEFAULT '0' NOT NULL,
-	t3ver_id int(11) DEFAULT '0' NOT NULL,
-	t3ver_wsid int(11) DEFAULT '0' NOT NULL,
-	t3ver_label varchar(255) DEFAULT '' NOT NULL,
-	t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
-	t3ver_stage int(11) DEFAULT '0' NOT NULL,
-	t3ver_count int(11) DEFAULT '0' NOT NULL,
-	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
-	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
-
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l10n_parent int(11) DEFAULT '0' NOT NULL,
-	l10n_diffsource mediumblob,
-
-	PRIMARY KEY (uid),
-	KEY parent (pid),
-	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
-
-);
-
-#
 # Table structure for table 'tx_t3locations_domain_model_region'
 #
 CREATE TABLE tx_t3locations_domain_model_region (
@@ -91,6 +47,9 @@ CREATE TABLE tx_t3locations_domain_model_region (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
+	type int(11) DEFAULT '0' NOT NULL,
+	iso_code_a2 varchar(255) DEFAULT '' NOT NULL,
+	iso_code_a3 varchar(255) DEFAULT '' NOT NULL,
 	flag_icon_name varchar(255) DEFAULT '' NOT NULL,
 	verified tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	countries text NOT NULL,
@@ -313,6 +272,16 @@ CREATE TABLE tx_t3locations_domain_model_map (
 	title varchar(255) DEFAULT '' NOT NULL,
 	coordinates varchar(255) DEFAULT '' NOT NULL,
 	link_query_param varchar(255) DEFAULT '' NOT NULL,
+	background_color varchar(255) DEFAULT 'white' NOT NULL,
+	map_type int(11) unsigned DEFAULT '0' NOT NULL,
+	map_type_control tinyint(4) unsigned DEFAULT '1' NOT NULL,
+	map_type_control_style int(11) unsigned DEFAULT '2' NOT NULL,
+	map_type_control_position int(11) unsigned DEFAULT '11' NOT NULL,
+	zoom int(11) unsigned DEFAULT '8' NOT NULL,
+	zoom_control tinyint(4) unsigned DEFAULT '1' NOT NULL,
+	zoom_control_position int(11) unsigned DEFAULT '4' NOT NULL,
+	zoom_control_style int(11) unsigned DEFAULT '0' NOT NULL,
+	additional_features int(11) unsigned DEFAULT '194' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -379,7 +348,7 @@ CREATE TABLE tx_t3locations_domain_model_socialmedialink (
 #
 # Table structure for table 'tx_t3locations_location_country_mm'
 #
-CREATE TABLE tx_t3locations_location_country_mm (
+CREATE TABLE tx_t3locations_location_region_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,

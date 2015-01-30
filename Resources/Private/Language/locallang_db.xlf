@@ -15,32 +15,26 @@
 			<trans-unit id="tx_t3locations_domain_model_territory.verified">
 				<source>Verified</source>
 			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country">
-				<source>Country</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.title">
-				<source>Title</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.iso_code_a2">
-				<source>Iso Code A2</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.iso_code_a3">
-				<source>Iso Code A3</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.flag_icon_name">
-				<source>Flag</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.verified">
-				<source>Verified</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.territory">
-				<source>Territory</source>
-			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region">
-				<source>Region</source>
+				<source>Country / Region</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region.title">
 				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.type">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.type.I.0">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.type.I.1">
+				<source>Region</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.iso_code_a2">
+				<source>Iso Code A2</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.iso_code_a3">
+				<source>Iso Code A3</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region.flag_icon_name">
 				<source>Flag Icon</source>
@@ -87,8 +81,32 @@
 			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_search_mask">
 				<source>Search field</source>
 			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.0">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.1">
+				<source>Coverage</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.2">
+				<source>Region</source>
+			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_headline">
 				<source>Headline field</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_headline.I.0">
+				<source>Company name</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_headline.I.1">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_headline.I.2">
+				<source>Region</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_headline.I.3">
+				<source>User-defined</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_headline.I.4">
+				<source>Leave empty</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.user_defined_headline">
 				<source>User-defined Headline</source>
@@ -153,6 +171,12 @@
 			<trans-unit id="tx_t3locations_domain_model_socialmedia.mode">
 				<source>Mode</source>
 			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia.mode.I.0">
+				<source>Icon</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia.mode.I.1">
+				<source>Class name</source>
+			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_socialmedia.icon_or_class_name">
 				<source>Icon source or class name</source>
 			</trans-unit>
@@ -168,6 +192,132 @@
 			<trans-unit id="tx_t3locations_domain_model_map.link_query_param">
 				<source>Link Query Param</source>
 			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.background_color">
+				<source>Background Color</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type">
+				<source>Map type</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type.I.0">
+				<source>Roadmap</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type.I.1">
+				<source>Satellite</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type.I.2">
+				<source>Hybrid</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type.I.3">
+				<source>Terrain</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control.palette">
+				<source>Map type controls</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control">
+				<source>Enable</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_style">
+				<source>Style</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_style.I.0">
+				<source>Default map type control</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_style.I.1">
+				<source>Dropdown menu</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_style.I.2">
+				<source>Horizontal radio buttons bar</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position">
+				<source>Position</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.0">
+				<source>Bottom center</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.1">
+				<source>Bottom left</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.2">
+				<source>Bottom right</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.3">
+				<source>Left bottom</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.4">
+				<source>Left center</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.5">
+				<source>Left top</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.6">
+				<source>Right bottom</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.7">
+				<source>Right center</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.8">
+				<source>Right top</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.9">
+				<source>Top center</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.10">
+				<source>Top left</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.map_type_control_position.I.11">
+				<source>Top right</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.zoom.palette">
+				<source>Zoom</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.zoom">
+				<source>Zoom Level</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.zoom_control">
+				<source>Enable control</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.zoom_control_style">
+				<source>Control style</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.zoom_control_style.I.0">
+				<source>DEFAULT</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.zoom_control_style.I.1">
+				<source>LARGE</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.zoom_control_style.I.2">
+				<source>SMALL</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.zoom_control_position">
+				<source>Control Position</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.additional_features">
+				<source>Additional Map Settings</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.disable_double_click_zoom">
+				<source>Disable zoom and center on double click</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.draggable">
+				<source>Draggable</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.overview_map_control">
+				<source>Overview Map control</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.pan_control">
+				<source>Pan control</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.rotate_control">
+				<source>Rotate control</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.scale_control">
+				<source>Scale control</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.scrollwheel">
+				<source>Scrollwheel zooming</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.street_view_control">
+				<source>Street View control</source>
+			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_socialmedialink">
 				<source>Social Media Link</source>
 			</trans-unit>
@@ -179,7 +329,7 @@
 			</trans-unit>
 
 			<trans-unit id="empty_selector">
-				<source>-- NONE --</source>
+				<source>-- none --</source>
 			</trans-unit>
 		</body>
 	</file>

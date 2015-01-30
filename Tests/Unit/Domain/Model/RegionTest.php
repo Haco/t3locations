@@ -74,6 +74,75 @@ class RegionTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
+	public function getTypeReturnsInitialValueForInteger() {
+		$this->assertSame(
+			0,
+			$this->subject->getType()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setTypeForIntegerSetsType() {
+		$this->subject->setType(12);
+
+		$this->assertAttributeEquals(
+			12,
+			'fieldToUseInSearchMask',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getIsoCodeA2ReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getIsoCodeA2()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setIsoCodeA2ForStringSetsIsoCodeA2() {
+		$this->subject->setIsoCodeA2('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'isoCodeA2',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getIsoCodeA3ReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getIsoCodeA3()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setIsoCodeA3ForStringSetsIsoCodeA3() {
+		$this->subject->setIsoCodeA3('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'isoCodeA3',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
 	public function getFlagIconNameReturnsInitialValueForString() {
 		$this->assertSame(
 			'',
@@ -132,7 +201,7 @@ class RegionTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setCountriesForObjectStorageContainingCountrySetsCountries() {
-		$country = new \S3b0\T3locations\Domain\Model\Country();
+		$country = new \S3b0\T3locations\Domain\Model\Region();
 		$objectStorageHoldingExactlyOneCountries = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$objectStorageHoldingExactlyOneCountries->attach($country);
 		$this->subject->setCountries($objectStorageHoldingExactlyOneCountries);
@@ -148,7 +217,7 @@ class RegionTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function addCountryToObjectStorageHoldingCountries() {
-		$country = new \S3b0\T3locations\Domain\Model\Country();
+		$country = new \S3b0\T3locations\Domain\Model\Region();
 		$countriesObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
 		$countriesObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($country));
 		$this->inject($this->subject, 'countries', $countriesObjectStorageMock);
@@ -160,7 +229,7 @@ class RegionTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function removeCountryFromObjectStorageHoldingCountries() {
-		$country = new \S3b0\T3locations\Domain\Model\Country();
+		$country = new \S3b0\T3locations\Domain\Model\Region();
 		$countriesObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
 		$countriesObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($country));
 		$this->inject($this->subject, 'countries', $countriesObjectStorageMock);

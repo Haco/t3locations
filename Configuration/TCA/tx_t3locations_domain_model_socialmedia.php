@@ -101,8 +101,8 @@ return array(
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
-					array('Icon', 0),
-					array('Class name', 1)
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedia.mode.I.0', 0),
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedia.mode.I.1', 1)
 				),
 				'size' => 1,
 				'maxitems' => 1,

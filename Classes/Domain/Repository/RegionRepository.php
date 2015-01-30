@@ -28,19 +28,8 @@ namespace S3b0\T3locations\Domain\Repository;
  ***************************************************************/
 
 /**
- * The repository for Locations
+ * The repository for Regions
  */
-class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class RegionRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	public function findByRegion(\S3b0\T3locations\Domain\Model\Region $region) {
-		$query = $this->createQuery();
-
-		return $query->matching(
-			$query->logicalOr(
-				$query->equals('country', $region),
-				$query->contains('coverage', $region),
-				$query->equals('region', $region)
-			)
-		)->execute();
-	}
 }

@@ -56,7 +56,7 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Assign corresponding country
 	 *
-	 * @var \S3b0\T3locations\Domain\Model\Country
+	 * @var \S3b0\T3locations\Domain\Model\Region
 	 */
 	protected $country = NULL;
 
@@ -129,7 +129,7 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the country
 	 *
-	 * @return \S3b0\T3locations\Domain\Model\Country $country
+	 * @return \S3b0\T3locations\Domain\Model\Region $country
 	 */
 	public function getCountry() {
 		return $this->country;
@@ -138,10 +138,10 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the country
 	 *
-	 * @param \S3b0\T3locations\Domain\Model\Country $country
+	 * @param \S3b0\T3locations\Domain\Model\Region $country
 	 * @return void
 	 */
-	public function setCountry(\S3b0\T3locations\Domain\Model\Country $country) {
+	public function setCountry(\S3b0\T3locations\Domain\Model\Region $country) {
 		$this->country = $country;
 	}
 

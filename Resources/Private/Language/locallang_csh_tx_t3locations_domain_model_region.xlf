@@ -6,8 +6,17 @@
 			<trans-unit id="title.description">
 				<source>Region name</source>
 			</trans-unit>
+			<trans-unit id="type.description">
+				<source>Choose region type. Default: Country</source>
+			</trans-unit>
+			<trans-unit id="iso_code_a2.description">
+				<source>ISO-3166-1 alpha-2 »http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2«</source>
+			</trans-unit>
+			<trans-unit id="iso_code_a3.description">
+				<source>ISO-3166-1 alpha-3 »http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3«</source>
+			</trans-unit>
 			<trans-unit id="flag_icon_name.description">
-				<source>Flag icon name (path is defined in TS + _name_, i.e. »Europe.jpg«)</source>
+				<source>Flag icon name (EXT:t3locations/Resources/Public/Images/FlagIcons/ + _name_ + .png, i.e. »Europe«)</source>
 			</trans-unit>
 			<trans-unit id="verified.description">
 				<source>Verify record</source>

@@ -15,32 +15,20 @@
 			<trans-unit id="tx_t3locations_domain_model_territory.verified">
 				<source>Verified</source>
 			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country">
-				<source>Country</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.title">
-				<source>Title</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.iso_code_a2">
-				<source>Iso Code A2</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.iso_code_a3">
-				<source>Iso Code A3</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.flag_icon_name">
-				<source>Flag Icon Name</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.verified">
-				<source>Verified</source>
-			</trans-unit>
-			<trans-unit id="tx_t3locations_domain_model_country.territory">
-				<source>Territory</source>
-			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region">
 				<source>Region</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region.title">
 				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.type">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.iso_code_a2">
+				<source>Iso Code A2</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.iso_code_a3">
+				<source>Iso Code A3</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region.flag_icon_name">
 				<source>Flag Icon Name</source>
@@ -170,6 +158,38 @@
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_socialmedialink.social_media">
 				<source>Social Media</source>
+			</trans-unit>
+
+
+			<trans-unit id="output.business_sectors">
+				<source>Business Units </source>
+			</trans-unit>
+			<trans-unit id="output.coverage_prepend">
+				<source>Also covering </source>
+			</trans-unit>
+			<trans-unit id="output.coverage_append">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="output.title_phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="output.title_mobile">
+				<source>Cell</source>
+			</trans-unit>
+			<trans-unit id="output.title_facsimile">
+				<source>Fax</source>
+			</trans-unit>
+			<trans-unit id="output.title_email">
+				<source>E-Mail</source>
+			</trans-unit>
+			<trans-unit id="output.title_web">
+				<source>Website</source>
+			</trans-unit>
+			<trans-unit id="output.map_link_text">
+				<source>Show on Google Maps™</source>
+			</trans-unit>
+			<trans-unit id="conjunction.and">
+				<source>and</source>
 			</trans-unit>
 		</body>
 	</file>

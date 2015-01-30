@@ -138,6 +138,13 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $web = '';
 
 	/**
+	 * type
+	 *
+	 * @var \S3b0\T3locations\Domain\Model\LocationType
+	 */
+	protected $type = NULL;
+
+	/**
 	 * socialMedia
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\SocialMediaLink>
@@ -162,14 +169,14 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * country
 	 *
-	 * @var \S3b0\T3locations\Domain\Model\Country
+	 * @var \S3b0\T3locations\Domain\Model\Region
 	 */
 	protected $country = NULL;
 
 	/**
 	 * coverage
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Country>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Region>
 	 */
 	protected $coverage = NULL;
 
@@ -451,10 +458,10 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the email
 	 *
-	 * @return string $email
+	 * @return array $email
 	 */
 	public function getEmail() {
-		return $this->email;
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(PHP_EOL, $this->email, TRUE);
 	}
 
 	/**
@@ -470,10 +477,10 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the web
 	 *
-	 * @return string $web
+	 * @return array $web
 	 */
 	public function getWeb() {
-		return $this->web;
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(PHP_EOL, $this->web, TRUE);
 	}
 
 	/**
@@ -484,6 +491,24 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setWeb($web) {
 		$this->web = $web;
+	}
+
+	/**
+	 * Returns the type
+	 *
+	 * @return \S3b0\T3locations\Domain\Model\LocationType
+	 */
+	public function getType() {
+		return $this->type;
+	}
+
+	/**
+	 * Sets the type
+	 *
+	 * @param \S3b0\T3locations\Domain\Model\LocationType $type
+	 */
+	public function setType(\S3b0\T3locations\Domain\Model\LocationType $type) {
+		$this->type = $type;
 	}
 
 	/**
@@ -566,7 +591,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the country
 	 *
-	 * @return \S3b0\T3locations\Domain\Model\Country $country
+	 * @return \S3b0\T3locations\Domain\Model\Region $country
 	 */
 	public function getCountry() {
 		return $this->country;
@@ -575,46 +600,50 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the country
 	 *
-	 * @param \S3b0\T3locations\Domain\Model\Country $country
+	 * @param \S3b0\T3locations\Domain\Model\Region $country
 	 * @return void
 	 */
-	public function setCountry(\S3b0\T3locations\Domain\Model\Country $country) {
+	public function setCountry(\S3b0\T3locations\Domain\Model\Region $country) {
 		$this->country = $country;
 	}
 
 	/**
 	 * Adds a Country
 	 *
-	 * @param \S3b0\T3locations\Domain\Model\Country $coverage
+	 * @param \S3b0\T3locations\Domain\Model\Region $coverage
 	 * @return void
 	 */
-	public function addCoverage(\S3b0\T3locations\Domain\Model\Country $coverage) {
+	public function addCoverage(\S3b0\T3locations\Domain\Model\Region $coverage) {
 		$this->coverage->attach($coverage);
 	}
 
 	/**
 	 * Removes a Country
 	 *
-	 * @param \S3b0\T3locations\Domain\Model\Country $coverageToRemove The Country to be removed
+	 * @param \S3b0\T3locations\Domain\Model\Region $coverageToRemove The Country to be removed
 	 * @return void
 	 */
-	public function removeCoverage(\S3b0\T3locations\Domain\Model\Country $coverageToRemove) {
+	public function removeCoverage(\S3b0\T3locations\Domain\Model\Region $coverageToRemove) {
 		$this->coverage->detach($coverageToRemove);
 	}
 
 	/**
 	 * Returns the coverage
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Country> $coverage
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Region> $coverage
 	 */
 	public function getCoverage() {
+		if ( $this->coverage->contains($this->country) ) {
+			$this->coverage->detach($this->country);
+		}
+
 		return $this->coverage;
 	}
 
 	/**
 	 * Sets the coverage
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Country> $coverage
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Region> $coverage
 	 * @return void
 	 */
 	public function setCoverage(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $coverage) {
@@ -638,6 +667,30 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setRegion(\S3b0\T3locations\Domain\Model\Region $region) {
 		$this->region = $region;
+	}
+
+	/**
+	 * Returns the headline
+	 *
+	 * @return string
+	 */
+	public function getHeadline() {
+		switch ( $this->fieldToUseInHeadline ) {
+			case 1:
+				return $this->country->getTitle();
+				break;
+			case 2:
+				return $this->region->getTitle();
+				break;
+			case 3:
+				return $this->userDefinedHeadline;
+				break;
+			case 4:
+				return '';
+				break;
+			default:
+				return $this->title;
+		}
 	}
 
 }

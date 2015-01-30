@@ -40,7 +40,7 @@ return array(
 	'palettes' => array(
 		'1' => array('showitem' => ''),
 		'2' => array('showitem' => 'type, logo'),
-		'3' => array('showitem' => 'field_to_use_in_search_mask, field_to_use_in_headline, --linebreak--, user_defined_headline', 'canNotCollapse' => 1),
+		'3' => array('showitem' => 'field_to_use_in_headline, --linebreak--, user_defined_headline, --linebreak--, field_to_use_in_search_mask', 'canNotCollapse' => 1),
 		'4' => array('showitem' => 'phone, facsimile, mobile', 'canNotCollapse' => 1),
 		'5' => array('showitem' => 'email, web', 'canNotCollapse' => 1),
 		'6' => array('showitem' => 'contact_person, --linebreak--, address, --linebreak--, city, zip, --linebreak--, country, state', 'canNotCollapse' => 1)
@@ -176,12 +176,11 @@ return array(
 			'config' => array(
 				'type' => 'check',
 				'items' => array(
-					array('Country', 0),
-					array('Coverage', 1),
-					array('Region', 2),
-					array('Zip', 3),
-					array('City', 4)
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.0', 0),
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.1', 1),
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.2', 2)
 				),
+				'cols' => 3,
 				'default' => 3
 			),
 		),
@@ -192,11 +191,11 @@ return array(
 			'config' => array(
 				'type' => 'radio',
 				'items' => array(
-					array('Company name', 0),
-					array('Country', 1),
-					array('Region', 2),
-					array('User-defined', 3),
-					array('Leave empty', 4),
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.0', 0),
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.1', 1),
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.2', 2),
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.3', 3),
+					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.4', 4),
 				),
 			),
 		),
@@ -354,11 +353,9 @@ return array(
 				'foreign_field' => 'location',
 				'maxitems'      => 9999,
 				'appearance' => array(
-					'collapseAll' => 0,
+					'collapseAll' => 1,
 					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
+					'showSynchronizationLink' => 1
 				),
 			),
 
@@ -373,11 +370,9 @@ return array(
 				'minitems' => 0,
 				'maxitems' => 1,
 				'appearance' => array(
-					'collapseAll' => 0,
+					'collapseAll' => 1,
 					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
+					'showSynchronizationLink' => 1
 				),
 			),
 		),
@@ -406,8 +401,8 @@ return array(
 				'items' => array(
 					array('')
 				),
-				'foreign_table' => 'tx_t3locations_domain_model_country',
-				'foreign_table_where' => 'AND tx_t3locations_domain_model_country.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_t3locations_domain_model_region',
+				'foreign_table_where' => 'AND tx_t3locations_domain_model_region.sys_language_uid IN (-1,0) AND tx_t3locations_domain_model_region.type=0 AND tx_t3locations_domain_model_region.deleted=0 ORDER BY tx_t3locations_domain_model_region.title',
 				'minitems' => 0,
 				'maxitems' => 1,
 			),
@@ -419,9 +414,9 @@ return array(
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.coverage',
 			'config' => array(
 				'type' => 'select',
-				'foreign_table' => 'tx_t3locations_domain_model_country',
-				'foreign_table_where' => 'AND tx_t3locations_domain_model_country.sys_language_uid IN (-1,0)',
-				'MM' => 'tx_t3locations_location_country_mm',
+				'foreign_table' => 'tx_t3locations_domain_model_region',
+				'foreign_table_where' => 'AND tx_t3locations_domain_model_region.sys_language_uid IN (-1,0) AND tx_t3locations_domain_model_region.type=0 AND tx_t3locations_domain_model_region.deleted=0 ORDER BY tx_t3locations_domain_model_region.title',
+				'MM' => 'tx_t3locations_location_region_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
 				'maxitems' => 9999,
@@ -447,7 +442,7 @@ return array(
 					array('')
 				),
 				'foreign_table' => 'tx_t3locations_domain_model_region',
-				'foreign_table_where' => 'AND tx_t3locations_domain_model_region.sys_language_uid IN (-1,0)',
+				'foreign_table_where' => 'AND tx_t3locations_domain_model_region.sys_language_uid IN (-1,0) AND tx_t3locations_domain_model_region.type=1 AND tx_t3locations_domain_model_region.deleted=0 ORDER BY tx_t3locations_domain_model_region.title',
 				'minitems' => 0,
 				'maxitems' => 1,
 			),

@@ -52,6 +52,15 @@ class SocialMediaLink extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return string $link
 	 */
 	public function getLink() {
+		if ( $this->link && $this->socialMedia->getMode() === 1 || ($this->socialMedia->getMode() !== 1 && !file_exists(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->socialMedia->getIconOrClassName()))) ) {
+			$linkconf = \TYPO3\CMS\Core\Utility\GeneralUtility::unQuoteFilenames($this->link, TRUE);
+			if ( is_array($linkconf) && count($linkconf) ) {
+				$linkconf[1] = $linkconf[1] ?: $GLOBALS['TSFE']->tmpl->extTarget ?: '_blank'; // Set target if not set
+				$linkconf[2] = ($linkconf[2] ? $linkconf[2] . ' ' : '') . $this->socialMedia->getIconOrClassName(); // Add specified class name
+				return '"' . implode('" "', $linkconf) . '"';
+			}
+		}
+
 		return $this->link;
 	}
 

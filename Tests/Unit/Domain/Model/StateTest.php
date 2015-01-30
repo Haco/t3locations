@@ -108,7 +108,7 @@ class StateTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function setCountryForCountrySetsCountry() {
-		$countryFixture = new \S3b0\T3locations\Domain\Model\Country();
+		$countryFixture = new \S3b0\T3locations\Domain\Model\Region();
 		$this->subject->setCountry($countryFixture);
 
 		$this->assertAttributeEquals(

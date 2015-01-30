@@ -4,10 +4,10 @@
 		<header/>
 		<body>
 			<trans-unit id="link.description">
-				<source>link</source>
+				<source>The link to page on social medi platform</source>
 			</trans-unit>
 			<trans-unit id="social_media.description">
-				<source>socialMedia</source>
+				<source>Social media platform</source>
 			</trans-unit>
 		</body>
 	</file>

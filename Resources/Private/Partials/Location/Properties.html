@@ -1,123 +1,73 @@
+<f:if condition="{location.logo}">
+	<f:image src="{location.logo.uid}" class="logo" alt="{location.title}" width="150" treatIdAsReference="1" /><br />
+</f:if>
+<f:if condition="{location.fieldToUseInHeadline} != 4">
+	<h2>
+		<f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.country.flagIconName}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
+		<f:switch expression="{location.fieldToUseInHeadline}">
+			<f:case value="0"><f:format.html parseFuncTSPath="lib.parseFunc">{location.title}</f:format.html></f:case>
+			<f:case value="1"><f:format.html parseFuncTSPath="lib.parseFunc">{location.country.title}</f:format.html></f:case>
+			<f:case value="2"><f:format.html parseFuncTSPath="lib.parseFunc">{location.region.title}</f:format.html></f:case>
+			<f:case value="3"><f:format.html parseFuncTSPath="lib.parseFunc">{location.userDefinedHeadline}</f:format.html></f:case>
+		</f:switch>
+		<small class="no-line-break">[{location.type.title}]</small><f:if condition="{location.freetext}"><br /><span class="t3locations-sectors"><f:translate id="output.business_sectors" />:<br /><span class="t3locations-highlight">{location.freetext}</span></span></f:if>
+	</h2>
+</f:if>
+<hr />
+<f:format.nl2br><f:format.html parseFuncTSPath="lib.parseFunc">{location.address}</f:format.html></f:format.nl2br>
+<f:if condition="{location.coverage -> f:count()}">
+	<br /><small><em><f:translate id="output.coverage_prepend" /><f:for each="{location.coverage}" as="country" iteration="i"><f:if condition="{i.isFirst} == 0"><f:if condition="{i.isLast}"><f:then> <f:translate id="conjunction.and" /> </f:then><f:else>, </f:else></f:if></f:if>{country.title}</f:for> <f:translate id="output.coverage_append" /></em></small>
+</f:if>
+<br /><br />
+<f:if condition="{0:location.phone,1:location.mobile,2:location.facsimile,3:location.email->f:count(),4:location.web->f:count()} != {0:'',1:'',2:'',3:0,4:0}">
+	<table class="contact-data">
+		<f:if condition="{location.phone}">
+			<tr><td><i class="fa fa-phone fa-fw tel" title="{f:translate(id : 'output.title_phone')}"></i> </td><td><span class="tel"><f:format.nl2br>{location.phone}</f:format.nl2br></span></td></tr>
+		</f:if>
+		<f:if condition="{location.mobile}">
+			<tr><td><i class="fa fa-mobile-phone fa-fw" title="{f:translate(id : 'output.title_mobile')}"></i> </td><td><span class="mobile"><f:format.nl2br>{location.mobile}</f:format.nl2br></span></td></tr>
+		</f:if>
+		<f:if condition="{location.facsimile}">
+			<tr><td><i class="fa fa-print fa-fw fax" title="{f:translate(id : 'output.title_facsimile')}"></i> </td><td><span class="fax"><f:format.nl2br>{location.facsimile}</f:format.nl2br></span></td></tr>
+		</f:if>
+		<f:if condition="{location.email -> f:count()}">
+			<tr><td><i class="fa fa-envelope fa-fw" title="{f:translate(id : 'output.title_email')}"></i> </td><td>
+				<f:for each="{location.email}" as="email">
+					<f:format.html parseFuncTSPath="lib.parseFunc"><link {email}></link></f:format.html><br />
+				</f:for>
+			</td></tr>
+		</f:if>
+		<f:if condition="{location.web -> f:count()}">
+			<tr><td><i class="fa fa-globe fa-fw" title="{f:translate(id : 'output.title_web')}"></i> </td><td>
+				<f:for each="{location.web}" as="web">
+					<f:format.html parseFuncTSPath="lib.parseFunc"><link {web}></link></f:format.html><br />
+				</f:for>
+			</td></tr>
+		</f:if>
+		<f:if condition="{location.googleMaps.linkQueryParam}">
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr><td><i class="fa fa-flag"></i> </td><td><f:link.external uri="//maps.google.com/?q={location.googleMaps.linkQueryParam}" target="_blank"><f:translate id="output.map_link_text" /></f:link.external></td></tr>
+		</f:if>
+	</table>
+</f:if>
 
-<table class="tx-t3locations" >
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.title" />
-		</td>
-		<td>
-		{location.title}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.logo" />
-		</td>
-		<td>
-				<f:image src="{location.logo.originalResource.publicUrl}" width="200"/>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.freetext" />
-		</td>
-		<td>
-		{location.freetext}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.field_to_use_in_search_mask" />
-		</td>
-		<td>
-		{location.fieldToUseInSearchMask}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.field_to_use_in_headline" />
-		</td>
-		<td>
-		{location.fieldToUseInHeadline}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.user_defined_headline" />
-		</td>
-		<td>
-		{location.userDefinedHeadline}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.contact_person" />
-		</td>
-		<td>
-		{location.contactPerson}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.address" />
-		</td>
-		<td>
-		{location.address}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.zip" />
-		</td>
-		<td>
-		{location.zip}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.city" />
-		</td>
-		<td>
-		{location.city}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.phone" />
-		</td>
-		<td>
-		{location.phone}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.facsimile" />
-		</td>
-		<td>
-		{location.facsimile}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.mobile" />
-		</td>
-		<td>
-		{location.mobile}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.email" />
-		</td>
-		<td>
-		{location.email}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_location.web" />
-		</td>
-		<td>
-		{location.web}
-		</td>
-	</tr>
-</table>
+<f:if condition="{location.googleMaps.coordinates}">
+	<!-- Geo-Location -->
+<span class="geo">
+  <span class="latitude">
+    <span class="value-title" title="{location.googleMaps.coordinates.0}" ></span>
+  </span>
+  <span class="longitude">
+    <span class="value-title" title="{location.googleMaps.coordinates.1}"></span>
+  </span>
+</span>
+</f:if>
+
+<f:if condition="{location.socialMedia -> f:count()}">
+	<!-- Social Media -->
+	<div class="social-media">
+		<f:for each="{location.socialMedia}" as="socialMediaLink">
+			<f:render partial="SocialMediaLink/Properties" arguments="{socialMediaLink : socialMediaLink}" />
+		</f:for>
+	</div>
+</f:if>

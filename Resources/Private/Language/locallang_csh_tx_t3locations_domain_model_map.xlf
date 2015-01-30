@@ -7,7 +7,7 @@
 				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="coordinates.description">
-				<source>Coordinates (Latitude/Longitude)</source>
+				<source>Coordinates (Latitude,Longitude)</source>
 			</trans-unit>
 			<trans-unit id="link_query_param.description">
 				<source>Query string to append on corresponding link</source>

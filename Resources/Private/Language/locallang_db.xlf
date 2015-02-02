@@ -117,6 +117,12 @@
 			<trans-unit id="tx_t3locations_domain_model_location.address">
 				<source>Address</source>
 			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.address.wizardAdd">
+				<source>Add fields</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.street_address">
+				<source>Street address</source>
+			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.zip">
 				<source>Zip</source>
 			</trans-unit>

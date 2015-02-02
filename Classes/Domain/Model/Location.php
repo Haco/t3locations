@@ -89,6 +89,13 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $address = '';
 
 	/**
+	 * streetAddress
+	 *
+	 * @var string
+	 */
+	protected $streetAddress = '';
+
+	/**
 	 * zip
 	 *
 	 * @var string
@@ -347,7 +354,19 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return string $address
 	 */
 	public function getAddress() {
-		return $this->address;
+		$replace = preg_match_all('/\{\{([a-z0-9]+)\}\}/im', $this->address, $matches);
+
+		if ( $replace ) {
+			foreach ( $matches[1] as $property ) {
+				if ( method_exists($this, 'getParsedProperty' . ucfirst($property)) ) {
+					$this->address = str_replace('{{' . $property . '}}', call_user_func(array($this, 'getParsedProperty' . ucfirst($property))), $this->address);
+				} elseif ( $this->_hasProperty($property) ) {
+					$this->address = str_replace('{{' . $property . '}}', $this->_getProperty($property), $this->address);
+				}
+			}
+		}
+
+		return '<div class="adr">' . $this->address . '</div>';
 	}
 
 	/**
@@ -358,6 +377,24 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setAddress($address) {
 		$this->address = $address;
+	}
+
+	/**
+	 * Returns the streetAddress
+	 *
+	 * @return string
+	 */
+	public function getStreetAddress() {
+		return $this->streetAddress;
+	}
+
+	/**
+	 * Sets the streetAddress
+	 *
+	 * @param string $streetAddress
+	 */
+	public function setStreetAddress($streetAddress) {
+		$this->streetAddress = $streetAddress;
 	}
 
 	/**
@@ -672,25 +709,101 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the headline
 	 *
+	 * @param $returnBoolean boolean
 	 * @return string
 	 */
-	public function getHeadline() {
+	public function getHeadline($returnBoolean = FALSE) {
 		switch ( $this->fieldToUseInHeadline ) {
 			case 1:
-				return $this->country->getTitle();
+				return $returnBoolean ?: $this->country->getTitle();
 				break;
 			case 2:
-				return $this->region->getTitle();
+				return $returnBoolean ?: $this->region->getTitle();
 				break;
 			case 3:
-				return $this->userDefinedHeadline;
+				return $returnBoolean ?: $this->userDefinedHeadline;
 				break;
 			case 4:
-				return '';
+				return $returnBoolean ? FALSE : '';
 				break;
 			default:
-				return $this->title;
+				return $returnBoolean ?: $this->title;
 		}
+	}
+
+	/****************************************************
+	 * ParseFunctions for replacements in address field *
+	 ***************************************************/
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyType() {
+		return $this->type->getTitle();
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyTitle() {
+		return '<span class="fn org">' . $this->title . '</span>';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyStreetAddress() {
+		return '<span class="adr street-address">' . $this->streetAddress . '</span>';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyZip() {
+		return '<span class="adr postal-code">' . $this->zip . '</span>';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyCity() {
+		return '<span class="adr locality">' . $this->city . '</span>';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyState() {
+		return '<span class="adr region">' . $this->state->getTitle() . '</span>';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyCountry() {
+		return '<span class="adr country-name">' . $this->country->getTitle() . '</span>';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyRegion() {
+		return $this->region->getTitle();
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyCoverage() {
+		$output = '';
+		if ( $this->coverage->count() ) {
+			/** @var \S3b0\T3locations\Domain\Model\Region $country */
+			foreach ( $this->coverage as $country ) {
+				$output .= ', ' . $country->getTitle();
+			}
+		}
+
+		return substr($output, 2);
 	}
 
 }

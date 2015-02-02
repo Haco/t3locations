@@ -27,7 +27,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,logo,freetext,field_to_use_in_search_mask,field_to_use_in_headline,user_defined_headline,contact_person,address,zip,city,phone,facsimile,mobile,email,web,social_media,google_maps,state,country,coverage,region,',
+		'searchFields' => 'title,logo,freetext,field_to_use_in_search_mask,field_to_use_in_headline,user_defined_headline,contact_person,address,street_address,zip,city,phone,facsimile,mobile,email,web,social_media,google_maps,state,country,coverage,region,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Configuration/TCA/Location.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_location.png'
 	),
@@ -43,7 +43,7 @@ return array(
 		'3' => array('showitem' => 'field_to_use_in_headline, --linebreak--, user_defined_headline, --linebreak--, field_to_use_in_search_mask', 'canNotCollapse' => 1),
 		'4' => array('showitem' => 'phone, facsimile, mobile', 'canNotCollapse' => 1),
 		'5' => array('showitem' => 'email, web', 'canNotCollapse' => 1),
-		'6' => array('showitem' => 'contact_person, --linebreak--, address, --linebreak--, city, zip, --linebreak--, country, state', 'canNotCollapse' => 1)
+		'6' => array('showitem' => 'contact_person, --linebreak--, address, --linebreak--, street_address, city, zip, --linebreak--, country, state', 'canNotCollapse' => 1)
 	),
 	'columns' => array(
 
@@ -225,8 +225,39 @@ return array(
 				'type' => 'text',
 				'cols' => 28,
 				'rows' => 5,
-				'eval' => 'trim'
+				'eval' => 'trim',
+				'wizards' => array(
+					'_PADDING' => 5,
+					'_VERTICAL' => 1,
+					'add' => array(
+						'type' => 'select',
+						'title' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.address.wizardAdd',
+						'mode' => 'append',
+						'items' => array(
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.title', '{{title}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.type', '{{type}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.freetext', '{{freetext}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.contact_person', '{{contactPerson}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.street_address', '{{streetAddress}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.zip', '{{zip}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.city', '{{city}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.state', '{{state}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.country', '{{country}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.region', '{{region}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.coverage', '{{coverage}}'),
+						)
+					)
+				)
 			)
+		),
+		'street_address' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.street_address',
+			'config' => array(
+				'type' => 'input',
+				'size' => 20,
+				'eval' => 'trim'
+			),
 		),
 		'zip' => array(
 			'exclude' => 0,

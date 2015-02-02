@@ -143,6 +143,7 @@ CREATE TABLE tx_t3locations_domain_model_location (
 	user_defined_headline varchar(255) DEFAULT '' NOT NULL,
 	contact_person varchar(255) DEFAULT '' NOT NULL,
 	address text NOT NULL,
+	street_address text NOT NULL,
 	zip varchar(255) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
 	phone text NOT NULL,

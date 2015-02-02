@@ -57,12 +57,13 @@ LOCK TABLES `tx_t3locations_domain_model_socialmedia` WRITE;
 
 INSERT INTO `tx_t3locations_domain_model_socialmedia` (`title`, `mode`, `icon_or_class_name`)
 VALUES
-	('LinkedIn',1,'sm-linkedin'),
-	('YouTube',1,'sm-youtube'),
-	('SlideShare',1,'sm-slideshare'),
-	('Google+',1,'sm-gplus'),
-	('Twitter',1,'sm-twitter'),
-	('Facebook',1,'sm-facebook');
+	('Facebook',1,'facebook'),
+	('Google+',1,'googleplus'),
+	('LinkedIn',1,'linkedin'),
+	('SlideShare',1,'slideshare'),
+	('Twitter',1,'twitter'),
+	('Xing',1,'xing'),
+	('YouTube',1,'youtube');
 
 /*!40000 ALTER TABLE `tx_t3locations_domain_model_socialmedia` ENABLE KEYS */;
 UNLOCK TABLES;

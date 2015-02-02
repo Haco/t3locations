@@ -28,7 +28,10 @@
 				<source>The contact person</source>
 			</trans-unit>
 			<trans-unit id="address.description">
-				<source>Address</source>
+				<source>Address. You might either use plain text only or use the markers to apply micro-formats on several fields.</source>
+			</trans-unit>
+			<trans-unit id="street_address.description">
+				<source>Additional street address field, intended for micro-formatted output!</source>
 			</trans-unit>
 			<trans-unit id="zip.description">
 				<source>Zip</source>

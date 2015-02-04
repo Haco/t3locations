@@ -17,7 +17,8 @@ return array(
 		'versioningWS' => 2,
 		'versioning_followPages' => TRUE,
 		'requestUpdate' => 'field_to_use_in_headline,country',
-
+		'hideAtCopy' => TRUE,
+		'setToDefaultOnCopy' => 'logo,social_media,google_maps',
 		'languageField' => 'sys_language_uid',
 		'transOrigPointerField' => 'l10n_parent',
 		'transOrigDiffSourceField' => 'l10n_diffsource',

@@ -35,11 +35,19 @@ use \TYPO3\CMS\Core\Utility as CoreUtility;
 class StandardController extends \S3b0\T3locations\Controller\LocationController {
 
 	/**
+	 * territoryRepository
+	 *
 	 * @var \S3b0\T3locations\Domain\Repository\TerritoryRepository
 	 * @inject
 	 */
 	protected $territoryRepository = NULL;
 
+	/**
+	 * Initializes the search action
+	 *
+	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\InvalidArgumentNameException
+	 * @return void
+	 */
 	public function initializeSearchAction() {
 		/** All properties without any value (uid, string, array ...) are set to NULL */
 		foreach ( $this->request->getArguments() as $property => $value ) {
@@ -54,7 +62,6 @@ class StandardController extends \S3b0\T3locations\Controller\LocationController
 	 *
 	 * @param \S3b0\T3locations\Domain\Model\Territory $territory
 	 * @param \S3b0\T3locations\Domain\Model\Region    $region
-	 *
 	 * @return void
 	 */
 	public function searchAction(\S3b0\T3locations\Domain\Model\Territory $territory = NULL, \S3b0\T3locations\Domain\Model\Region $region = NULL) {
@@ -89,12 +96,14 @@ class StandardController extends \S3b0\T3locations\Controller\LocationController
 	}
 
 	/**
+	 * Second search step (select country)
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $locations
 	 * @param \S3b0\T3locations\Domain\Model\Territory            $territory
 	 * @param \S3b0\T3locations\Domain\Model\Region               $region
-	 *
 	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
 	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+	 * @return void
 	 */
 	protected function moveToSecondSearchStep(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $locations, \S3b0\T3locations\Domain\Model\Territory $territory, \S3b0\T3locations\Domain\Model\Region $region = NULL) {
 		if ( is_object($region) && !$region instanceof \S3b0\T3locations\Domain\Model\Region ) {
@@ -142,45 +151,47 @@ class StandardController extends \S3b0\T3locations\Controller\LocationController
 		));
 	}
 
-	private function addMapMarkerJS($locations) {
-		if ( $locations instanceof \Countable ) {
-			$js = 'mapData = new Array();';
-			$i = 0;
-			/** @var \S3b0\T3locations\Domain\Model\Location $location */
-			foreach ( $locations as $location ) {
-				if ( $location->getGoogleMaps()->getCoordinates() ) {
-					$data = array(
-						$location->getGoogleMaps()->getCoordinates()[0],
-						$location->getGoogleMaps()->getCoordinates()[1],
-						$location->getUid(),
-						array(
-							'"' . $location->getGoogleMaps()->getBackgroundColor() . '"',
-							$location->getGoogleMaps()->getMapType(),
-							$location->getGoogleMaps()->isMapTypeControl(),
-							$location->getGoogleMaps()->getMapTypeControlStyle(),
-							$location->getGoogleMaps()->getMapTypeControlPosition(),
-							$location->getGoogleMaps()->getZoom(),
-							$location->getGoogleMaps()->isZoomControl(),
-							$location->getGoogleMaps()->getZoomControlStyle(),
-							$location->getGoogleMaps()->getZoomControlPosition(),
-							$location->getGoogleMaps()->getAdditionalFeatures()
-						),
-						'"' . CoreUtility\GeneralUtility::slashJS($location->getHeadline()) . '"',
-						'"' . CoreUtility\GeneralUtility::slashJS($location->getType()->getTitle()) . '"',
-						'"' . CoreUtility\GeneralUtility::slashJS($location->getCountry()->getTitle()) . '"',
-						'"' . CoreUtility\GeneralUtility::slashJS('https://www.google.com/maps/dir//' . preg_replace('/\s+/i', '+', $location->getGoogleMaps()->getLinkQueryParam())) . '"',
-						'"' . CoreUtility\GeneralUtility::slashJS(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('output.map_link_text', $this->extensionName)) . '"',
-						'"' . CoreUtility\GeneralUtility::slashJS($location->getCountry()->getIsoCodeA2()) . '"',
-						'"' . ($location->getCoverage()->count() ? CoreUtility\GeneralUtility::slashJS(implode(',', \S3b0\T3locations\Utility\Div::getCoverageList($location->getCoverage()))) : '') . '"'
-					);
-					$js .= 'mapData[' . $i . '] = ' . json_encode($data) . ';';
-					$i++;
-				}
-			}
-			if ( $js ) {
-				$GLOBALS['TSFE']->additionalHeaderData[] = '<script type="text/javascript">' . $js . '//console.log(mapData);</script>';
+	/**
+	 * Add map markers prior to map creation (looped in gmaps.js)
+	 *
+	 * @param \Countable $locations
+	 * @return void
+	 */
+	public static function addMapMarkerJS(\Countable $locations) {
+		$js = 'mapData = new Array();';
+		$i = 0;
+		/** @var \S3b0\T3locations\Domain\Model\Location $location */
+		foreach ( $locations as $location ) {
+			if ( $location->getGoogleMaps() && $location->getGoogleMaps()->getCoordinates() ) {
+				$data = array(
+					$location->getGoogleMaps()->getCoordinates()[0],
+					$location->getGoogleMaps()->getCoordinates()[1],
+					$location->getUid(),
+					array(
+						'"' . $location->getGoogleMaps()->getBackgroundColor() . '"',
+						$location->getGoogleMaps()->getMapType(),
+						$location->getGoogleMaps()->isMapTypeControl(),
+						$location->getGoogleMaps()->getMapTypeControlStyle(),
+						$location->getGoogleMaps()->getMapTypeControlPosition(),
+						$location->getGoogleMaps()->getZoom(),
+						$location->getGoogleMaps()->isZoomControl(),
+						$location->getGoogleMaps()->getZoomControlStyle(),
+						$location->getGoogleMaps()->getZoomControlPosition(),
+						$location->getGoogleMaps()->getAdditionalFeatures()
+					),
+					'"' . CoreUtility\GeneralUtility::slashJS($location->getHeadline()) . '"',
+					'"' . CoreUtility\GeneralUtility::slashJS($location->getType()->getTitle()) . '"',
+					'"' . CoreUtility\GeneralUtility::slashJS($location->getCountry()->getTitle()) . '"',
+					'"' . CoreUtility\GeneralUtility::slashJS('https://www.google.com/maps/dir//' . preg_replace('/\s+/i', '+', $location->getGoogleMaps()->getLinkQueryParam())) . '"',
+					'"' . CoreUtility\GeneralUtility::slashJS(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('output.map_link_text', 't3locations')) . '"',
+					'"' . CoreUtility\GeneralUtility::slashJS($location->getCountry()->getIsoCodeA2()) . '"',
+					'"' . ($location->getCoverage()->count() ? CoreUtility\GeneralUtility::slashJS(implode(',', \S3b0\T3locations\Utility\Div::getCoverageList($location->getCoverage()))) : '') . '"'
+				);
+				$js .= 'mapData[' . $i . '] = ' . json_encode($data) . ';';
+				$i++;
 			}
 		}
+		$GLOBALS['TSFE']->additionalHeaderData[] = '<script type="text/javascript">' . $js . '//console.log(mapData);</script>';
 	}
 
 }

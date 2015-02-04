@@ -3,6 +3,41 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2014-11-26T11:17:02Z" product-name="t3locations">
 		<header/>
 		<body>
+			<!-- New CE Wizard -->
+			<trans-unit id="pi_title">
+				<source>Location Search Plugin</source>
+			</trans-unit>
+			<trans-unit id="pi_plus_wiz_description">
+				<source>Adds a simple plugin to search extensions with a simple form asking for territory and country/region. For further information please get in touch with your TYPO3 administrator.</source>
+			</trans-unit>
+
+			<!-- Flexform -->
+			<trans-unit id="tx_t3locations_ff_title.mode">
+				<source>Mode</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_ff_title.territories">
+				<source>Select available territories</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_ff_title.mode_include">
+				<source>Include list (Default: Exclude)</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_ff_title.countries">
+				<source>Countries</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_ff_option.mode.I.0">
+				<source>Default (Search)</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_ff_option.mode.I.1">
+				<source>List Countries/Regions</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_ff_option.mode.I.2">
+				<source>List Territories</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_ff_option.mode.I.3">
+				<source>List Locations</source>
+			</trans-unit>
+
+			<!-- TCA -->
 			<trans-unit id="tx_t3locations_domain_model_standard">
 				<source>Standard</source>
 			</trans-unit>

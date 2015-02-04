@@ -10,9 +10,37 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
+					<switchableControllerActions>
+						<TCEforms>
+							<label>LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_title.mode</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0">
+										<numIndex index="0">LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_option.mode.I.0</numIndex>
+										<numIndex index="1">Standard->search;Location->show</numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_option.mode.I.1</numIndex>
+										<numIndex index="1">Region->list;Location->list;Location->show</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_option.mode.I.2</numIndex>
+										<numIndex index="1">Territory->list;Region->list;Location->list;Location->show</numIndex>
+									</numIndex>
+									<numIndex index="3">
+										<numIndex index="0">LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_option.mode.I.3</numIndex>
+										<numIndex index="1">Location->list;Location->show</numIndex>
+									</numIndex>
+								</items>
+								<default>0</default>
+							</config>
+						</TCEforms>
+					</switchableControllerActions>
 					<settings.territories>
 						<TCEforms>
-							<label>LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations.settings.territories</label>
+							<displayCond>FIELD:switchableControllerActions:IN:Standard->search;Location->show,Territory->list;Region->list;Location->list;Location->show</displayCond>
+							<label>LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_title.territories</label>
 							<config>
 								<type>select</type>
 								<foreign_table>tx_t3locations_domain_model_territory</foreign_table>
@@ -29,6 +57,50 @@
 							</config>
 						</TCEforms>
 					</settings.territories>
+					<settings.modeInclude>
+						<TCEforms>
+							<displayCond>FIELD:switchableControllerActions:IN:Region->list;Location->list;Location->show,Location->list;Location->show</displayCond>
+							<label>LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_title.mode_include</label>
+							<config>
+								<type>check</type>
+								<default>0</default>
+							</config>
+						</TCEforms>
+					</settings.modeInclude>
+					<settings.countries>
+						<TCEforms>
+							<displayCond>FIELD:switchableControllerActions:=:Region->list;Location->list;Location->show</displayCond>
+							<label>LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_title.countries</label>
+							<config>
+								<type>select</type>
+								<foreign_table>tx_t3locations_domain_model_region</foreign_table>
+								<foreign_table_where>AND tx_t3locations_domain_model_region.sys_language_uid IN (-1,0) ORDER BY tx_t3locations_domain_model_region.title</foreign_table_where>
+								<maxitems>9999</maxitems>
+								<size>30</size>
+								<renderMode>checkbox</renderMode>
+							</config>
+						</TCEforms>
+					</settings.countries>
+					<settings.locations>
+						<TCEforms>
+							<displayCond>FIELD:switchableControllerActions:=:Location->list;Location->show</displayCond>
+							<label>LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_title.locations</label>
+							<config>
+								<type>select</type>
+								<foreign_table>tx_t3locations_domain_model_location</foreign_table>
+								<foreign_table_where>AND tx_t3locations_domain_model_location.sys_language_uid IN (-1,0) ORDER BY tx_t3locations_domain_model_location.title</foreign_table_where>
+								<maxitems>9999</maxitems>
+								<size>10</size>
+								<wizards>
+									<_PADDING>12</_PADDING>
+									<_VALIGN>middle</_VALIGN>
+									<numIndex index="suggest">
+										<type>suggest</type>
+									</numIndex>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.locations>
 				</el>
 			</ROOT>
 		</sDEF>

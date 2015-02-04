@@ -12,17 +12,19 @@ function initializeMap(mapData) {
 		map = new google.maps.Map($('#t3locations-map-canvas')[0], mapOptions);
 		$.each(mapData.reverse(), function( index ) {
 			var latLng = new google.maps.LatLng(this[0], this[1]);
-			bounds.extend(latLng);
+			if ( !bounds.contains(latLng) ) {
+				bounds.extend(latLng);
+			}
 			marker[this[2]] = new google.maps.Marker({
 				map: map,
 				draggable: false,
-				animation: google.maps.Animation.DROP,
+				/*animation: google.maps.Animation.DROP,*/
 				position: latLng,
 				title: this[4],
 				index: this[2],
 			});
 		});
-		if ( !bounds.isEmpty() ) {
+		if ( !bounds.isEmpty() && (bounds.toSpan().k !== 0 && bounds.toSpan().B !== 0) ) {
 			map.setCenter(bounds.getCenter());
 			if (mapData.length > 1) map.fitBounds(bounds, 'ff0000');
 		}
@@ -30,6 +32,7 @@ function initializeMap(mapData) {
 }
 
 function getMapOptions(data, mapOptions) {
+	/*console.log(mapOptions);*/
 	var mapType = [
 			google.maps.MapTypeId.ROADMAP,
 			google.maps.MapTypeId.SATELLITE,
@@ -60,7 +63,7 @@ function getMapOptions(data, mapOptions) {
 			google.maps.ZoomControlStyle.LARGE,
 			google.maps.ZoomControlStyle.SMALL
 		];
-	console.log(mapOptions);
+
 	return {
 		backgroundColor: mapOptions[0],
 		center: new google.maps.LatLng(data[0], data[1]),
@@ -72,6 +75,7 @@ function getMapOptions(data, mapOptions) {
 			position: mapsControlPosition[mapOptions[4]]
 		},
 		mapTypeId: mapType[mapOptions[1]],
+		noClear: true,
 		overviewMapControl: mapOptions[9][2],
 		panControl: mapOptions[9][3],
 		rotateControl: mapOptions[9][4],

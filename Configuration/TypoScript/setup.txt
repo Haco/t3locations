@@ -4,6 +4,7 @@ page.includeCSSLibs {
 	fontawesome.external = 1
 }
 [global]
+page.includeJSFooterlibs.app = EXT:t3locations/Resources/Public/JavaScripts/app.js
 page.includeJSlibs.googlemaps = https://maps.googleapis.com/maps/api/js?v=3&sensor=true
 page.includeJSlibs.googlemaps.external = 1
 page.includeCSSLibs.main = EXT:t3locations/Resources/Public/Stylesheets/main.css
@@ -26,37 +27,3 @@ plugin.tx_t3locations {
 
 	}
 }
-
-plugin.tx_t3locations._CSS_DEFAULT_STYLE (
-	textarea.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	input.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	.tx-t3locations table {
-		border-collapse:separate;
-		border-spacing:10px;
-	}
-
-	.tx-t3locations table th {
-		font-weight:bold;
-	}
-
-	.tx-t3locations table td {
-		vertical-align:top;
-	}
-
-	.typo3-messages .message-error {
-		color:red;
-	}
-
-	.typo3-messages .message-ok {
-		color:green;
-	}
-
-)

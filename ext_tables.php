@@ -6,8 +6,8 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	't3locations',
 	'Search',
-	'Location Search',
-	'sysext/t3skin/icons/gfx/i/tt_content_search.gif'
+	'Location Search'/*,
+	'sysext/t3skin/icons/gfx/i/tt_content_search.gif'*/
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('t3locations_search', 'FILE:EXT:t3locations/Configuration/FlexForms/flexform_t3locations_search.xml');
@@ -38,3 +38,8 @@ if (!defined('TYPO3_MODE')) {
 	),
 	't3locations'
 );
+
+if (TYPO3_MODE === 'BE') {
+	// Add "Search" plugin to new element wizard
+	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['t3locations_wizicon'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Resources/Private/PHP/class.t3locations_wizicon.php';
+}

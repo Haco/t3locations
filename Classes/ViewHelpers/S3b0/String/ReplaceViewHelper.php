@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0;
+namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0\String;
 
 /**                                                                       *
  * This script belongs to the FLOW3 package "Fluid".                      *
@@ -22,18 +22,32 @@ namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0;
  *                                                                        */
 
 /**
- * Class CheckForExistingResourceViewHelper
+ * Class ReplaceViewHelper
  *
- * @package TYPO3\CMS\Fluid\ViewHelpers\S3b0
+ * @package TYPO3\CMS\Fluid\ViewHelpers\S3b0\String
  * @subpackage t3locations
  */
-class CheckForExistingResourceViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class ReplaceViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\AbstractEncodingViewHelper implements \TYPO3\CMS\Core\SingletonInterface {
 
 	/**
-	 * @param null|string $source
-	 * @return boolean
+	 * Disable the escaping interceptor because otherwise the child nodes would be escaped before this view helper
+	 * can decode the text's entities.
+	 *
+	 * @var boolean
 	 */
-	public function render($source = NULL) {
-		return file_exists(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($source ?: $this->renderChildren()));
+	protected $escapingInterceptorEnabled = FALSE;
+
+	/**
+	 * Perform a regular expression search and replace.
+	 *
+	 * @param string $value string to format
+	 * @param string $pattern
+	 * @param string $replacement
+	 * @return string the altered string
+	 * @see http://php.net/preg_replace
+	 * @api
+	 */
+	public function render($value = NULL, $pattern = '', $replacement = '') {
+		return preg_replace(preg_quote($pattern), $replacement, $value ?: $this->renderChildren());
 	}
 }

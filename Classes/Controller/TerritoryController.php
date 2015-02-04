@@ -27,10 +27,20 @@ namespace S3b0\T3locations\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility as CoreUtility;
+
 /**
  * TerritoryController
  */
 class TerritoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+
+	/**
+	 * territoryRepository
+	 *
+	 * @var \S3b0\T3locations\Domain\Repository\TerritoryRepository
+	 * @inject
+	 */
+	protected $territoryRepository = NULL;
 
 	/**
 	 * action list
@@ -38,7 +48,7 @@ class TerritoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @return void
 	 */
 	public function listAction() {
-		$territories = $this->territoryRepository->findAll();
+		$territories = $this->territoryRepository->findByUidList($this->settings['territories'] ? CoreUtility\GeneralUtility::intExplode(',', $this->settings['territories'], TRUE) : array());
 		$this->view->assign('territories', $territories);
 	}
 

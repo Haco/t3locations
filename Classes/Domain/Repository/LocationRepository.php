@@ -32,6 +32,20 @@ namespace S3b0\T3locations\Domain\Repository;
  */
 class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
+	/**
+	 * @var array
+	 */
+	protected $defaultOrderings = array(
+		'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+	);
+
+	/**
+	 * findByRegion - special function, because regions are defined in multiple fields in different relations (n:1|m:n)
+	 *
+	 * @param \S3b0\T3locations\Domain\Model\Region $region
+	 *
+	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
 	public function findByRegion(\S3b0\T3locations\Domain\Model\Region $region) {
 		$query = $this->createQuery();
 
@@ -42,5 +56,36 @@ class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				$query->equals('region', $region)
 			)
 		)->execute();
+	}
+
+	/**
+	 * findByUidList - find and sort entities defined by list
+	 *
+	 * @param array   $list
+	 * @param integer $mode Current modes are 0=excludeList, default=addList
+	 *
+	 * @return null|\TYPO3\CMS\Extbase\Persistence\ObjectStorage
+	 */
+	public function findByUidList(array $list = array(), $mode = 1) {
+		/** In order to keep orderings as set in flexForm, we fetch record by record, storing them into an ObjectStorage */
+		$return = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		if ( $mode === 0 ) {
+			/** @var \S3b0\T3locations\Domain\Model\Location $location */
+			foreach ( $this->findAll() as $location ) {
+				if ( $location instanceof \S3b0\T3locations\Domain\Model\Location && !in_array($location->getUid(), $list) ) {
+					$return->attach($location);
+				}
+			}
+		} else {
+			foreach ( $list as $uid ) {
+				/** @var \S3b0\T3locations\Domain\Model\Location $location */
+				$location = $this->findByUid($uid);
+				if ( $location instanceof \S3b0\T3locations\Domain\Model\Location ) {
+					$return->attach($location);
+				}
+			}
+		}
+
+		return $return;
 	}
 }

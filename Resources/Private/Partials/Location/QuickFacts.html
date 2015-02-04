@@ -1,0 +1,13 @@
+<f:if condition="{location.fieldToUseInHeadline} != 4">
+	<f:then>
+		<h2>
+			<f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.country.flagIconName}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
+			<f:link.action action="show" arguments="{location : location}"><f:format.html parseFuncTSPath="lib.parseFunc">{location.headline}</f:format.html></f:link.action>
+			<small class="no-line-break">[{location.type.title}]</small>
+		</h2>
+	</f:then>
+	<f:else>
+		<f:link.action action="show" arguments="{location : location}">Show Details</f:link.action>
+	</f:else>
+</f:if>
+<f:if condition="{location.freetext}"><br /><span class="t3locations-sectors"><strong><f:translate id="output.business_sectors" />:<br /><span class="t3locations-highlight">{location.freetext}</span></strong></span></f:if>

@@ -1,39 +1,12 @@
-
 <f:layout name="Default" />
 
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-<h1>Listing for Territory</h1>
 
-<f:flashMessages renderMode="div" />
+	<f:flashMessages renderMode="div" />
 
-<table  class="tx_t3locations" >
-	<tr>
-		<th><f:translate key="tx_t3locations_domain_model_territory.title" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_territory.verified" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
-
-	<f:for each="{territories}" as="territory">
-		<tr>
-			<td><f:link.action action="show" arguments="{territory : territory}"> {territory.title}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{territory : territory}"> {territory.verified}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{territory : territory}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{territory : territory}">Delete</f:link.action></td>
-		</tr>
+	<f:for each="{territories}" as="territory" iteration="iterator">
+		<f:link.action action="list" controller="Region" arguments="{territory : territory}">{territory.title}</f:link.action>
+		<f:if condition="{iterator.isLast -> f:s3b0.negate()}"><br /></f:if>
 	</f:for>
-</table>
 
-<f:link.action action="new">New Territory</f:link.action>
 </f:section>

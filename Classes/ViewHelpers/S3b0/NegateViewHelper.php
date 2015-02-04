@@ -22,18 +22,18 @@ namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0;
  *                                                                        */
 
 /**
- * Class CheckForExistingResourceViewHelper
+ * Class NegateViewHelper
  *
  * @package TYPO3\CMS\Fluid\ViewHelpers\S3b0
  * @subpackage t3locations
  */
-class CheckForExistingResourceViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class NegateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
-	 * @param null|string $source
+	 * @param mixed $value
 	 * @return boolean
 	 */
-	public function render($source = NULL) {
-		return file_exists(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($source ?: $this->renderChildren()));
+	public function render($value = NULL) {
+		return !boolval($value ?: $this->renderChildren());
 	}
 }

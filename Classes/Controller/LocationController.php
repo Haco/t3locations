@@ -27,6 +27,8 @@ namespace S3b0\T3locations\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility as CoreUtility;
+
 /**
  * LocationController
  */
@@ -43,10 +45,11 @@ class LocationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	/**
 	 * action list
 	 *
+	 * @param \S3b0\T3locations\Domain\Model\Region $region (optional)
 	 * @return void
 	 */
-	public function listAction() {
-		$locations = $this->locationRepository->findAll();
+	public function listAction(\S3b0\T3locations\Domain\Model\Region $region = NULL) {
+		$locations = $region instanceof \S3b0\T3locations\Domain\Model\Region ? $this->locationRepository->findByRegion($region) : $this->locationRepository->findByUidList($this->settings['locations'] ? CoreUtility\GeneralUtility::intExplode(',', $this->settings['locations'], TRUE) : array(), (int) $this->settings['modeInclude']);
 		$this->view->assign('locations', $locations);
 	}
 
@@ -57,6 +60,7 @@ class LocationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * @return void
 	 */
 	public function showAction(\S3b0\T3locations\Domain\Model\Location $location) {
+		\S3b0\T3locations\Controller\StandardController::addMapMarkerJS(new \ArrayObject(array($location)));
 		$this->view->assign('location', $location);
 	}
 

@@ -160,7 +160,10 @@
 				<source>Social Media</source>
 			</trans-unit>
 
-
+			<!-- Text Outputs -->
+			<trans-unit id="output.warning.no_territories">
+				<source>No territories have been found/selected! Please provide at least one territory to make plugin work.</source>
+			</trans-unit>
 			<trans-unit id="output.business_sectors">
 				<source>Business Units </source>
 			</trans-unit>
@@ -187,6 +190,15 @@
 			</trans-unit>
 			<trans-unit id="output.map_link_text">
 				<source>Show on Google Maps™</source>
+			</trans-unit>
+			<trans-unit id="output.back_link">
+				<source>Go back</source>
+			</trans-unit>
+			<trans-unit id="info.no_countries">
+				<source>No Countries found!</source>
+			</trans-unit>
+			<trans-unit id="info.no_locations">
+				<source>No Locations found!</source>
 			</trans-unit>
 			<trans-unit id="conjunction.and">
 				<source>and</source>

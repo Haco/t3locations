@@ -15,12 +15,6 @@ if (!defined('TYPO3_MODE')) {
 	// non-cacheable actions
 	array(
 		'Standard' => 'search',
-		'Territory' => 'create, update, delete',
-		'Region' => 'create, update, delete',
-		'State' => 'create, update, delete',
-		'Location' => 'create, update, delete',
-		'LocationType' => 'create, update, delete',
-		'SocialMedia' => 'create, update, delete'
 	)
 );
 
@@ -28,7 +22,7 @@ if (!defined('TYPO3_MODE')) {
 	'S3b0.t3locations',
 	'Manager',
 	array(
-		'Standard' => 'search, admin',
+		'Standard' => 'admin',
 		'Territory' => 'list, show, new, create, edit, update, delete',
 		'Region' => 'list, show, new, create, edit, update, delete',
 		'State' => 'list, show, new, create, edit, update, delete',
@@ -38,7 +32,7 @@ if (!defined('TYPO3_MODE')) {
 	),
 	// non-cacheable actions
 	array(
-		'Standard' => 'search',
+		'Standard' => 'admin',
 		'Territory' => 'create, update, delete',
 		'Region' => 'create, update, delete',
 		'State' => 'create, update, delete',

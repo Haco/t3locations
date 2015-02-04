@@ -27,18 +27,29 @@ namespace S3b0\T3locations\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility as CoreUtility;
+
 /**
  * RegionController
  */
 class RegionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
+	 * regionRepository
+	 *
+	 * @var \S3b0\T3locations\Domain\Repository\RegionRepository
+	 * @inject
+	 */
+	protected $regionRepository = NULL;
+
+	/**
 	 * action list
 	 *
+	 * @param \S3b0\T3locations\Domain\Model\Territory $territory
 	 * @return void
 	 */
-	public function listAction() {
-		$regions = $this->regionRepository->findAll();
+	public function listAction(\S3b0\T3locations\Domain\Model\Territory $territory = NULL) {
+		$regions = $territory instanceof \S3b0\T3locations\Domain\Model\Territory ? $this->regionRepository->findByTerritory($territory) : $this->regionRepository->findByUidList($this->settings['countries'] ? CoreUtility\GeneralUtility::intExplode(',', $this->settings['countries'], TRUE) : array(), (int) $this->settings['modeInclude']);
 		$this->view->assign('regions', $regions);
 	}
 

@@ -1,65 +1,23 @@
-
 <f:layout name="Default" />
 
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-<h1>Listing for Location</h1>
 
-<f:flashMessages renderMode="div" />
+	<f:flashMessages renderMode="div" />
 
-<table  class="tx_t3locations" >
-	<tr>
-		<th><f:translate key="tx_t3locations_domain_model_location.title" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.logo" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.freetext" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.field_to_use_in_search_mask" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.field_to_use_in_headline" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.user_defined_headline" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.contact_person" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.address" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.zip" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.city" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.phone" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.facsimile" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.mobile" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.email" /></th>
-		<th><f:translate key="tx_t3locations_domain_model_location.web" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
+	<f:if condition="{locations -> f:count()}">
+		<f:then>
+			<div class="row">
+				<f:for each="{locations}" as="location" iteration="iterator">
+					<div class="col-md-12">
+						<f:render partial="Location/QuickFacts" arguments="{location : location}" />
+						<f:if condition="{iterator.isLast -> f:s3b0.negate()}"> <hr /></f:if>
+					</div>
+				</f:for>
+			</div>
+		</f:then>
+		<f:else>
+			<div class="row"><div class="col-md-12"><p class="bg-info text-info"><i class="fa fa-info-circle fa-lg"></i> &nbsp;<f:translate id="info.no_locations" /> <a href="#" onclick="history.back()"><f:translate id="output.back_link" /></a></p></div></div>
+		</f:else>
+	</f:if>
 
-	<f:for each="{locations}" as="location">
-		<tr>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.title}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.logo.originalResource.name}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.freetext}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.fieldToUseInSearchMask}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.fieldToUseInHeadline}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.userDefinedHeadline}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.contactPerson}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.address}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.zip}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.city}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.phone}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.facsimile}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.mobile}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.email}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{location : location}"> {location.web}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{location : location}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{location : location}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
-
-<f:link.action action="new">New Location</f:link.action>
 </f:section>

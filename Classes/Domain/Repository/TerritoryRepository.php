@@ -43,6 +43,8 @@ class TerritoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 
 	/**
+	 * findByUidList - find and sort entities defined by list
+	 *
 	 * @param array $list
 	 *
 	 * @return null|\TYPO3\CMS\Extbase\Persistence\ObjectStorage

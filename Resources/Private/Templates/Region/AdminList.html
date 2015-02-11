@@ -1,0 +1,44 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<f:flashMessages renderMode="div" />
+
+	<f:groupedFor each="{regions}" as="regionsByFirstLetter" groupBy="firstLetter" groupKey="firstLetter">
+		<h3><a class="data-toggle-trigger collapsed" data-toggle="collapse" href="#panel-{firstLetter}" aria-expanded="false" aria-controls="collapseExample">{firstLetter}</a></h3>
+		<div class="collapse" id="panel-{firstLetter}">
+			<table class="table table-collapsed striped-table table-hover">
+				<f:for each="{regionsByFirstLetter}" as="region">
+					<tr>
+						<td class="{f:if(condition : '{region.verified -> f:s3b0.negate()}', then : 'text-muted')}">
+							<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{region.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+								<f:then>
+									<f:image src="{f:uri.resource(path:'Images/FlagIcons/{region.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{region.isoCodeA3}" title="{region.title}" />
+								</f:then>
+								<f:else>
+									<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{region.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+										<f:then><f:image src="{f:uri.resource(path:'Images/FlagIcons/{region.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{region.isoCodeA3}" title="{region.title}" /></f:then>
+										<f:else><f:image src="{f:uri.resource(path:'Images/FlagIcons/Unknown.png')}" class="t3locations-flag" alt="{region.isoCodeA3}" title="{region.title}" /></f:else>
+									</f:if>
+								</f:else>
+							</f:if>
+							&nbsp;<f:link.action action="show" arguments="{region: region}" title="{f:translate(id: 'button_labels.show')}">{region.title}</f:link.action>
+						</td>
+						<td class="text-right">
+							<f:link.action action="show" arguments="{region: region}" class="btn btn-xs btn-default"><i class="fa fa-info fa-lg"></i> &nbsp;<f:translate id="button_labels.show" /></f:link.action>
+							<f:be.security.ifHasRole role="{extSettings.admins}">
+								<f:if condition="{region.verified -> f:s3b0.negate()}">
+									<f:link.action action="verify" arguments="{region: region}" class="btn btn-xs btn-default"><i class="fa fa-check-square-o fa-lg"></i> &nbsp;<f:translate id="button_labels.verify" /></f:link.action>
+								</f:if>
+								<f:link.action action="edit" arguments="{region: region}" class="btn btn-xs btn-default"><i class="fa fa-pencil-square-o fa-lg"></i> &nbsp;<f:translate id="button_labels.edit" /></f:link.action>
+								<f:link.action action="delete" arguments="{region: region}" class="btn btn-xs btn-danger" additionalAttributes="{onclick: 'return confirm(\'{f:translate(id: \'LLL:EXT:lang/locallang_core.xlf:mess.delete\', arguments: \'{0: region.title}\')}\')'}"><i class="fa fa-trash-o fa-lg"></i> &nbsp;<f:translate id="button_labels.delete" /></f:link.action>
+							</f:be.security.ifHasRole>
+						</td>
+					</tr>
+				</f:for>
+			</table>
+		</div>
+	</f:groupedFor>
+
+	<f:render partial="Admin/ListFooter" arguments="{extSettings: extSettings}" />
+</f:section>

@@ -7,14 +7,14 @@ if (!defined('TYPO3_MODE')) {
 	'S3b0.t3locations',
 	'Search',
 	array(
-		'Standard' => 'search',
+		'Action' => 'search',
 		'Territory' => 'list',
 		'Region' => 'list',
 		'Location' => 'list, show'
 	),
 	// non-cacheable actions
 	array(
-		'Standard' => 'search',
+		'Action' => 'search',
 	)
 );
 
@@ -22,22 +22,24 @@ if (!defined('TYPO3_MODE')) {
 	'S3b0.t3locations',
 	'Manager',
 	array(
-		'Standard' => 'admin',
-		'Territory' => 'list, show, new, create, edit, update, delete',
-		'Region' => 'list, show, new, create, edit, update, delete',
-		'State' => 'list, show, new, create, edit, update, delete',
-		'Location' => 'list, show, new, create, edit, update, delete',
-		'LocationType' => 'list, show, new, create, edit, update, delete',
-		'SocialMedia' => 'list, show, new, create, edit, update, delete'
+		'Action' => 'admin',
+		'Territory' => 'adminList, new, create, delete, verify',
+		'Region' => 'adminList, show, new, create, edit, update, delete, verify',
+		'State' => 'adminList, new, create, delete, verify',
+		'Location' => 'adminList, show, new, create, edit, update, delete, toggleVisibility, moveRecord',
+		'LocationType' => 'adminList, new, create, delete',
+		'SocialMedia' => 'adminList, new, create, delete'
 	),
 	// non-cacheable actions
 	array(
-		'Standard' => 'admin',
-		'Territory' => 'create, update, delete',
-		'Region' => 'create, update, delete',
-		'State' => 'create, update, delete',
-		'Location' => 'create, update, delete',
-		'LocationType' => 'create, update, delete',
-		'SocialMedia' => 'create, update, delete'
+		'Action' => 'admin',
+		'Territory' => 'adminList, create, delete, verify',
+		'Region' => 'adminList, create, update, delete, verify',
+		'State' => 'adminList, create, delete, verify',
+		'Location' => 'adminList, create, edit, update, delete, toggleVisibility, moveRecord',
+		'LocationType' => 'adminList, create, delete',
+		'SocialMedia' => 'adminList, create, delete'
 	)
 );
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerTypeConverter('S3b0\\T3locations\\Property\\TypeConverter\\IntegerConverter');

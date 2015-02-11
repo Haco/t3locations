@@ -20,12 +20,12 @@ namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0\String;
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
+use TYPO3\CMS\Core\Cache\Backend\NullBackend;
 
 /**
  * Class StripWhitespacesViewHelper
  *
  * @package TYPO3\CMS\Fluid\ViewHelpers\S3b0\String
- * @subpackage t3locations
  */
 class StripWhitespacesViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\AbstractEncodingViewHelper implements \TYPO3\CMS\Core\SingletonInterface {
 
@@ -46,6 +46,10 @@ class StripWhitespacesViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\Abs
 	 * @api
 	 */
 	public function render($value = NULL) {
-		return preg_replace('/\s+/im', '', $value ?: $this->renderChildren());
+		if ( $value === NULL ) {
+			$value = $this->renderChildren();
+		}
+
+		return preg_replace('/\s+/im', '', $value);
 	}
 }

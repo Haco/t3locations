@@ -216,16 +216,30 @@ class Map extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return array
 	 */
 	public function getAdditionalFeatures() {
-		return array(
-			boolval($this->additionalFeatures & 1),
-			boolval($this->additionalFeatures & 2),
-			boolval($this->additionalFeatures & 4),
-			boolval($this->additionalFeatures & 8),
-			boolval($this->additionalFeatures & 16),
-			boolval($this->additionalFeatures & 32),
-			boolval($this->additionalFeatures & 64),
-			boolval($this->additionalFeatures & 128)
-		);
+		/** For all PHP versions 5.5+ use the boolval() method */
+		if ( PHP_MAJOR_VERSION > 5 || ( PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION >= 5 ) ) {
+			return array(
+				boolval($this->additionalFeatures & 1),
+				boolval($this->additionalFeatures & 2),
+				boolval($this->additionalFeatures & 4),
+				boolval($this->additionalFeatures & 8),
+				boolval($this->additionalFeatures & 16),
+				boolval($this->additionalFeatures & 32),
+				boolval($this->additionalFeatures & 64),
+				boolval($this->additionalFeatures & 128)
+			);
+		} else {
+			return array(
+				(bool) $this->additionalFeatures & 1,
+				(bool) $this->additionalFeatures & 2,
+				(bool) $this->additionalFeatures & 4,
+				(bool) $this->additionalFeatures & 8,
+				(bool) $this->additionalFeatures & 16,
+				(bool) $this->additionalFeatures & 32,
+				(bool) $this->additionalFeatures & 64,
+				(bool) $this->additionalFeatures & 128
+			);
+		}
 	}
 
 }

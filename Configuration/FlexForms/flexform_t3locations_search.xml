@@ -18,7 +18,7 @@
 								<items>
 									<numIndex index="0">
 										<numIndex index="0">LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_option.mode.I.0</numIndex>
-										<numIndex index="1">Standard->search;Location->show</numIndex>
+										<numIndex index="1">Action->search;Location->show</numIndex>
 									</numIndex>
 									<numIndex index="1">
 										<numIndex index="0">LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_option.mode.I.1</numIndex>
@@ -39,7 +39,7 @@
 					</switchableControllerActions>
 					<settings.territories>
 						<TCEforms>
-							<displayCond>FIELD:switchableControllerActions:IN:Standard->search;Location->show,Territory->list;Region->list;Location->list;Location->show</displayCond>
+							<displayCond>FIELD:switchableControllerActions:IN:Action->search;Location->show,Territory->list;Region->list;Location->list;Location->show</displayCond>
 							<label>LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_ff_title.territories</label>
 							<config>
 								<type>select</type>

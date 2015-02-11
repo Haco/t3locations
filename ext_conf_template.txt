@@ -1,0 +1,4 @@
+#cat=security//10;type=string;label=Editors: BE user groups that gain editor access
+editors = 0
+#cat=security//20;type=string;label=Admins: BE user groups that gain administrative access
+admins = 0

@@ -1,0 +1,24 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<f:flashMessages renderMode="div" />
+
+	<table class="table table-collapsed striped-table table-hover">
+		<f:for each="{territories}" as="territory">
+			<tr>
+				<td class="{f:if(condition: '{territory.verified -> f:s3b0.negate()}', then: 'text-muted')}">{territory.title}</td>
+				<f:be.security.ifHasRole role="{extSettings.admins}">
+					<td class="text-right">
+						<f:if condition="{territory.verified -> f:s3b0.negate()}">
+							<f:link.action action="verify" arguments="{territory: territory}" class="btn btn-xs btn-default"><i class="fa fa-check-square-o fa-lg"></i> &nbsp;<f:translate id="button_labels.verify" /></f:link.action>
+						</f:if>
+						<f:link.action action="delete" arguments="{territory: territory}" class="btn btn-xs btn-danger" additionalAttributes="{onclick: 'return confirm(\'{f:translate(id: \'LLL:EXT:lang/locallang_core.xlf:mess.delete\', arguments: \'{0: territory.title}\')}\')'}"><i class="fa fa-trash-o fa-lg"></i> &nbsp;<f:translate id="button_labels.delete" /></f:link.action>
+					</td>
+				</f:be.security.ifHasRole>
+			</tr>
+		</f:for>
+	</table>
+
+	<f:render partial="Admin/ListFooter" arguments="{extSettings: extSettings}" />
+</f:section>

@@ -1,25 +1,48 @@
-
-<label for="title">
-	<f:translate key="tx_t3locations_domain_model_region.title" />
-</label><br />
-	<f:form.textfield property="title" /><br />
-<label for="isoCodeA2">
-	<f:translate key="tx_t3locations_domain_model_region.type" />
-</label><br />
-<f:form.textfield property="type" /><br />
-<label for="isoCodeA2">
-	<f:translate key="tx_t3locations_domain_model_region.iso_code_a2" />
-</label><br />
-<f:form.textfield property="isoCodeA2" /><br />
-<label for="isoCodeA3">
-	<f:translate key="tx_t3locations_domain_model_region.iso_code_a3" />
-</label><br />
-<f:form.textfield property="isoCodeA3" /><br />
-<label for="flagIconName">
-	<f:translate key="tx_t3locations_domain_model_region.flag_icon_name" />
-</label><br />
-	<f:form.textfield property="flagIconName" /><br />
-<label for="verified">
-	<f:translate key="tx_t3locations_domain_model_region.verified" />
-</label><br />
-	<f:form.checkbox property="verified" value="1" /><br />
+<div class="form-group">
+	<label for="title"><f:translate id="tx_t3locations_domain_model_region.title" /></label>
+	<f:form.textfield id="title" class="form-control" property="title" />
+</div>
+<div class="form-group">
+	<label for="type"><f:translate id="tx_t3locations_domain_model_region.type" /></label>
+	<f:form.select
+			id="type"
+			class="form-control"
+			property="type"
+			options="{0: '{f:translate(id: \'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_region.type.I.0\')}', 1: '{f:translate(id: \'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_region.type.I.1\')}'}" />
+</div>
+<div class="form-group">
+	<label for="isoCodeA2"><f:translate id="tx_t3locations_domain_model_region.iso_code_a2" /></label>
+<f:form.textfield id="isoCodeA2" class="form-control" property="isoCodeA2" />
+</div>
+<div class="form-group">
+	<label for="isoCodeA3"><f:translate id="tx_t3locations_domain_model_region.iso_code_a3" /></label>
+<f:form.textfield id="isoCodeA3" class="form-control" property="isoCodeA3" />
+</div>
+<div class="form-group">
+	<label for="flagIconName"><f:translate id="tx_t3locations_domain_model_region.flag_icon_name" /></label>
+	<f:form.textfield id="flagIconName" class="form-control" property="flagIconName" />
+</div>
+<div class="form-group t3loc-req" data-t3loc-req="select#type:=:1">
+	<label for="countries"><f:translate id="tx_t3locations_domain_model_region.countries" /></label>
+	<f:form.select
+			id="countries"
+			class="form-control"
+			property="countries"
+			options="{countries}"
+			optionLabelField="title"
+			multiple="1"
+			size="15"
+			additionalAttributes="{aria-describedby: 'helpBlock'}" />
+	<p id="helpBlock" class="help-block"><f:translate id="LLL:EXT:lang/locallang_core.xlf:labels.holdDownCTRL" /></p>
+</div>
+<div class="form-group">
+	<label for="territory"><f:translate id="tx_t3locations_domain_model_region.territory" /></label>
+	<f:form.select
+			id="territory"
+			class="form-control"
+			property="territory"
+			options="{territories}"
+			optionLabelField="title"
+			prependOptionLabel=""
+			prependOptionValue="" />
+</div>

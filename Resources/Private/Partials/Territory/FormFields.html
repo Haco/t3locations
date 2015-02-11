@@ -1,9 +1,5 @@
-
-<label for="title">
-	<f:translate key="tx_t3locations_domain_model_territory.title" />
-</label><br />
-	<f:form.textfield property="title" /><br />
-<label for="verified">
-	<f:translate key="tx_t3locations_domain_model_territory.verified" />
-</label><br />
-	<f:form.checkbox property="verified" value="1" /><br />
+<div class="form-group">
+	<label for="title"><f:translate id="tx_t3locations_domain_model_territory.title" /> <span class="text-danger">*</span></label>
+	<f:form.textfield id="title" class="form-control" property="title" />
+</div>
+<p class="bg-info text-info"><i class="fa fa-info-circle fa-lg"></i> &nbsp;<f:translate id="message.mandatory_note" arguments="{0 : '<span class=\'text-danger\'>*</span>'}" /></p>

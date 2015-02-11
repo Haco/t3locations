@@ -25,7 +25,6 @@ namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0\String;
  * Class ReplaceViewHelper
  *
  * @package TYPO3\CMS\Fluid\ViewHelpers\S3b0\String
- * @subpackage t3locations
  */
 class ReplaceViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\AbstractEncodingViewHelper implements \TYPO3\CMS\Core\SingletonInterface {
 
@@ -48,6 +47,10 @@ class ReplaceViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\AbstractEnco
 	 * @api
 	 */
 	public function render($value = NULL, $pattern = '', $replacement = '') {
-		return preg_replace(preg_quote($pattern), $replacement, $value ?: $this->renderChildren());
+		if ( $value === NULL ) {
+			$value = $this->renderChildren();
+		}
+
+		return preg_replace(preg_quote($pattern), $replacement, $value);
 	}
 }

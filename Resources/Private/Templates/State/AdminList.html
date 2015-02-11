@@ -1,0 +1,42 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<f:flashMessages renderMode="div" />
+
+	<f:groupedFor each="{states}" as="statesOfCountry" groupBy="country" groupKey="country">
+		<h3><a class="data-toggle-trigger collapsed" data-toggle="collapse" href="#panel-{country.uid}" aria-expanded="false" aria-controls="collapseExample">
+			<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+				<f:then>
+					<f:image src="{f:uri.resource(path:'Images/FlagIcons/{country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{country.isoCodeA3}" title="{country.title}" />
+				</f:then>
+				<f:else>
+					<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{country.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+						<f:then><f:image src="{f:uri.resource(path:'Images/FlagIcons/{country.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{country.isoCodeA3}" title="{country.title}" /></f:then>
+						<f:else><f:image src="{f:uri.resource(path:'Images/FlagIcons/Unknown.png')}" class="t3locations-flag" alt="{country.isoCodeA3}" title="{country.title}" /></f:else>
+					</f:if>
+				</f:else>
+			</f:if>
+			{country.title}
+		</a></h3>
+		<div class="collapse" id="panel-{country.uid}">
+			<table class="table table-collapsed striped-table table-hover">
+				<f:for each="{statesOfCountry}" as="state">
+					<tr>
+						<td class="{f:if(condition: '{state.verified -> f:s3b0.negate()}', then: 'text-muted')}">{state.title} <f:if condition="{state.abbreviation}">[{state.abbreviation}]</f:if></td>
+						<f:be.security.ifHasRole role="{extSettings.admins}">
+							<td class="text-right">
+							<f:if condition="{state.verified -> f:s3b0.negate()}">
+								<f:link.action action="verify" arguments="{state: state}" class="btn btn-xs btn-default"><i class="fa fa-check-square-o fa-lg"></i> &nbsp;<f:translate id="button_labels.verify" /></f:link.action>
+							</f:if>
+							<f:link.action action="delete" arguments="{state: state}" class="btn btn-xs btn-danger" additionalAttributes="{onclick: 'return confirm(\'{f:translate(id: \'LLL:EXT:lang/locallang_core.xlf:mess.delete\', arguments: \'{0: state.title}\')}\')'}"><i class="fa fa-trash-o fa-lg"></i> &nbsp;<f:translate id="button_labels.delete" /></f:link.action>
+							</td>
+						</f:be.security.ifHasRole>
+					</tr>
+				</f:for>
+			</table>
+		</div>
+	</f:groupedFor>
+
+	<f:render partial="Admin/ListFooter" arguments="{extSettings: extSettings}" />
+</f:section>

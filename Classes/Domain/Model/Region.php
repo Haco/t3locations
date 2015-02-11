@@ -36,6 +36,7 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * title
 	 *
 	 * @var string
+	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $title = '';
 
@@ -43,6 +44,7 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * type
 	 *
 	 * @var integer
+	 * @validate $mode \S3b0\T3locations\Validation\Validator\InList(list="0,1")
 	 */
 	protected $type = 0;
 
@@ -78,7 +80,6 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Assign corresponding countries
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Region>
-	 * @cascade remove
 	 */
 	protected $countries = NULL;
 
@@ -86,8 +87,15 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Assign corresponding territory
 	 *
 	 * @var \S3b0\T3locations\Domain\Model\Territory
+	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $territory = NULL;
+
+	/**
+	 * @var integer
+	 * @internal
+	 */
+	protected $locationAmount = 0;
 
 	/**
 	 * __construct
@@ -162,7 +170,7 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return void
 	 */
 	public function setIsoCodeA2($isoCodeA2) {
-		$this->isoCodeA2 = $isoCodeA2;
+		$this->isoCodeA2 = strtoupper($isoCodeA2);
 	}
 
 	/**
@@ -181,7 +189,7 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return void
 	 */
 	public function setIsoCodeA3($isoCodeA3) {
-		$this->isoCodeA3 = $isoCodeA3;
+		$this->isoCodeA3 = strtoupper($isoCodeA3);
 	}
 
 	/**
@@ -281,10 +289,10 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setCountries(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $countries = NULL) {
 		if ( $countries instanceof \TYPO3\CMS\Extbase\Persistence\ObjectStorage && $countries->count() ) {
-			/** @var \S3b0\T3locations\Domain\Model\Region $region */
-			foreach ( $countries as $region ) {
-				if ( $region->getType() === 0 ) {
-					$this->addCountry($region);
+			/** @var \S3b0\T3locations\Domain\Model\Region $country */
+			foreach ( $countries as $country ) {
+				if ( $country->getType() === 0 ) {
+					$this->addCountry($country);
 				}
 			}
 		}
@@ -305,8 +313,26 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \S3b0\T3locations\Domain\Model\Territory $territory
 	 * @return void
 	 */
-	public function setTerritory(\S3b0\T3locations\Domain\Model\Territory $territory) {
+	public function setTerritory(\S3b0\T3locations\Domain\Model\Territory $territory = NULL) {
 		$this->territory = $territory;
+	}
+
+	/**
+	 * @return integer
+	 */
+	public function getLocationAmount() {
+		return $this->locationAmount;
+	}
+
+	/**
+	 * @param integer $locationAmount
+	 */
+	public function setLocationAmount($locationAmount) {
+		$this->locationAmount = $locationAmount;
+	}
+
+	public function getFirstLetter() {
+		return ucfirst(substr(\S3b0\T3locations\Utility\Div::convertUtf8ToAscii($this->title), 0, 1));
 	}
 
 }

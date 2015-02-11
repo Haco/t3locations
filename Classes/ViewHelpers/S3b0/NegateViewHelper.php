@@ -25,7 +25,6 @@ namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0;
  * Class NegateViewHelper
  *
  * @package TYPO3\CMS\Fluid\ViewHelpers\S3b0
- * @subpackage t3locations
  */
 class NegateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
@@ -34,6 +33,15 @@ class NegateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
 	 * @return boolean
 	 */
 	public function render($value = NULL) {
-		return !boolval($value ?: $this->renderChildren());
+		if ( $value === NULL ) {
+			$value = $this->renderChildren();
+		}
+
+		/** For all PHP versions 5.5+ use the boolval() method */
+		if ( PHP_MAJOR_VERSION > 5 || ( PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION >= 5 ) ) {
+			return !boolval($value);
+		} else {
+			return !(bool) $value;
+		}
 	}
 }

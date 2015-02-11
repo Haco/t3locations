@@ -9,7 +9,7 @@
 			<div class="row">
 				<f:for each="{locations}" as="location" iteration="iterator">
 					<div class="col-md-12">
-						<f:render partial="Location/QuickFacts" arguments="{location : location}" />
+						<f:render partial="Location/QuickFacts" arguments="{location: location}" />
 						<f:if condition="{iterator.isLast -> f:s3b0.negate()}"> <hr /></f:if>
 					</div>
 				</f:for>

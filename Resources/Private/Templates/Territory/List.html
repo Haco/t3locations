@@ -4,9 +4,17 @@
 
 	<f:flashMessages renderMode="div" />
 
-	<f:for each="{territories}" as="territory" iteration="iterator">
-		<f:link.action action="list" controller="Region" arguments="{territory : territory}">{territory.title}</f:link.action>
-		<f:if condition="{iterator.isLast -> f:s3b0.negate()}"><br /></f:if>
-	</f:for>
+	<table class="table table-collapsed">
+		<f:for each="{territories}" as="territory">
+			<tr>
+				<td>
+					<f:if condition="{territory.regionAmount}">
+						<f:then><f:link.action action="list" controller="Region" arguments="{territory: territory}" class="btn btn-primary btn-block">{territory.title} <f:if condition="{territory.regionAmount}">&nbsp;<span class="badge">{territory.regionAmount}</span></f:if></f:link.action></f:then>
+						<f:else><a class="btn btn-primary btn-block">{territory.title} <f:if condition="{territory.regionAmount}">&nbsp;<span class="badge">{territory.regionAmount}</span></f:if></a></f:else>
+					</f:if>
+				</td>
+			</tr>
+		</f:for>
+	</table>
 
 </f:section>

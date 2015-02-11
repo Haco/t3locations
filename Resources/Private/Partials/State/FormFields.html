@@ -1,9 +1,20 @@
-
-<label for="title">
-	<f:translate key="tx_t3locations_domain_model_state.title" />
-</label><br />
-	<f:form.textfield property="title" /><br />
-<label for="verified">
-	<f:translate key="tx_t3locations_domain_model_state.verified" />
-</label><br />
-	<f:form.checkbox property="verified" value="1" /><br />
+<div class="form-group">
+	<label for="title"><f:translate id="tx_t3locations_domain_model_state.title" /> <span class="text-danger">*</span></label>
+	<f:form.textfield id="title" class="form-control" property="title" />
+</div>
+<div class="form-group">
+	<label for="abbreviation"><f:translate id="tx_t3locations_domain_model_state.abbreviation" /></label>
+	<f:form.textfield id="abbreviation" class="form-control" property="abbreviation" />
+</div>
+<div class="form-group">
+	<label for="country"><f:translate id="tx_t3locations_domain_model_state.country" /> <span class="text-danger">*</span></label>
+	<f:form.select
+			id="country"
+			class="form-control"
+			property="country"
+			options="{countries}"
+			optionLabelField="title"
+			prependOptionLabel=""
+			prependOptionValue="" />
+</div>
+<p class="bg-info text-info"><i class="fa fa-info-circle fa-lg"></i> &nbsp;<f:translate id="message.mandatory_note" arguments="{0 : '<span class=\'text-danger\'>*</span>'}" /></p>

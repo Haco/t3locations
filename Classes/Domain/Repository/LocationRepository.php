@@ -88,4 +88,38 @@ class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 		return $return;
 	}
+
+	/**
+	 * @param \S3b0\T3locations\Domain\Model\Location $location
+	 *
+	 * @return \S3b0\T3locations\Domain\Model\Location|null
+	 */
+	public function findPrevious(\S3b0\T3locations\Domain\Model\Location $location) {
+		$query = $this->createQuery();
+
+		return $query->matching(
+			$query->lessThan('sorting', $location->getSorting())
+		)->setOrderings(
+			array(
+				'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
+			)
+		)->execute()->getFirst();
+	}
+
+	/**
+	 * @param \S3b0\T3locations\Domain\Model\Location $location
+	 *
+	 * @return \S3b0\T3locations\Domain\Model\Location|null
+	 */
+	public function findNext(\S3b0\T3locations\Domain\Model\Location $location) {
+		$query = $this->createQuery();
+
+		return $query->matching(
+			$query->greaterThan('sorting', $location->getSorting())
+		)->setOrderings(
+			array(
+				'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+			)
+		)->execute()->getFirst();
+	}
 }

@@ -32,15 +32,7 @@ use \TYPO3\CMS\Core\Utility as CoreUtility;
 /**
  * RegionController
  */
-class RegionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-
-	/**
-	 * regionRepository
-	 *
-	 * @var \S3b0\T3locations\Domain\Repository\RegionRepository
-	 * @inject
-	 */
-	protected $regionRepository = NULL;
+class RegionController extends ExtensionController {
 
 	/**
 	 * action list
@@ -49,8 +41,21 @@ class RegionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function listAction(\S3b0\T3locations\Domain\Model\Territory $territory = NULL) {
-		$regions = $territory instanceof \S3b0\T3locations\Domain\Model\Territory ? $this->regionRepository->findByTerritory($territory) : $this->regionRepository->findByUidList($this->settings['countries'] ? CoreUtility\GeneralUtility::intExplode(',', $this->settings['countries'], TRUE) : array(), (int) $this->settings['modeInclude']);
+		$regions = $territory instanceof \S3b0\T3locations\Domain\Model\Territory ? $this->regionRepository->findByTerritory($territory) : $this->regionRepository->findByUidList($this->settings[ 'countries' ] ? CoreUtility\GeneralUtility::intExplode(',', $this->settings[ 'countries' ], TRUE) : array(), (int) $this->settings[ 'modeInclude' ]);
+		/** @var \S3b0\T3locations\Domain\Model\Region $region */
+		foreach ( $regions as $region ) {
+			$region->setLocationAmount($this->locationRepository->findByRegion($region)->count());
+		}
 		$this->view->assign('regions', $regions);
+	}
+
+	/**
+	 * action adminList
+	 *
+	 * @return void
+	 */
+	public function adminListAction() {
+		$this->view->assign('regions', $this->regionRepository->findAll());
 	}
 
 	/**
@@ -71,7 +76,11 @@ class RegionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function newAction(\S3b0\T3locations\Domain\Model\Region $newRegion = NULL) {
-		$this->view->assign('newRegion', $newRegion);
+		$this->view->assignMultiple(array(
+			'newRegion' => $newRegion,
+			'countries' => $this->regionRepository->findByType(0),
+			'territories' => $this->territoryRepository->findAll()
+		));
 	}
 
 	/**
@@ -81,9 +90,10 @@ class RegionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function createAction(\S3b0\T3locations\Domain\Model\Region $newRegion) {
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_created', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
 		$this->regionRepository->add($newRegion);
-		$this->redirect('list');
+
+		$this->redirect('adminList');
 	}
 
 	/**
@@ -94,7 +104,11 @@ class RegionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function editAction(\S3b0\T3locations\Domain\Model\Region $region) {
-		$this->view->assign('region', $region);
+		$this->view->assignMultiple(array(
+			'region' => $region,
+			'countries' => $this->regionRepository->findByType(0),
+			'territories' => $this->territoryRepository->findAll()
+		));
 	}
 
 	/**
@@ -104,9 +118,10 @@ class RegionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function updateAction(\S3b0\T3locations\Domain\Model\Region $region) {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_updated', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING, array($region->getTitle()));
 		$this->regionRepository->update($region);
-		$this->redirect('list');
+
+		$this->redirect('adminList');
 	}
 
 	/**
@@ -116,9 +131,20 @@ class RegionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function deleteAction(\S3b0\T3locations\Domain\Model\Region $region) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_deleted', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR, array($region->getTitle()));
 		$this->regionRepository->remove($region);
-		$this->redirect('list');
+
+		$this->redirect('adminList');
+	}
+
+	/**
+	 * action verify
+	 *
+	 * @param \S3b0\T3locations\Domain\Model\Region $region
+	 * @return void
+	 */
+	public function verifyAction(\S3b0\T3locations\Domain\Model\Region $region) {
+		parent::verifyAction($region);
 	}
 
 }

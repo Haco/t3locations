@@ -33,9 +33,20 @@ namespace S3b0\T3locations\Domain\Model;
 class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
+	 * @var boolean
+	 */
+	protected $hidden = TRUE;
+
+	/**
+	 * @var integer
+	 */
+	protected $sorting = 0;
+
+	/**
 	 * title
 	 *
 	 * @var string
+	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $title = '';
 
@@ -57,6 +68,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * fieldToUseInSearchMask
 	 *
 	 * @var integer
+	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $fieldToUseInSearchMask = 0;
 
@@ -177,6 +189,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * country
 	 *
 	 * @var \S3b0\T3locations\Domain\Model\Region
+	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $country = NULL;
 
@@ -216,6 +229,34 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
+	 * @param boolean $hidden
+	 */
+	public function setHidden($hidden) {
+		$this->hidden = $hidden;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isHidden() {
+		return $this->hidden;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getSorting() {
+		return $this->sorting;
+	}
+
+	/**
+	 * @param int $sorting
+	 */
+	public function setSorting($sorting) {
+		$this->sorting = $sorting;
+	}
+
+	/**
 	 * Returns the title
 	 *
 	 * @return string $title
@@ -249,7 +290,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $logo
 	 * @return void
 	 */
-	public function setLogo(\TYPO3\CMS\Extbase\Domain\Model\FileReference $logo) {
+	public function setLogo(\TYPO3\CMS\Extbase\Domain\Model\FileReference $logo = NULL) {
 		$this->logo = $logo;
 	}
 
@@ -354,19 +395,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return string $address
 	 */
 	public function getAddress() {
-		$replace = preg_match_all('/\{\{([a-z0-9]+)\}\}/im', $this->address, $matches);
-
-		if ( $replace ) {
-			foreach ( $matches[1] as $property ) {
-				if ( method_exists($this, 'getParsedProperty' . ucfirst($property)) ) {
-					$this->address = str_replace('{{' . $property . '}}', call_user_func(array($this, 'getParsedProperty' . ucfirst($property))), $this->address);
-				} elseif ( $this->_hasProperty($property) ) {
-					$this->address = str_replace('{{' . $property . '}}', $this->_getProperty($property), $this->address);
-				}
-			}
-		}
-
-		return '<div class="adr">' . $this->address . '</div>';
+		return $this->address;
 	}
 
 	/**
@@ -498,6 +527,15 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return array $email
 	 */
 	public function getEmail() {
+		return $this->email;
+	}
+
+	/**
+	 * Returns the email
+	 *
+	 * @return array $email
+	 */
+	public function getEmailList() {
 		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(PHP_EOL, $this->email, TRUE);
 	}
 
@@ -517,6 +555,15 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return array $web
 	 */
 	public function getWeb() {
+		return $this->web;
+	}
+
+	/**
+	 * Returns the web
+	 *
+	 * @return array $web
+	 */
+	public function getWebList() {
 		return \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(PHP_EOL, $this->web, TRUE);
 	}
 
@@ -544,7 +591,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 *
 	 * @param \S3b0\T3locations\Domain\Model\LocationType $type
 	 */
-	public function setType(\S3b0\T3locations\Domain\Model\LocationType $type) {
+	public function setType(\S3b0\T3locations\Domain\Model\LocationType $type = NULL) {
 		$this->type = $type;
 	}
 
@@ -602,7 +649,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \S3b0\T3locations\Domain\Model\Map $googleMaps
 	 * @return void
 	 */
-	public function setGoogleMaps(\S3b0\T3locations\Domain\Model\Map $googleMaps) {
+	public function setGoogleMaps(\S3b0\T3locations\Domain\Model\Map $googleMaps = NULL) {
 		$this->googleMaps = $googleMaps;
 	}
 
@@ -621,7 +668,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \S3b0\T3locations\Domain\Model\State $state
 	 * @return void
 	 */
-	public function setState(\S3b0\T3locations\Domain\Model\State $state) {
+	public function setState(\S3b0\T3locations\Domain\Model\State $state = NULL) {
 		$this->state = $state;
 	}
 
@@ -640,7 +687,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \S3b0\T3locations\Domain\Model\Region $country
 	 * @return void
 	 */
-	public function setCountry(\S3b0\T3locations\Domain\Model\Region $country) {
+	public function setCountry(\S3b0\T3locations\Domain\Model\Region $country = NULL) {
 		$this->country = $country;
 	}
 
@@ -683,7 +730,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\S3b0\T3locations\Domain\Model\Region> $coverage
 	 * @return void
 	 */
-	public function setCoverage(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $coverage) {
+	public function setCoverage(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $coverage = NULL) {
 		$this->coverage = $coverage;
 	}
 
@@ -702,7 +749,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \S3b0\T3locations\Domain\Model\Region $region
 	 * @return void
 	 */
-	public function setRegion(\S3b0\T3locations\Domain\Model\Region $region) {
+	public function setRegion(\S3b0\T3locations\Domain\Model\Region $region = NULL) {
 		$this->region = $region;
 	}
 
@@ -747,6 +794,25 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	private function getParsedPropertyTitle() {
 		return '<span class="fn org">' . $this->title . '</span>';
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getParsedPropertyAddress() {
+		$replace = preg_match_all('/\{\{([a-z0-9]+)\}\}/im', $this->address, $matches);
+
+		if ( $replace ) {
+			foreach ( $matches[1] as $property ) {
+				if ( method_exists($this, 'getParsedProperty' . ucfirst($property)) ) {
+					$this->address = str_replace('{{' . $property . '}}', call_user_func(array($this, 'getParsedProperty' . ucfirst($property))), $this->address);
+				} elseif ( $this->_hasProperty($property) ) {
+					$this->address = str_replace('{{' . $property . '}}', $this->_getProperty($property), $this->address);
+				}
+			}
+		}
+
+		return '<div class="adr">' . $this->address . '</div>';
 	}
 
 	/**

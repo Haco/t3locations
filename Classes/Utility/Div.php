@@ -10,15 +10,21 @@ namespace S3b0\T3locations\Utility;
 
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * Class Div
+ *
+ * @package S3b0\T3locations\Utility
+ */
 class Div {
 
 	/**
-	 * @param \Countable $coverage
-	 * @param string     $property
+	 * Returns an array of covered countries for listing purposes by applying implode() on result
 	 *
+	 * @param \Countable $coverage The coverage objectStorage
+	 * @param string     $property The property to be written in array
 	 * @return array
 	 */
-	final public static function getCoverageList($coverage, $property = 'isoCodeA2') {
+	final public static function getCoverageList(\Countable $coverage, $property = 'isoCodeA2') {
 		$list = array();
 		if ( $coverage instanceof \Countable ) {
 			/** @var \S3b0\T3locations\Domain\Model\Region $country */
@@ -34,7 +40,7 @@ class Div {
 	}
 
 	/**
-	 * getUrl
+	 * Helper function for fetching external URL contents (actually used for JSON-request)
 	 *
 	 * @param string $requestUri
 	 * @return mixed
@@ -59,6 +65,19 @@ class Div {
 		}
 
 		return $response;
+	}
+
+	/**
+	 * Convert UTF-8 strings to ASCII
+	 *
+	 * @param string $value
+	 * @return string
+	 */
+	public static function convertUtf8ToAscii($value = '') {
+		return strtr(utf8_decode($value),
+			utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
+			'SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy');
+
 	}
 
 }

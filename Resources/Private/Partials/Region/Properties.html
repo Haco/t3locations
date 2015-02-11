@@ -1,51 +1,41 @@
-
-<table class="tx-t3locations" >
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_region.title" />
-		</td>
-		<td>
-		{region.title}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_country.type" />
-		</td>
-		<td>
-			{region.type}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_country.iso_code_a2" />
-		</td>
-		<td>
-			{region.isoCodeA2}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_country.iso_code_a3" />
-		</td>
-		<td>
-			{region.isoCodeA3}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_region.flag_icon_name" />
-		</td>
-		<td>
-		{region.flagIconName}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<f:translate key="tx_t3locations_domain_model_region.verified" />
-		</td>
-		<td>
-		{region.verified}
-		</td>
-	</tr>
-</table>
+<div class="row">
+	<div class="col-md-12">
+		<dl>
+			<dt><f:translate id="tx_t3locations_domain_model_region.title" /></dt>
+			<dd>{region.title}</dd>
+		</dl>
+		<dl>
+			<dt><f:translate id="tx_t3locations_domain_model_region.type" /></dt>
+			<dd><f:translate id="LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_region.type.I.{region.type}" /></dd>
+		</dl>
+		<dl>
+			<dt><f:translate id="tx_t3locations_domain_model_region.iso_code_a2" /></dt>
+			<dd>{region.isoCodeA2}</dd>
+		</dl>
+		<dl>
+			<dt><f:translate id="tx_t3locations_domain_model_region.iso_code_a3" /></dt>
+			<dd>{region.isoCodeA3}</dd>
+		</dl>
+		<dl>
+			<dt><f:translate id="tx_t3locations_domain_model_region.flag_icon_name" /></dt>
+			<dd>{region.flagIconName}</dd>
+		</dl>
+		<f:if condition="{region.mode} = 1">
+			<f:if condition="{region.countries -> f:count()}">
+				<dl>
+					<dt><f:translate id="tx_t3locations_domain_model_region.countries" /></dt>
+					<dd><f:for each="{region.countries}" as="country" iteration="iterator"><f:if condition="{iterator.isFirst -> f:s3b0.negate()}">,</f:if> {country.title}</f:for></dd>
+				</dl>
+			</f:if>
+		</f:if>
+		<dl>
+			<dt><f:translate id="tx_t3locations_domain_model_region.verified" /></dt>
+			<dd>
+				<f:if condition="{region.verified}">
+					<f:then><i class="fa fa-check fa-lg text-success"></i></f:then>
+					<f:else><i class="fa fa-times fa-lg text-danger"></i></f:else>
+				</f:if>
+			</dd>
+		</dl>
+	</div>
+</div>

@@ -30,26 +30,16 @@ namespace S3b0\T3locations\Controller;
 /**
  * StateController
  */
-class StateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class StateController extends ExtensionController {
 
 	/**
-	 * action list
+	 * action adminList
 	 *
 	 * @return void
 	 */
-	public function listAction() {
+	public function adminListAction() {
 		$states = $this->stateRepository->findAll();
 		$this->view->assign('states', $states);
-	}
-
-	/**
-	 * action show
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\State $state
-	 * @return void
-	 */
-	public function showAction(\S3b0\T3locations\Domain\Model\State $state) {
-		$this->view->assign('state', $state);
 	}
 
 	/**
@@ -60,6 +50,7 @@ class StateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function newAction(\S3b0\T3locations\Domain\Model\State $newState = NULL) {
+		$this->view->assign('countries', $this->regionRepository->findByType(0));
 		$this->view->assign('newState', $newState);
 	}
 
@@ -70,32 +61,10 @@ class StateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function createAction(\S3b0\T3locations\Domain\Model\State $newState) {
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_created', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
 		$this->stateRepository->add($newState);
-		$this->redirect('list');
-	}
 
-	/**
-	 * action edit
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\State $state
-	 * @ignorevalidation $state
-	 * @return void
-	 */
-	public function editAction(\S3b0\T3locations\Domain\Model\State $state) {
-		$this->view->assign('state', $state);
-	}
-
-	/**
-	 * action update
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\State $state
-	 * @return void
-	 */
-	public function updateAction(\S3b0\T3locations\Domain\Model\State $state) {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->stateRepository->update($state);
-		$this->redirect('list');
+		$this->redirect('adminList');
 	}
 
 	/**
@@ -105,9 +74,20 @@ class StateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	 * @return void
 	 */
 	public function deleteAction(\S3b0\T3locations\Domain\Model\State $state) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_deleted', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR, array($state->getTitle()));
 		$this->stateRepository->remove($state);
-		$this->redirect('list');
+
+		$this->redirect('adminList');
+	}
+
+	/**
+	 * action verify
+	 *
+	 * @param \S3b0\T3locations\Domain\Model\State $state
+	 * @return void
+	 */
+	public function verifyAction(\S3b0\T3locations\Domain\Model\State $state) {
+		parent::verifyAction($state);
 	}
 
 }

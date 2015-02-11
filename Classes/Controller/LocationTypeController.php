@@ -30,26 +30,16 @@ namespace S3b0\T3locations\Controller;
 /**
  * LocationTypeController
  */
-class LocationTypeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class LocationTypeController extends ExtensionController {
 
 	/**
-	 * action list
+	 * action adminList
 	 *
 	 * @return void
 	 */
-	public function listAction() {
+	public function adminListAction() {
 		$locationTypes = $this->locationTypeRepository->findAll();
 		$this->view->assign('locationTypes', $locationTypes);
-	}
-
-	/**
-	 * action show
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\LocationType $locationType
-	 * @return void
-	 */
-	public function showAction(\S3b0\T3locations\Domain\Model\LocationType $locationType) {
-		$this->view->assign('locationType', $locationType);
 	}
 
 	/**
@@ -70,32 +60,10 @@ class LocationTypeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 	 * @return void
 	 */
 	public function createAction(\S3b0\T3locations\Domain\Model\LocationType $newLocationType) {
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_created', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
 		$this->locationTypeRepository->add($newLocationType);
-		$this->redirect('list');
-	}
 
-	/**
-	 * action edit
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\LocationType $locationType
-	 * @ignorevalidation $locationType
-	 * @return void
-	 */
-	public function editAction(\S3b0\T3locations\Domain\Model\LocationType $locationType) {
-		$this->view->assign('locationType', $locationType);
-	}
-
-	/**
-	 * action update
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\LocationType $locationType
-	 * @return void
-	 */
-	public function updateAction(\S3b0\T3locations\Domain\Model\LocationType $locationType) {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->locationTypeRepository->update($locationType);
-		$this->redirect('list');
+		$this->redirect('adminList');
 	}
 
 	/**
@@ -105,9 +73,10 @@ class LocationTypeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 	 * @return void
 	 */
 	public function deleteAction(\S3b0\T3locations\Domain\Model\LocationType $locationType) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_deleted', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR, array($locationType->getTitle()));
 		$this->locationTypeRepository->remove($locationType);
-		$this->redirect('list');
+
+		$this->redirect('adminList');
 	}
 
 }

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-11-26T11:17:02Z" product-name="t3locations">
+		<header/>
+		<body>
+			<trans-unit id="tx_t3locations_domain_model_standard" xml:space="preserve">
+				<source>Standard</source>
+				<target>Standard</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_territory" xml:space="preserve">
+				<source>Territory</source>
+				<target>Kontinent</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_territory.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_territory.verified" xml:space="preserve">
+				<source>Verified</source>
+				<target>Verifiziert</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region" xml:space="preserve">
+				<source>Region</source>
+				<target>Region</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.type" xml:space="preserve">
+				<source>Type</source>
+				<target>Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.iso_code_a2" xml:space="preserve">
+				<source>ISO 3166-1 alpha-2</source>
+				<target>ISO 3166-1 alpha-2</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.iso_code_a3" xml:space="preserve">
+				<source>ISO 3166-1 alpha-3</source>
+				<target>ISO 3166-1 alpha-3</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.flag_icon_name" xml:space="preserve">
+				<source>Flag Icon Name</source>
+				<target>Flaggen-Icon</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.verified" xml:space="preserve">
+				<source>Verified</source>
+				<target>Verifiziert</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.countries" xml:space="preserve">
+				<source>Countries</source>
+				<target>Länder</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_region.territory" xml:space="preserve">
+				<source>Territory</source>
+				<target>Kontinent</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state" xml:space="preserve">
+				<source>State</source>
+				<target>Bundesland</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state.abbreviation" xml:space="preserve">
+				<source>Abbreviation</source>
+				<target>Abkürzung</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state.verified" xml:space="preserve">
+				<source>Verified</source>
+				<target>Verifiziert</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_state.country" xml:space="preserve">
+				<source>Country</source>
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location" xml:space="preserve">
+				<source>Location</source>
+				<target>Standort</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.type" xml:space="preserve">
+				<source>Type</source>
+				<target>Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.logo" xml:space="preserve">
+				<source>Logo</source>
+				<target>Logo</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.freetext" xml:space="preserve">
+				<source>Freetext</source>
+				<target>Freitext</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_search_mask" xml:space="preserve">
+				<source>Field(s) to use in search mask</source>
+				<target>Feld(er) zur Anwendung in der Suchmaske</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.field_to_use_in_headline" xml:space="preserve">
+				<source>Field to use in headline</source>
+				<target>Feld zur Verwendung als Überschrift</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.user_defined_headline" xml:space="preserve">
+				<source>User defined headline</source>
+				<target>Anwenderspezifische Überschrift</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.contact_person" xml:space="preserve">
+				<source>Contact Person</source>
+				<target>Ansprechpartner</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.address" xml:space="preserve">
+				<source>Address</source>
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.street_address" xml:space="preserve">
+				<source>Street address</source>
+				<target>Straße, Nr.</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.zip" xml:space="preserve">
+				<source>Zip</source>
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.city" xml:space="preserve">
+				<source>City</source>
+				<target>Stadt</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.phone" xml:space="preserve">
+				<source>Phone</source>
+				<target>Telefon</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.facsimile" xml:space="preserve">
+				<source>Facsimile</source>
+				<target>Fax</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.mobile" xml:space="preserve">
+				<source>Mobile</source>
+				<target>Mobil</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.email" xml:space="preserve">
+				<source>E-mail</source>
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.web" xml:space="preserve">
+				<source>Web</source>
+				<target>Web</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.social_media" xml:space="preserve">
+				<source>Social Media</source>
+				<target>Soziale Medien</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.google_maps" xml:space="preserve">
+				<source>Google Maps</source>
+				<target>Google Maps</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.state" xml:space="preserve">
+				<source>State</source>
+				<target>Bundesland</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.country" xml:space="preserve">
+				<source>Country</source>
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.coverage" xml:space="preserve">
+				<source>Coverage</source>
+				<target>Abdeckung</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.region" xml:space="preserve">
+				<source>Region</source>
+				<target>Region</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_locationtype" xml:space="preserve">
+				<source>Location Type</source>
+				<target>Standort-Art</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_locationtype.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia" xml:space="preserve">
+				<source>Social Media</source>
+				<target>Soziale Medien</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia.mode" xml:space="preserve">
+				<source>Mode</source>
+				<target>Modus</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedia.icon_or_class_name" xml:space="preserve">
+				<source>Icon or class name</source>
+				<target>Icon oder Klassenname</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map" xml:space="preserve">
+				<source>Map</source>
+				<target>Karte</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.coordinates" xml:space="preserve">
+				<source>Coordinates</source>
+				<target>Koordinaten</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_map.link_query_param" xml:space="preserve">
+				<source>Link Query Param</source>
+				<target>Link Abfrage Parameter</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedialink" xml:space="preserve">
+				<source>Social Media Link</source>
+				<target>Link zu sozialen Medien</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedialink.link" xml:space="preserve">
+				<source>Link</source>
+				<target>Link</target>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_socialmedialink.social_media" xml:space="preserve">
+				<source>Social Media</source>
+				<target>Soziale Medien</target>
+			</trans-unit>
+
+			<!-- Text Outputs -->
+			<trans-unit id="output.warning.js_disabled" xml:space="preserve">
+				<source>Your Browser has disabled Javascripts. Therefore you need to select a territory first and click "update" to get the corresponding country list. After you´ve chosen a country you´ll get the results once you hit the button for a second time.</source>
+				<target>Ihr Browser hat JavaScript deaktiviert. Wählen Sie zunächst einen Kontinent und Klicken Sie auf "Aktualisieren" um die zugehörigen Länderliste zu erhalten. Nachdem Sie ein Land gewählt haben, erhalten Sie die Ergebnisse nach erneutem Klick auf die Schaltfläche.</target>
+			</trans-unit>
+			<trans-unit id="output.warning.no_territories" xml:space="preserve">
+				<source>No territories have been found/selected! Please provide at least one territory to make plugin work.</source>
+				<target>Es wurden keine Kontinente gefunden/ausgewählt! Bitte geben Sie mindestens einen Kontinent an, um die Seite lauffähig zu machen.</target>
+			</trans-unit>
+			<trans-unit id="output.select_territory" xml:space="preserve">
+				<source>Choose a territory</source>
+				<target>Wählen Sie einen Kontinent</target>
+			</trans-unit>
+			<trans-unit id="output.select_country" xml:space="preserve">
+				<source>Choose a country</source>
+				<target>Wählen Sie ein Land</target>
+			</trans-unit>
+			<trans-unit id="output.business_sectors" xml:space="preserve">
+				<source>Business Units </source>
+				<target>Geschäftsbereiche </target>
+			</trans-unit>
+			<trans-unit id="output.coverage_prepend" xml:space="preserve">
+				<source>Also covering </source>
+				<target>Ebenso zuständig für </target>
+			</trans-unit>
+			<trans-unit id="output.coverage_append" xml:space="preserve">
+				<source></source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="output.title_phone" xml:space="preserve">
+				<source>Phone</source>
+				<target>Telefon</target>
+			</trans-unit>
+			<trans-unit id="output.title_mobile" xml:space="preserve">
+				<source>Cell</source>
+				<target>Mobil</target>
+			</trans-unit>
+			<trans-unit id="output.title_facsimile" xml:space="preserve">
+				<source>Fax</source>
+				<target>Fax</target>
+			</trans-unit>
+			<trans-unit id="output.title_email" xml:space="preserve">
+				<source>E-Mail</source>
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="output.title_web" xml:space="preserve">
+				<source>Website</source>
+				<target>Website</target>
+			</trans-unit>
+			<trans-unit id="output.map_link_text" xml:space="preserve">
+				<source>Show on Google Maps™</source>
+				<target>Auf Google Maps™ anzeigen</target>
+			</trans-unit>
+			<trans-unit id="output.back_link" xml:space="preserve">
+				<source>Go back</source>
+				<target>Zurück</target>
+			</trans-unit>
+			<trans-unit id="info.no_countries" xml:space="preserve">
+				<source>No Countries found!</source>
+				<target>Keine Länder gefunden!</target>
+			</trans-unit>
+			<trans-unit id="info.no_locations" xml:space="preserve">
+				<source>No Locations found!</source>
+				<target>Keine Standorte gefunden!</target>
+			</trans-unit>
+			<trans-unit id="conjunction.and" xml:space="preserve">
+				<source>and</source>
+				<target>und</target>
+			</trans-unit>
+
+			<trans-unit id="button_labels.new" xml:space="preserve">
+				<source>Add Entry</source>
+				<target>Neuer Eintrag</target>
+			</trans-unit>
+			<trans-unit id="button_labels.show" xml:space="preserve">
+				<source>Detail</source>
+				<target>Detail</target>
+			</trans-unit>
+			<trans-unit id="button_labels.admarea" xml:space="preserve">
+				<source>Admin Area</source>
+				<target>Administrations-Bereich</target>
+			</trans-unit>
+			<trans-unit id="button_labels.edit" xml:space="preserve">
+				<source>Edit</source>
+				<target>Bearbeiten</target>
+			</trans-unit>
+			<trans-unit id="button_labels.save" xml:space="preserve">
+				<source>Save</source>
+				<target>Speichern</target>
+			</trans-unit>
+			<trans-unit id="button_labels.cancel" xml:space="preserve">
+				<source>Cancel</source>
+				<target>Abbrechen</target>
+			</trans-unit>
+			<trans-unit id="button_labels.delete" xml:space="preserve">
+				<source>Delete</source>
+				<target>Löschen</target>
+			</trans-unit>
+			<trans-unit id="button_labels.verify" xml:space="preserve">
+				<source>Verify</source>
+				<target>Verifizieren</target>
+			</trans-unit>
+			<trans-unit id="button_labels.update" xml:space="preserve">
+				<source>Update</source>
+				<target>Aktualisieren</target>
+			</trans-unit>
+
+			<!-- Messages -->
+			<trans-unit id="message.mandatory_note" xml:space="preserve">
+				<source>Fields marked with %s are mandatory.</source>
+				<target>Mit %s gekennzeichnete Felder sind Pflichtangaben.</target>
+			</trans-unit>
+			<trans-unit id="message.entry_created" xml:space="preserve">
+				<source>Entry has successfully been created.</source>
+				<target>Eintrag wurde erfolgreich angelegt.</target>
+			</trans-unit>
+			<trans-unit id="message.entry_updated" xml:space="preserve">
+				<source>Entry "%s" has been updated.</source>
+				<target>Der Eintrag "%s" wurde aktualisiert.</target>
+			</trans-unit>
+			<trans-unit id="message.entry_deleted" xml:space="preserve">
+				<source>Entry "%s" has been deleted.</source>
+				<target>Der Eintrag "%s" wurde gelöscht.</target>
+			</trans-unit>
+			<trans-unit id="message.entry_verified" xml:space="preserve">
+				<source>Entry "%s" has been verified.</source>
+				<target>Der Eintrag "%s" wurde verifiziert.</target>
+			</trans-unit>
+			<trans-unit id="message.error_model" xml:space="preserve">
+				<source>Object given is no instance of "%s".</source>
+				<target>Das übermittelte Object ist keine Instanz von "%s".</target>
+			</trans-unit>
+			<trans-unit id="message.error_property" xml:space="preserve">
+				<source>Object given has no property "%s".</source>
+				<target>Das übermittelte Object hat keine Eigenschaft "%s".</target>
+			</trans-unit>
+
+			<!-- Form errors (title) -->
+			<trans-unit id="errors.newSocialMedia.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="errors.newSocialMedia.mode" xml:space="preserve">
+				<source>Mode</source>
+				<target>Modus</target>
+			</trans-unit>
+			<trans-unit id="errors.newSocialMedia.iconOrClassName" xml:space="preserve">
+				<source>Icon Or Class Name</source>
+				<target>Icon oder Klassenname</target>
+			</trans-unit>
+			<trans-unit id="errors.newLocationType.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="errors.newState.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="errors.newState.country" xml:space="preserve">
+				<source>Country</source>
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="errors.newTerritory.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="errors.region.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="errors.region.territory" xml:space="preserve">
+				<source>Territory</source>
+				<target>Kontinent</target>
+			</trans-unit>
+			<trans-unit id="errors.newRegion.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="errors.newRegion.territory" xml:space="preserve">
+				<source>Territory</source>
+				<target>Kontinent</target>
+			</trans-unit>
+			<trans-unit id="errors.location.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="errors.location.fieldToUseInSearchMask" xml:space="preserve">
+				<source>Field(s) To Use In Search Mask</source>
+				<target>Feld(er) zur Anwendung in der Suchmaske</target>
+			</trans-unit>
+			<trans-unit id="errors.location.country" xml:space="preserve">
+				<source>Country</source>
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="errors.newLocation.title" xml:space="preserve">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="errors.newLocation.fieldToUseInSearchMask" xml:space="preserve">
+				<source>Field(s) To Use In Search Mask</source>
+				<target>Feld(er) zur Anwendung in der Suchmaske</target>
+			</trans-unit>
+			<trans-unit id="errors.newLocation.country" xml:space="preserve">
+				<source>Country</source>
+				<target>Land</target>
+			</trans-unit>
+
+			<!-- Validation -->
+			<trans-unit id="validator.notempty.null" xml:space="preserve">
+				<source>This is a required field. Please fill in!</source>
+				<target>Dies ist ein Pflichtfeld. Bitte füllen Sie diese aus!</target>
+			</trans-unit>
+			<trans-unit id="validator.notempty.empty" xml:space="preserve">
+				<source>This is a required field. Please fill in!</source>
+				<target>Dies ist ein Pflichtfeld. Bitte füllen Sie diese aus!</target>
+			</trans-unit>
+			<trans-unit id="validator.list.notinlist" xml:space="preserve">
+				<source><![CDATA[The value provided must be one of the following: %s
+(submitted: %s)]]></source>
+				<target><![CDATA[Der übermittelte Wert muss einer der Folgenden sein: %s
+(angegeben: %s)]]></target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

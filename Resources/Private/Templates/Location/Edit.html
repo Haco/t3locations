@@ -1,26 +1,16 @@
-
 <f:layout name="Default" />
 
-This template displays a EDIT form for the current domain object.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        Edit.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-<h1>Edit Location</h1>
 
-<f:flashMessages renderMode="div" />
+	<h2><f:translate id="button_labels.edit" /> "{location.headline}"</h2>
 
-<f:render partial="FormErrors" arguments="{object:Location}" />
+	<f:flashMessages renderMode="div" />
 
-<f:form action="update" name="location" object="{location}" >
-<f:render partial="Location/FormFields" arguments="{location:location}" />
-	<f:form.submit value="Save" />
-</f:form>
+	<f:render partial="FormErrors" arguments="{object: Location}" />
+
+	<f:form action="update" enctype="multipart/form-data" name="location" object="{location}" >
+		<f:render partial="Location/FormFields" arguments="{location: location, locationTypes: locationTypes, countries: countries, states: states, regions: regions}" />
+		<f:render partial="Admin/ModifyFooter" />
+	</f:form>
+
 </f:section>

@@ -33,6 +33,13 @@ namespace S3b0\T3locations\Domain\Repository;
 class TerritoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
+	 * @var array
+	 */
+	protected $defaultOrderings = array(
+		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+	);
+
+	/**
 	 * Set repository wide settings
 	 */
 	public function initializeObject() {

@@ -1,13 +1,13 @@
-
 <f:form.validationResults for="{object}">
 	<f:if condition="{validationResults.flattenedErrors}">
-		<ul>
-		<f:for each="{validationResults.flattenedErrors}" key="propertyPath" as="errors">
-			<li>
-			{propertyPath}: <ul>
-				<f:for each="{errors}" as="error"><li>{error}</li></f:for>
-				</ul>
-			</li>
-		</f:for></ul>
+		<div class="row">
+			<div class="col-md-12">
+			<f:for each="{validationResults.flattenedErrors}" key="propertyPath" as="errors">
+				<div class="alert alert-danger"><i class="fa fa-exclamation-triangle fa-3x pull-left"></i>
+				<strong><f:translate id="errors.{propertyPath}" default="{propertyPath}" /></strong><br />
+					<f:for each="{errors}" as="error" iteration="iterator">• {error}<f:if condition="{iterator.isLast -> f:s3b0.negate()}"><br /></f:if></f:for>
+				</div>
+			</f:for></div>
+		</div>
 </f:if>
 </f:form.validationResults>

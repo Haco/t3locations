@@ -32,15 +32,7 @@ use \TYPO3\CMS\Core\Utility as CoreUtility;
 /**
  * TerritoryController
  */
-class TerritoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-
-	/**
-	 * territoryRepository
-	 *
-	 * @var \S3b0\T3locations\Domain\Repository\TerritoryRepository
-	 * @inject
-	 */
-	protected $territoryRepository = NULL;
+class TerritoryController extends ExtensionController {
 
 	/**
 	 * action list
@@ -49,17 +41,20 @@ class TerritoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 */
 	public function listAction() {
 		$territories = $this->territoryRepository->findByUidList($this->settings['territories'] ? CoreUtility\GeneralUtility::intExplode(',', $this->settings['territories'], TRUE) : array());
+		/** @var \S3b0\T3locations\Domain\Model\Territory $territory */
+		foreach ( $territories as $territory ) {
+			$territory->setRegionAmount($this->regionRepository->findByTerritory($territory)->count());
+		}
 		$this->view->assign('territories', $territories);
 	}
 
 	/**
-	 * action show
+	 * action adminList
 	 *
-	 * @param \S3b0\T3locations\Domain\Model\Territory $territory
 	 * @return void
 	 */
-	public function showAction(\S3b0\T3locations\Domain\Model\Territory $territory) {
-		$this->view->assign('territory', $territory);
+	public function adminListAction() {
+		$this->view->assign('territories', $this->territoryRepository->findAll());
 	}
 
 	/**
@@ -80,32 +75,10 @@ class TerritoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @return void
 	 */
 	public function createAction(\S3b0\T3locations\Domain\Model\Territory $newTerritory) {
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_created', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
 		$this->territoryRepository->add($newTerritory);
-		$this->redirect('list');
-	}
 
-	/**
-	 * action edit
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\Territory $territory
-	 * @ignorevalidation $territory
-	 * @return void
-	 */
-	public function editAction(\S3b0\T3locations\Domain\Model\Territory $territory) {
-		$this->view->assign('territory', $territory);
-	}
-
-	/**
-	 * action update
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\Territory $territory
-	 * @return void
-	 */
-	public function updateAction(\S3b0\T3locations\Domain\Model\Territory $territory) {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->territoryRepository->update($territory);
-		$this->redirect('list');
+		$this->redirect('adminList');
 	}
 
 	/**
@@ -115,9 +88,20 @@ class TerritoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @return void
 	 */
 	public function deleteAction(\S3b0\T3locations\Domain\Model\Territory $territory) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_deleted', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR, array($territory->getTitle()));
 		$this->territoryRepository->remove($territory);
-		$this->redirect('list');
+
+		$this->redirect('adminList');
+	}
+
+	/**
+	 * action verify
+	 *
+	 * @param \S3b0\T3locations\Domain\Model\Territory $territory
+	 * @return void
+	 */
+	public function verifyAction(\S3b0\T3locations\Domain\Model\Territory $territory) {
+		parent::verifyAction($territory);
 	}
 
 }

@@ -1,13 +1,17 @@
-
-<label for="title">
-	<f:translate key="tx_t3locations_domain_model_socialmedia.title" />
-</label><br />
-	<f:form.textfield property="title" /><br />
-<label for="mode">
-	<f:translate key="tx_t3locations_domain_model_socialmedia.mode" />
-</label><br />
-	<f:form.textfield property="mode" /><br />
-<label for="iconOrClassName">
-	<f:translate key="tx_t3locations_domain_model_socialmedia.icon_or_class_name" />
-</label><br />
-	<f:form.textfield property="iconOrClassName" /><br />
+<div class="form-group">
+	<label for="title"><f:translate id="tx_t3locations_domain_model_socialmedia.title" /> <span class="text-danger">*</span></label>
+	<f:form.textfield id="title" class="form-control" property="title" />
+</div>
+<div class="form-group">
+	<label for="mode"><f:translate id="tx_t3locations_domain_model_socialmedia.mode" /> <span class="text-danger">*</span></label>
+	<f:form.select
+			id="mode"
+			class="form-control"
+			property="mode"
+			options="{0 : '{f:translate(id : \'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedia.mode.I.0\')}', 1 : '{f:translate(id : \'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_socialmedia.mode.I.1\')}'}" />
+</div>
+<div class="form-group">
+	<label for="iconOrClassName"><f:translate id="tx_t3locations_domain_model_socialmedia.icon_or_class_name" /> <span class="text-danger">*</span></label>
+	<f:form.textfield id="iconOrClassName" class="form-control" property="iconOrClassName" />
+</div>
+<p class="bg-info text-info"><i class="fa fa-info-circle fa-lg"></i> &nbsp;<f:translate id="message.mandatory_note" arguments="{0 : '<span class=\'text-danger\'>*</span>'}" /></p>

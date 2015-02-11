@@ -1,61 +1,183 @@
+<div class="form-group">
+	<label for="type"><f:translate id="tx_t3locations_domain_model_location.type" /></label>
+	<f:form.select
+			id="type"
+			class="form-control"
+			property="type"
+			options="{locationTypes}"
+			optionLabelField="title" />
+</div>
+<div class="form-group">
+	<label for="title"><f:translate id="tx_t3locations_domain_model_location.title" /></label>
+	<f:form.textfield
+			id="title"
+			class="form-control"
+			property="title" />
+</div>
+<div class="form-group">
+	<label for="freetext"><f:translate id="tx_t3locations_domain_model_location.freetext" /></label>
+	<f:form.textarea
+			id="freetext"
+			class="form-control"
+			property="freetext"
+			cols="40"
+			rows="5" />
+</div>
+<div class="form-group t3loc-transform-binary">
+	<label for="fieldToUseInSearchMask"><f:translate id="tx_t3locations_domain_model_location.field_to_use_in_search_mask" /></label>
+	<div class="checkbox">
+		<label><f:form.checkbox id="fieldToUseInSearchMask" value="1" property="fieldToUseInSearchMask" multiple="1" checked="{location.fieldToUseInSearchMask -> f:s3b0.checkBit(bit: 1)}" /> <f:translate id="LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.0" /></label>
+	</div>
+	<div class="checkbox">
+		<label><f:form.checkbox id="fieldToUseInSearchMask" value="2" property="fieldToUseInSearchMask" multiple="1" checked="{location.fieldToUseInSearchMask -> f:s3b0.checkBit(bit: 2)}" /> <f:translate id="LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.1" /></label>
+	</div>
+	<div class="checkbox">
+		<label><f:form.checkbox id="fieldToUseInSearchMask" value="4" property="fieldToUseInSearchMask" multiple="1" checked="{location.fieldToUseInSearchMask -> f:s3b0.checkBit(bit: 4)}" /> <f:translate id="LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.2" /></label>
+	</div>
+</div>
+<div class="form-group">
+	<label for="fieldToUseInHeadline"><f:translate id="tx_t3locations_domain_model_location.field_to_use_in_headline" /></label>
+	<f:form.select
+			id="fieldToUseInHeadline"
+			class="form-control"
+			property="fieldToUseInHeadline"
+			options="{0: '{f:translate(id: \'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.0\')}', 1: '{f:translate(id: \'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.1\')}', 2: '{f:translate(id: \'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.2\')}', 3: '{f:translate(id: \'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.3\')}', 4: '{f:translate(id: \'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_headline.I.4\')}'}" />
+</div>
+<div class="form-group t3loc-req" data-t3loc-req="select#fieldToUseInHeadline:=:3">
+	<label for="userDefinedHeadline"><f:translate id="tx_t3locations_domain_model_location.user_defined_headline" /></label>
+	<f:form.textfield
+			id="userDefinedHeadline"
+			class="form-control"
+			property="userDefinedHeadline" />
+</div>
+<div class="form-group">
+	<label for="contactPerson"><f:translate id="tx_t3locations_domain_model_location.contact_person" /></label>
+	<f:form.textfield
+			id="contactPerson"
+			class="form-control"
+			property="contactPerson" />
+</div>
+<div class="form-group">
+	<label for="address"><f:translate id="tx_t3locations_domain_model_location.address" /></label>
+	<f:form.textarea
+			id="address"
+			class="form-control"
+			property="address"
+			cols="40"
+			rows="5" />
+</div>
+<div class="form-group">
+	<label for="streetAddress"><f:translate id="tx_t3locations_domain_model_location.street_address" /></label>
+	<f:form.textfield
+			id="streetAddress"
+			class="form-control"
+			property="streetAddress" />
+</div>
+<div class="form-group">
+	<label for="zip"><f:translate id="tx_t3locations_domain_model_location.zip" /></label>
+	<f:form.textfield
+			id="zip"
+			class="form-control"
+			property="zip" />
+</div>
+<div class="form-group">
+	<label for="city"><f:translate id="tx_t3locations_domain_model_location.city" /></label>
+	<f:form.textfield
+			id="city"
+			class="form-control"
+			property="city" />
+</div>
+<div class="form-group">
+	<label for="country"><f:translate id="tx_t3locations_domain_model_location.country" /></label>
+	<f:form.select
+			id="country"
+			class="form-control"
+			property="country"
+			options="{countries}"
+			optionLabelField="title"
+			prependOptionLabel=""
+			additionalAttributes="{onchange: 'updateForm(this.form)'}" />
+</div>
+<f:if condition="{states -> f:count()}">
+	<div class="form-group t3loc-req" data-t3loc-req="select#country:>:0">
+		<label for="state"><f:translate id="tx_t3locations_domain_model_location.state" /></label>
+		<f:form.select
+				id="state"
+				class="form-control"
+				property="state"
+				options="{states}"
+				optionLabelField="title"
+				prependOptionLabel="" />
+	</div>
+</f:if>
+<div class="form-group">
+	<label for="region"><f:translate id="tx_t3locations_domain_model_location.region" /></label>
+	<f:form.select
+			id="region"
+			class="form-control"
+			property="region"
+			options="{regions}"
+			optionLabelField="title"
+			prependOptionLabel="" />
+</div>
+<div class="form-group">
+	<label for="coverage"><f:translate id="tx_t3locations_domain_model_location.coverage" /></label>
+	<f:form.select
+			id="coverage"
+			class="form-control"
+			property="coverage"
+			options="{countries}"
+			optionLabelField="title"
+			multiple="1"
+			size="15"
+			additionalAttributes="{aria-describedby: 'helpBlock'}" />
+	<p id="helpBlock" class="help-block"><f:translate id="LLL:EXT:lang/locallang_core.xlf:labels.holdDownCTRL" /></p>
+</div>
+<div class="form-group">
+	<label for="phone"><f:translate id="tx_t3locations_domain_model_location.phone" /></label>
+	<f:form.textarea
+			id="phone"
+			class="form-control"
+			property="phone"
+			cols="40"
+			rows="5" />
+</div>
+<div class="form-group">
+	<label for="facsimile"><f:translate id="tx_t3locations_domain_model_location.facsimile" /></label>
+	<f:form.textarea
+			id="facsimile"
+			class="form-control"
+			property="facsimile"
+			cols="40"
+			rows="5" />
+</div>
+<div class="form-group">
+	<label for="mobile"><f:translate id="tx_t3locations_domain_model_location.mobile" /></label>
+	<f:form.textarea
+			id="mobile"
+			class="form-control"
+			property="mobile"
+			cols="40"
+			rows="5" />
+</div>
+<div class="form-group">
+	<label for="email"><f:translate id="tx_t3locations_domain_model_location.email" /></label>
+	<f:form.textarea
+			id="email"
+			class="form-control"
+			property="email"
+			cols="40"
+			rows="5" />
+</div>
+<div class="form-group">
+	<label for="web"><f:translate id="tx_t3locations_domain_model_location.web" /></label>
+	<f:form.textarea
+			id="web"
+			class="form-control"
+			property="web"
+			cols="40"
+			rows="5" />
+</div>
 
-<label for="title">
-	<f:translate key="tx_t3locations_domain_model_location.title" />
-</label><br />
-	<f:form.textfield property="title" /><br />
-<label for="logo">
-	<f:translate key="tx_t3locations_domain_model_location.logo" />
-</label><br />
-	<span>File upload is not implemented!</span><br  /><br />
-<label for="freetext">
-	<f:translate key="tx_t3locations_domain_model_location.freetext" />
-</label><br />
-	<f:form.textarea property="freetext" cols="40" rows="15" /><br />
-<label for="fieldToUseInSearchMask">
-	<f:translate key="tx_t3locations_domain_model_location.field_to_use_in_search_mask" />
-</label><br />
-	<f:form.textfield property="fieldToUseInSearchMask" /><br />
-<label for="fieldToUseInHeadline">
-	<f:translate key="tx_t3locations_domain_model_location.field_to_use_in_headline" />
-</label><br />
-	<f:form.textfield property="fieldToUseInHeadline" /><br />
-<label for="userDefinedHeadline">
-	<f:translate key="tx_t3locations_domain_model_location.user_defined_headline" />
-</label><br />
-	<f:form.textfield property="userDefinedHeadline" /><br />
-<label for="contactPerson">
-	<f:translate key="tx_t3locations_domain_model_location.contact_person" />
-</label><br />
-	<f:form.textfield property="contactPerson" /><br />
-<label for="address">
-	<f:translate key="tx_t3locations_domain_model_location.address" />
-</label><br />
-	<f:form.textarea property="address" cols="40" rows="15" /><br />
-<label for="zip">
-	<f:translate key="tx_t3locations_domain_model_location.zip" />
-</label><br />
-	<f:form.textfield property="zip" /><br />
-<label for="city">
-	<f:translate key="tx_t3locations_domain_model_location.city" />
-</label><br />
-	<f:form.textfield property="city" /><br />
-<label for="phone">
-	<f:translate key="tx_t3locations_domain_model_location.phone" />
-</label><br />
-	<f:form.textarea property="phone" cols="40" rows="15" /><br />
-<label for="facsimile">
-	<f:translate key="tx_t3locations_domain_model_location.facsimile" />
-</label><br />
-	<f:form.textarea property="facsimile" cols="40" rows="15" /><br />
-<label for="mobile">
-	<f:translate key="tx_t3locations_domain_model_location.mobile" />
-</label><br />
-	<f:form.textarea property="mobile" cols="40" rows="15" /><br />
-<label for="email">
-	<f:translate key="tx_t3locations_domain_model_location.email" />
-</label><br />
-	<f:form.textarea property="email" cols="40" rows="15" /><br />
-<label for="web">
-	<f:translate key="tx_t3locations_domain_model_location.web" />
-</label><br />
-	<f:form.textarea property="web" cols="40" rows="15" /><br />
+<f:form.textfield type="hidden" id="redirect" property="logo" value="0" />
+<f:form.textfield type="hidden" id="redirect" name="redirect" value="adminList" />

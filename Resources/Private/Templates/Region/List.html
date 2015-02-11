@@ -1,5 +1,5 @@
 <f:layout name="Default" />
-<!--TODO: Add empty flag if no file found-->
+
 <f:section name="main">
 
 	<f:flashMessages renderMode="div" />
@@ -8,19 +8,21 @@
 		<f:then>
 			<div class="t3locations-complex-list">
 				<f:for each="{regions}" as="region">
-					<f:link.action action="list" controller="Location" arguments="{region : region}">
-						<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{region.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
-							<f:then>
-								<f:image src="{f:uri.resource(path:'Images/FlagIcons/{region.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
-							</f:then>
-							<f:else>
-								<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{region.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
-									<f:image src="{f:uri.resource(path:'Images/FlagIcons/{region.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
-								</f:if>
-							</f:else>
-						</f:if>
-						{region.title}
-					</f:link.action><br />
+					<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{region.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+						<f:then>
+							<f:image src="{f:uri.resource(path:'Images/FlagIcons/{region.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{region.isoCodeA3}" title="{region.title}" />
+						</f:then>
+						<f:else>
+							<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{region.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+								<f:then><f:image src="{f:uri.resource(path:'Images/FlagIcons/{region.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{region.isoCodeA3}" title="{region.title}" /></f:then>
+								<f:else><f:image src="{f:uri.resource(path:'Images/FlagIcons/Unknown.png')}" class="t3locations-flag" alt="{region.isoCodeA3}" title="{region.title}" /></f:else>
+							</f:if>
+						</f:else>
+					</f:if>
+					<f:if condition="{region.locationAmount}">
+						<f:then>&nbsp;<f:link.action action="list" controller="Location" arguments="{region: region}">{region.title} <f:if condition="{region.locationAmount}">&nbsp;<span class="badge btn-primary">{region.locationAmount}</span></f:if></f:link.action><br /></f:then>
+						<f:else>&nbsp;{region.title} <f:if condition="{region.locationAmount}">&nbsp;<span class="badge btn-primary">{region.locationAmount}</span></f:if><br /></f:else>
+					</f:if>
 				</f:for>
 			</div>
 		</f:then>

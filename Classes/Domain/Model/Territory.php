@@ -36,6 +36,7 @@ class Territory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * title
 	 *
 	 * @var string
+	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $title = '';
 
@@ -45,6 +46,14 @@ class Territory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var boolean
 	 */
 	protected $verified = FALSE;
+
+	/**
+	 * regionAmount
+	 *
+	 * @var integer
+	 * @internal
+	 */
+	protected $regionAmount = 0;
 
 	/**
 	 * Returns the title
@@ -91,6 +100,20 @@ class Territory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function isVerified() {
 		return $this->verified;
+	}
+
+	/**
+	 * @return integer
+	 */
+	public function getRegionAmount() {
+		return $this->regionAmount;
+	}
+
+	/**
+	 * @param integer $regionAmount
+	 */
+	public function setRegionAmount($regionAmount) {
+		$this->regionAmount = $regionAmount;
 	}
 
 }

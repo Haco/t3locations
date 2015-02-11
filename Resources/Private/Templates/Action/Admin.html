@@ -1,0 +1,34 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<f:flashMessages renderMode="div" />
+
+	<div class="row">
+		<div class="col-md-12">
+			<f:link.action action="adminList" controller="Location" class="tile w2x location" title="Manage Locations">
+				<i class="fa fa-map-marker fa-lg fa-fw"></i> Locations
+			</f:link.action>
+			<f:link.action action="adminList" controller="LocationType" class="tile location-type" title="Manage Location Types">
+				<i class="fa fa-tag fa-lg fa-fw"></i> LocT
+			</f:link.action>
+			<f:link.action action="adminList" controller="SocialMedia" class="tile social-media" title="Manage Social Media">
+				<i class="fa fa-comments-o fa-lg fa-fw"></i> SocM
+			</f:link.action>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<f:link.action action="adminList" controller="Territory" class="tile territory" title="Manage Territories">
+				<i class="fa fa-globe fa-lg fa-fw"></i> Terr
+			</f:link.action>
+			<f:link.action action="adminList" controller="Region" class="tile w2x region" title="Manage Countries/Regions">
+				<i class="fa fa-map-marker fa-lg fa-fw"></i> Country/Region
+			</f:link.action>
+			<f:link.action action="adminList" controller="State" class="tile state" title="Manage States/Provinces">
+				<i class="fa fa-map-marker fa-lg fa-fw"></i> State
+			</f:link.action>
+		</div>
+	</div>
+
+</f:section>

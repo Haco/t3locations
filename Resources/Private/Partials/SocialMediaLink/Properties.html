@@ -1,7 +1,9 @@
 <f:switch expression="{socialMediaLink.socialMedia.mode}">
+	<f:comment>Plain Text Link, Icon added by CSS-class</f:comment>
 	<f:case value="1">
 		<f:format.html parseFuncTSPath="lib.parseFunc"><link {socialMediaLink.link}>{socialMediaLink.socialMedia.title}</link></f:format.html>
 	</f:case>
+	<f:comment>Prepend icon as an image</f:comment>
 	<f:case default="1">
 		<f:if condition="{socialMediaLink.socialMedia.iconOrClassName -> f:s3b0.checkForExistingResource()}">
 			<f:then><f:format.html parseFuncTSPath="lib.parseFunc"><link {socialMediaLink.link}><f:image src="{socialMediaLink.socialMedia.iconOrClassName}" title="{socialMediaLink.socialMedia.title}" alt="{socialMediaLink.socialMedia.title}" /></link></f:format.html></f:then>

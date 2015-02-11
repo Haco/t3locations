@@ -25,7 +25,6 @@ namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0\String;
  * Class TrimViewHelper
  *
  * @package TYPO3\CMS\Fluid\ViewHelpers\S3b0\String
- * @subpackage t3locations
  */
 class TrimViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\AbstractEncodingViewHelper implements \TYPO3\CMS\Core\SingletonInterface {
 
@@ -46,6 +45,10 @@ class TrimViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\AbstractEncodin
 	 * @api
 	 */
 	public function render($value = NULL) {
-		return trim($value ?: $this->renderChildren());
+		if ( $value === NULL ) {
+			$value = $this->renderChildren();
+		}
+
+		return trim($value);
 	}
 }

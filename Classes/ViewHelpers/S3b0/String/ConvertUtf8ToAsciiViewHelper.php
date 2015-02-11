@@ -25,7 +25,6 @@ namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0\String;
  * Class ConvertUtf8ToAsciiViewHelper
  *
  * @package TYPO3\CMS\Fluid\ViewHelpers\S3b0\String
- * @subpackage t3locations
  */
 class ConvertUtf8ToAsciiViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\AbstractEncodingViewHelper implements \TYPO3\CMS\Core\SingletonInterface {
 
@@ -45,7 +44,11 @@ class ConvertUtf8ToAsciiViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Format\A
 	 * @api
 	 */
 	public function render($value = NULL) {
-		return strtr(utf8_decode($value ?: $this->renderChildren()),
+		if ( $value === NULL ) {
+			$value = $this->renderChildren();
+		}
+
+		return strtr(utf8_decode($value),
 			utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
 			'SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy');
 	}

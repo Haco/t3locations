@@ -10,7 +10,7 @@
 </f:if>
 <f:if condition="{location.freetext}"><br /><span class="t3locations-sectors"><strong><f:translate id="output.business_sectors" />:<br /><span class="t3locations-highlight">{location.freetext}</span></strong></span></f:if>
 <hr />
-<f:format.nl2br><f:format.html parseFuncTSPath="lib.parseFunc">{location.address}</f:format.html></f:format.nl2br>
+<f:format.nl2br><f:format.html parseFuncTSPath="lib.parseFunc">{location.parsedPropertyAddress}</f:format.html></f:format.nl2br>
 <f:if condition="{location.coverage -> f:count()}">
 	<br /><small><em><f:translate id="output.coverage_prepend" /><f:for each="{location.coverage}" as="country" iteration="iterator"><f:if condition="{iterator.isFirst -> f:s3b0.negate()}"><f:if condition="{iterator.isLast}"><f:then> <f:translate id="conjunction.and" /> </f:then><f:else>, </f:else></f:if></f:if>{country.title}</f:for> <f:translate id="output.coverage_append" /></em></small>
 </f:if>
@@ -27,16 +27,16 @@
 			<f:if condition="{location.facsimile}">
 				<tr><td><i class="fa fa-print fa-fw fax" title="{f:translate(id : 'output.title_facsimile')}"></i> </td><td><span class="fax"><f:format.nl2br>{location.facsimile}</f:format.nl2br></span></td></tr>
 			</f:if>
-			<f:if condition="{location.email -> f:count()}">
+			<f:if condition="{location.emailList -> f:count()}">
 				<tr><td><i class="fa fa-envelope fa-fw" title="{f:translate(id : 'output.title_email')}"></i> </td><td>
-					<f:for each="{location.email}" as="email">
+					<f:for each="{location.emailList}" as="email">
 						<f:format.html parseFuncTSPath="lib.parseFunc"><link {email}></link></f:format.html><br />
 					</f:for>
 				</td></tr>
 			</f:if>
-			<f:if condition="{location.web -> f:count()}">
+			<f:if condition="{location.webList -> f:count()}">
 				<tr><td><i class="fa fa-globe fa-fw" title="{f:translate(id : 'output.title_web')}"></i> </td><td>
-					<f:for each="{location.web}" as="web">
+					<f:for each="{location.webList}" as="web">
 						<f:format.html parseFuncTSPath="lib.parseFunc"><link {web}></link></f:format.html><br />
 					</f:for>
 				</td></tr>
@@ -50,14 +50,10 @@
 
 <f:if condition="{location.googleMaps.coordinates}">
 	<!-- Geo-Location -->
-<span class="geo">
-  <span class="latitude">
-    <span class="value-title" title="{location.googleMaps.coordinates.0}" ></span>
-  </span>
-  <span class="longitude">
-    <span class="value-title" title="{location.googleMaps.coordinates.1}"></span>
-  </span>
-</span>
+	<span class="geo">
+		<span class="latitude"><span class="value-title" title="{location.googleMaps.coordinates.0}" ></span></span>
+		<span class="longitude"><span class="value-title" title="{location.googleMaps.coordinates.1}"></span></span>
+	</span>
 </f:if>
 
 <f:if condition="{location.socialMedia -> f:count()}">

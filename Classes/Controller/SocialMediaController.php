@@ -30,26 +30,16 @@ namespace S3b0\T3locations\Controller;
 /**
  * SocialMediaController
  */
-class SocialMediaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class SocialMediaController extends ExtensionController {
 
 	/**
-	 * action list
+	 * action adminList
 	 *
 	 * @return void
 	 */
-	public function listAction() {
+	public function adminListAction() {
 		$socialMedias = $this->socialMediaRepository->findAll();
 		$this->view->assign('socialMedias', $socialMedias);
-	}
-
-	/**
-	 * action show
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\SocialMedia $socialMedia
-	 * @return void
-	 */
-	public function showAction(\S3b0\T3locations\Domain\Model\SocialMedia $socialMedia) {
-		$this->view->assign('socialMedia', $socialMedia);
 	}
 
 	/**
@@ -70,32 +60,10 @@ class SocialMediaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	 * @return void
 	 */
 	public function createAction(\S3b0\T3locations\Domain\Model\SocialMedia $newSocialMedia) {
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_created', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
 		$this->socialMediaRepository->add($newSocialMedia);
-		$this->redirect('list');
-	}
 
-	/**
-	 * action edit
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\SocialMedia $socialMedia
-	 * @ignorevalidation $socialMedia
-	 * @return void
-	 */
-	public function editAction(\S3b0\T3locations\Domain\Model\SocialMedia $socialMedia) {
-		$this->view->assign('socialMedia', $socialMedia);
-	}
-
-	/**
-	 * action update
-	 *
-	 * @param \S3b0\T3locations\Domain\Model\SocialMedia $socialMedia
-	 * @return void
-	 */
-	public function updateAction(\S3b0\T3locations\Domain\Model\SocialMedia $socialMedia) {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->socialMediaRepository->update($socialMedia);
-		$this->redirect('list');
+		$this->redirect('adminList');
 	}
 
 	/**
@@ -105,9 +73,10 @@ class SocialMediaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	 * @return void
 	 */
 	public function deleteAction(\S3b0\T3locations\Domain\Model\SocialMedia $socialMedia) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addMessage('message.entry_deleted', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR, array($socialMedia->getTitle()));
 		$this->socialMediaRepository->remove($socialMedia);
-		$this->redirect('list');
+
+		$this->redirect('adminList');
 	}
 
 }

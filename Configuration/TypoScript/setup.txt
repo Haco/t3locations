@@ -4,10 +4,10 @@ page.includeCSSLibs {
 	fontawesome.external = 1
 }
 [global]
-page.includeJSFooterlibs.app = EXT:t3locations/Resources/Public/JavaScripts/app.js
+page.includeJSFooterlibs.app = EXT:t3locations/Resources/Public/JavaScripts/app.min.js
 page.includeJSlibs.googlemaps = https://maps.googleapis.com/maps/api/js?v=3&sensor=true
 page.includeJSlibs.googlemaps.external = 1
-page.includeCSSLibs.main = EXT:t3locations/Resources/Public/Stylesheets/main.css
+page.includeCSSLibs.main = EXT:t3locations/Resources/Public/Stylesheets/app.min.css
 
 plugin.tx_t3locations {
 	mvc.callDefaultActionIfActionCantBeResolved = 1
@@ -18,6 +18,16 @@ plugin.tx_t3locations {
 	}
 	persistence {
 		storagePid = {$plugin.tx_t3locations.persistence.storagePid}
+		classes {
+			S3b0\T3locations\Domain\Model\Location {
+				mapping {
+					tableName = tx_t3locations_domain_model_location
+					columns {
+						sorting.mapOnProperty = sorting
+					}
+				}
+			}
+		}
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.

@@ -16,13 +16,13 @@
 				<source>The subtitle, if any (see Headline field)</source>
 			</trans-unit>
 			<trans-unit id="field_to_use_in_search_mask.description">
-				<source>Field to use in Search mask</source>
+				<source>Field to use in search mask</source>
 			</trans-unit>
 			<trans-unit id="field_to_use_in_headline.description">
-				<source>Field to use in Headline</source>
+				<source>Field to use in headline</source>
 			</trans-unit>
 			<trans-unit id="user_defined_headline.description">
-				<source>User-defined Headline</source>
+				<source>User defined headline</source>
 			</trans-unit>
 			<trans-unit id="contact_person.description">
 				<source>The contact person</source>

@@ -182,7 +182,8 @@ return array(
 					array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.field_to_use_in_search_mask.I.2', 2)
 				),
 				'cols' => 3,
-				'default' => 3
+				'default' => 3,
+				'eval' => 'required'
 			),
 		),
 		'field_to_use_in_headline' => array(
@@ -435,7 +436,7 @@ return array(
 				),
 				'foreign_table' => 'tx_t3locations_domain_model_region',
 				'foreign_table_where' => 'AND tx_t3locations_domain_model_region.sys_language_uid IN (-1,0) AND tx_t3locations_domain_model_region.type=0 AND tx_t3locations_domain_model_region.deleted=0 ORDER BY tx_t3locations_domain_model_region.title',
-				'minitems' => 0,
+				'minitems' => 1,
 				'maxitems' => 1,
 			),
 		),

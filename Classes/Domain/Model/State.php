@@ -36,6 +36,7 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * title
 	 *
 	 * @var string
+	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $title = '';
 
@@ -57,6 +58,7 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Assign corresponding country
 	 *
 	 * @var \S3b0\T3locations\Domain\Model\Region
+	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $country = NULL;
 
@@ -141,7 +143,7 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \S3b0\T3locations\Domain\Model\Region $country
 	 * @return void
 	 */
-	public function setCountry(\S3b0\T3locations\Domain\Model\Region $country) {
+	public function setCountry(\S3b0\T3locations\Domain\Model\Region $country = NULL) {
 		$this->country = $country;
 	}
 

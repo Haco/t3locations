@@ -25,7 +25,6 @@ namespace TYPO3\CMS\Fluid\ViewHelpers\S3b0;
  * Class CheckForExistingResourceViewHelper
  *
  * @package TYPO3\CMS\Fluid\ViewHelpers\S3b0
- * @subpackage t3locations
  */
 class CheckForExistingResourceViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
@@ -34,6 +33,10 @@ class CheckForExistingResourceViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
 	 * @return boolean
 	 */
 	public function render($source = NULL) {
-		return file_exists(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($source ?: $this->renderChildren()));
+		if ( $source === NULL ) {
+			$source = $this->renderChildren();
+		}
+
+		return file_exists(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($source));
 	}
 }

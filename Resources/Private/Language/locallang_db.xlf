@@ -66,10 +66,10 @@
 				<source>Region</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region.iso_code_a2">
-				<source>Iso Code A2</source>
+				<source>ISO 3166-1 alpha-2</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region.iso_code_a3">
-				<source>Iso Code A3</source>
+				<source>ISO 3166-1 alpha-3</source>
 			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_region.flag_icon_name">
 				<source>Flag Icon</source>

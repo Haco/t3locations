@@ -23,7 +23,7 @@
 	 ***************************************************************/
 
 	/**
-	 * Add news extension to the wizard in page module
+	 * Add extension to the wizard in page module
 	 *
 	 * @package TYPO3
 	 * @subpackage t3locations

@@ -1,0 +1,5 @@
+<f:be.security.ifHasRole role="{extSettings.editors}">
+	<div class="spacer"></div>
+	<f:link.action action="new" class="btn btn-success"><i class="fa fa-plus-square-o fa-lg"></i> &nbsp;<f:translate id="button_labels.new" /></f:link.action>
+	<f:link.action action="admin" controller="Standard" class="btn btn-default"><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp;<f:translate id="button_labels.admarea" /></f:link.action>
+</f:be.security.ifHasRole>

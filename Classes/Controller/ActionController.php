@@ -102,7 +102,7 @@ class ActionController extends ExtensionController {
 
 		/** Fetch locations if region is set */
 		if ( $region instanceof \S3b0\T3locations\Domain\Model\Region ) {
-			$locations = $this->locationRepository->findByRegion($region);
+			$locations = $this->locationRepository->findByRegion($region, TRUE);
 			$this->addMapMarkerJS($locations);
 			$this->view->assign('locations', $locations);
 		}

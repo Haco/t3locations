@@ -16,7 +16,11 @@
 				<source>The subtitle, if any (see Headline field)</source>
 			</trans-unit>
 			<trans-unit id="field_to_use_in_search_mask.description">
-				<source>Field to use in search mask</source>
+				<source>Field to use in search mask&lt;br /&gt;&lt;br /&gt;Also used to display/hide country in search mode for corresponding fields.</source>
+			</trans-unit>
+			<trans-unit id="field_to_use_in_search_mask.details">
+				<source>Selected fields will be used for dropdown selection in search mode.
+Furthermore this controls for which countries the record is displayed in results.</source>
 			</trans-unit>
 			<trans-unit id="field_to_use_in_headline.description">
 				<source>Field to use in headline</source>

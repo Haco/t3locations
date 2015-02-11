@@ -43,19 +43,51 @@ class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * findByRegion - special function, because regions are defined in multiple fields in different relations (n:1|m:n)
 	 *
 	 * @param \S3b0\T3locations\Domain\Model\Region $region
-	 *
+	 * @param boolean                               $filterByFieldToUseInSearchMask
 	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
-	public function findByRegion(\S3b0\T3locations\Domain\Model\Region $region) {
+	public function findByRegion(\S3b0\T3locations\Domain\Model\Region $region, $filterByFieldToUseInSearchMask = FALSE) {
 		$query = $this->createQuery();
-
-		return $query->matching(
+		$result = $query->matching(
 			$query->logicalOr(
 				$query->equals('country', $region),
 				$query->contains('coverage', $region),
 				$query->equals('region', $region)
 			)
 		)->execute();
+
+		if ( $filterByFieldToUseInSearchMask && $result->count() ) {
+			$return = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+			/** @var \S3b0\T3locations\Domain\Model\Location $location */
+			foreach ( $result as $location ) {
+				$setup = $location->getFieldToUseInSearchMask();
+				/** Country */
+				if ( $setup & 1 ) {
+					if ( $region === $location->getCountry() && !$return->contains($location) ) {
+						$return->attach($location);
+					}
+				}
+				/** Coverage */
+				if ( $setup & 2 && $location->getCoverage()->count() ) {
+					/** @var \S3b0\T3locations\Domain\Model\Region $country */
+					foreach ( $location->getCoverage() as $country ) {
+						if ( $region === $country && !$return->contains($location) ) {
+							$return->attach($location);
+						}
+					}
+				}
+				/** Region */
+				if ( $setup & 4 && $location->getRegion() instanceof \S3b0\T3locations\Domain\Model\Region ) {
+					if ( $region === $location->getRegion() && !$return->contains($location) ) {
+						$return->attach($location);
+					}
+				}
+			}
+		} else {
+			$return = $result;
+		}
+
+		return $return;
 	}
 
 	/**
@@ -63,7 +95,6 @@ class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @param array   $list
 	 * @param integer $mode Current modes are 0=excludeList, default=addList
-	 *
 	 * @return null|\TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
 	public function findByUidList(array $list = array(), $mode = 1) {
@@ -90,15 +121,19 @@ class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 
 	/**
-	 * @param \S3b0\T3locations\Domain\Model\Location $location
+	 * Find previous record by sorting
 	 *
+	 * @param \S3b0\T3locations\Domain\Model\Location $location
 	 * @return \S3b0\T3locations\Domain\Model\Location|null
 	 */
 	public function findPrevious(\S3b0\T3locations\Domain\Model\Location $location) {
 		$query = $this->createQuery();
 
 		return $query->matching(
-			$query->lessThan('sorting', $location->getSorting())
+			$query->logicalAnd(
+				$query->matching('pid', $location->getPid()),
+				$query->lessThan('sorting', $location->getSorting())
+			)
 		)->setOrderings(
 			array(
 				'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
@@ -107,15 +142,19 @@ class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 
 	/**
-	 * @param \S3b0\T3locations\Domain\Model\Location $location
+	 * Find next record by sorting
 	 *
+	 * @param \S3b0\T3locations\Domain\Model\Location $location
 	 * @return \S3b0\T3locations\Domain\Model\Location|null
 	 */
 	public function findNext(\S3b0\T3locations\Domain\Model\Location $location) {
 		$query = $this->createQuery();
 
 		return $query->matching(
-			$query->greaterThan('sorting', $location->getSorting())
+			$query->logicalAnd(
+				$query->matching('pid', $location->getPid()),
+				$query->greaterThan('sorting', $location->getSorting())
+			)
 		)->setOrderings(
 			array(
 				'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING

@@ -32,7 +32,7 @@ use \TYPO3\CMS\Core\Utility as CoreUtility;
 /**
  * ActionController
  */
-class ActionController extends \S3b0\T3locations\Controller\LocationController {
+class ActionController extends ExtensionController {
 
 	/**
 	 * Initializes the search action

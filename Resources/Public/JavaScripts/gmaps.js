@@ -91,80 +91,8 @@ function getMapOptions(data, mapOptions) {
 	};
 }
 
-
-function initAjaxLoader(element, action) {
-	if (action == 'add') {
-		$(element).addClass('ajaxloader');
-	} else {
-		$(element).removeClass('ajaxloader');
-	}
-}
-
-function resetForm(ids) {
-	$(ids).attr('disabled', 'disabled');
-	$(ids).find('option:not(:eq(0))').remove();
-	$('#businessMgmtFormResult').html('');
-}
-
-
 (function($) {
-
 	if (typeof mapData != 'undefined') {
 		initializeMap(mapData);
 	}
-
-	$('#businessMgmtFormTerritory').on('change', function() {
-		initAjaxLoader('#businessMgmtFormCountry', 'add');
-		var territory = this.value;
-		resetForm('#businessMgmtFormCountry');
-		if (territory != 0) {
-			$('.business-mgmt').css('cursor', 'wait');
-			$.ajax({
-				contentType: 'application/json; charset=utf-8',
-				dataType: 'json',
-				data: 'eId=ecom_business_finder&tx_ecombusinessfinder_ajax[action]=getCountryList&tx_ecombusinessfinder_ajax[territory]=' + territory + '&type=472995900',
-				success: function(result) {
-					if (result['success'] === true) {
-						initAjaxLoader('#businessMgmtFormCountry', 'remove');
-						$('#businessMgmtFormCountry').html(result['content']).removeAttr('disabled');
-					} else {
-						console.log('Request failed!');
-					}
-					$('.business-mgmt').css('cursor', 'default');
-				}
-			});
-		}
-	});
-
-	$('#businessMgmtFormCountry').on('change', function() {
-		initAjaxLoader('#businessMgmtFormResult', 'add');
-		var territory = $('#businessMgmtFormTerritory').val();
-		var country = this.value;
-		if (country != 0) {
-			$('.business-mgmt').css('cursor', 'progress');
-			$.ajax({
-				contentType: 'application/json; charset=utf-8',
-				dataType: 'json',
-				data: 'eId=ecom_business_finder&tx_ecombusinessfinder_ajax[action]=getBusinesses&tx_ecombusinessfinder_ajax[territory]=' + territory + '&tx_ecombusinessfinder_ajax[country]=' + country + '&type=472995901',
-				success: function(result) {
-					if (result['success'] === true) {
-						initAjaxLoader('#businessMgmtFormResult', 'remove');
-						$('#businessMgmtFormResult').html(result['content']);
-						initializeMap(result['jsMapData']);
-					} else {
-						console.log('Request failed!');
-					}
-					$('.business-mgmt').css('cursor', 'default');
-				}
-			});
-		} else {
-			$('#businessMgmtFormResult').html('');
-		}
-	});
-
-	$('#businessMgmtFormReset').on('click', function() {
-		resetForm('#businessMgmtFormCountry');
-		$('#businessMgmtFormTerritory').val(0);
-	});
-
 })(jQuery);

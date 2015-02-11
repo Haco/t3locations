@@ -37,11 +37,6 @@ class NegateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
 			$value = $this->renderChildren();
 		}
 
-		/** For all PHP versions 5.5+ use the boolval() method */
-		if ( PHP_MAJOR_VERSION > 5 || ( PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION >= 5 ) ) {
-			return !boolval($value);
-		} else {
-			return !(bool) $value;
-		}
+		return !(bool) $value;
 	}
 }

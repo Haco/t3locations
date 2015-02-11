@@ -441,7 +441,6 @@ return array(
 			),
 		),
 		'coverage' => array(
-			'displayCond' => 'FIELD:country:REQ:TRUE',
 			'l10n_mode' => 'exclude',
 			'exclude' => 0,
 			'label' => 'LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.coverage',

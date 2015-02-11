@@ -21,6 +21,7 @@
 					&nbsp;<f:link.action action="show" target="_blank" arguments="{location: location}" title="{f:translate(id: 'button_labels.show')}">{f:if(condition: location.headline, then: location.headline, else: '({location.title})')}</f:link.action> <f:if condition="{location.type}"><small>[{location.type.title}]</small></f:if>
 				</td>
 				<td class="text-right">
+					<f:if condition="{location.hidden}"><i class="fa fa-eye-slash fa-lg"></i> &nbsp; </f:if>
 					<f:link.action action="show" target="_blank" arguments="{location: location}" class="btn btn-xs btn-default"><i class="fa fa-info fa-lg"></i> &nbsp;<f:translate id="button_labels.show" /></f:link.action>
 					<f:be.security.ifHasRole role="{extSettings.editors}">
 						<f:link.action action="moveRecord" arguments="{location: location}" class="btn btn-xs btn-default {f:if(condition: iterator.isFirst, then: 'disabled')}"><i class="fa fa-angle-up fa-lg"></i></f:link.action>
@@ -29,8 +30,8 @@
 					</f:be.security.ifHasRole>
 					<f:be.security.ifHasRole role="{extSettings.admins}">
 						<f:if condition="{location.hidden}">
-							<f:then><f:link.action action="toggleVisibility" arguments="{location: location}" class="btn btn-xs btn-default text-success"><i class="fa fa-toggle-on fa-lg"></i> <f:translate id="LLL:EXT:lang/locallang_common.xlf:enable" /></f:link.action></f:then>
-							<f:else><f:link.action action="toggleVisibility" arguments="{location: location}" class="btn btn-xs btn-default text-warning"><i class="fa fa-toggle-off fa-lg"></i> <f:translate id="LLL:EXT:lang/locallang_common.xlf:disable" /></f:link.action></f:else>
+							<f:then><f:link.action action="toggleVisibility" arguments="{location: location}" class="btn btn-xs btn-default text-success"><i class="fa fa-toggle-off fa-lg"></i> <f:translate id="LLL:EXT:lang/locallang_common.xlf:enable" /></f:link.action></f:then>
+							<f:else><f:link.action action="toggleVisibility" arguments="{location: location}" class="btn btn-xs btn-default text-warning"><i class="fa fa-toggle-on fa-lg"></i> <f:translate id="LLL:EXT:lang/locallang_common.xlf:disable" /></f:link.action></f:else>
 						</f:if>
 						<f:link.action action="delete" arguments="{location: location}" class="btn btn-xs btn-danger" additionalAttributes="{onclick: 'return confirm(\'{f:translate(id: \'LLL:EXT:lang/locallang_core.xlf:mess.delete\', arguments: \'{0: location.headline}\')}\')'}"><i class="fa fa-trash-o fa-lg"></i> &nbsp;<f:translate id="button_labels.delete" /></f:link.action>
 					</f:be.security.ifHasRole>

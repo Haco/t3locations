@@ -136,7 +136,7 @@ return array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'type' => array(
@@ -222,7 +222,7 @@ return array(
 				'type' => 'select',
 				'foreign_table' => 'tx_t3locations_domain_model_territory',
 				'foreign_table_where' => 'AND tx_t3locations_domain_model_territory.sys_language_uid IN (-1,0) AND tx_t3locations_domain_model_territory.deleted=0 ORDER BY tx_t3locations_domain_model_territory.title',
-				'minitems' => 0,
+				'minitems' => 1,
 				'maxitems' => 1,
 				'items' => array(
 					array('', 0)

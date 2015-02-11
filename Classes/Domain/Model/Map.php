@@ -230,14 +230,14 @@ class Map extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 			);
 		} else {
 			return array(
-				(bool) $this->additionalFeatures & 1,
-				(bool) $this->additionalFeatures & 2,
-				(bool) $this->additionalFeatures & 4,
-				(bool) $this->additionalFeatures & 8,
-				(bool) $this->additionalFeatures & 16,
-				(bool) $this->additionalFeatures & 32,
-				(bool) $this->additionalFeatures & 64,
-				(bool) $this->additionalFeatures & 128
+				(bool) ($this->additionalFeatures & 1),
+				(bool) ($this->additionalFeatures & 2),
+				(bool) ($this->additionalFeatures & 4),
+				(bool) ($this->additionalFeatures & 8),
+				(bool) ($this->additionalFeatures & 16),
+				(bool) ($this->additionalFeatures & 32),
+				(bool) ($this->additionalFeatures & 64),
+				(bool) ($this->additionalFeatures & 128)
 			);
 		}
 	}

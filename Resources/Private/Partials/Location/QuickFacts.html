@@ -1,7 +1,16 @@
 <f:if condition="{location.fieldToUseInHeadline} != 4">
 	<f:then>
 		<h2>
-			<f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.country.flagIconName}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
+			<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{location.country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+				<f:then>
+					<f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
+				</f:then>
+				<f:else>
+					<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{location.country.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+						<f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.country.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
+					</f:if>
+				</f:else>
+			</f:if>
 			<f:link.action action="show" arguments="{location : location}"><f:format.html parseFuncTSPath="lib.parseFunc">{location.headline}</f:format.html></f:link.action>
 			<small class="no-line-break">[{location.type.title}]</small>
 		</h2>

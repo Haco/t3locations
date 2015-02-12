@@ -188,6 +188,9 @@
 			<trans-unit id="tx_t3locations_domain_model_location.state">
 				<source>State</source>
 			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.state_abbreviation">
+				<source>State (Abbreviation)</source>
+			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.country">
 				<source>Country</source>
 			</trans-unit>

@@ -244,6 +244,7 @@ return array(
 							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.zip', '{{zip}}'),
 							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.city', '{{city}}'),
 							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.state', '{{state}}'),
+							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.state_abbreviation', '{{stateAbbreviation}}'),
 							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.country', '{{country}}'),
 							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.region', '{{region}}'),
 							array('LLL:EXT:t3locations/Resources/Private/Language/locallang_db.xlf:tx_t3locations_domain_model_location.coverage', '{{coverage}}'),

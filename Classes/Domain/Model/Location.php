@@ -846,6 +846,13 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @return string
 	 */
+	private function getParsedPropertyStateAbbreviation() {
+		return '<span class="adr region">' . $this->state->getAbbreviation() . '</span>';
+	}
+
+	/**
+	 * @return string
+	 */
 	private function getParsedPropertyCountry() {
 		return '<span class="adr country-name">' . $this->country->getTitle() . '</span>';
 	}

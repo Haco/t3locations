@@ -104,7 +104,18 @@ class ActionController extends ExtensionController {
 		if ( $region instanceof \S3b0\T3locations\Domain\Model\Region ) {
 			$locations = $this->locationRepository->findByRegion($region, TRUE);
 			$this->addMapMarkerJS($locations);
-			$this->view->assign('locations', $locations);
+			$addMapCanvas = FALSE;
+			/** @var \S3b0\T3locations\Domain\Model\Location $location */
+			foreach ( $locations as $location ) {
+				if ( $location->getGoogleMaps() instanceof \S3b0\T3locations\Domain\Model\Map ) {
+					$addMapCanvas = TRUE;
+					break;
+				}
+			}
+			$this->view->assignMultiple(array(
+				'locations' => $locations,
+				'addMapCanvas' => $addMapCanvas
+			));
 		}
 
 		/** Initialize new ObjectStorage to be filled with selectable regions */

@@ -23,7 +23,7 @@
 					<div class="form-group col-md-4">
 						<label for="t3locations-select-country"><f:translate id="tx_t3locations_domain_model_location.country" /></label>
 						<f:if condition="{regions -> f:count()}">
-							<f:then><f:form.select name="region" id="t3locations-select-country" class="form-control" options="{regions}" optionLabelField="title" prependOptionLabel="{f:translate(id: 'output.select_country')}" prependOptionValue="0" value="{region}" additionalAttributes="{onchange: 'this.form.submit()'}" /></f:then>
+							<f:then><f:form.select name="region" id="t3locations-select-country" class="form-control" options="{regions}" optionLabelField="title" sortByOptionLabel="1" prependOptionLabel="{f:translate(id: 'output.select_country')}" prependOptionValue="0" value="{region}" additionalAttributes="{onchange: 'this.form.submit()'}" /></f:then>
 							<f:else><f:form.select name="region" id="t3locations-select-country" class="form-control" options="{0: '{f:translate(id: \'output.select_country\')}'}" /></f:else>
 						</f:if>
 					</div>

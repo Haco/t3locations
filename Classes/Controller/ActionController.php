@@ -100,24 +100,6 @@ class ActionController extends ExtensionController {
 			$this->throwStatus(404, 'An error occurred!');
 		}
 
-		/** Fetch locations if region is set */
-		if ( $region instanceof \S3b0\T3locations\Domain\Model\Region ) {
-			$locations = $this->locationRepository->findByRegion($region, TRUE);
-			$this->addMapMarkerJS($locations);
-			$addMapCanvas = FALSE;
-			/** @var \S3b0\T3locations\Domain\Model\Location $location */
-			foreach ( $locations as $location ) {
-				if ( $location->getGoogleMaps() instanceof \S3b0\T3locations\Domain\Model\Map ) {
-					$addMapCanvas = TRUE;
-					break;
-				}
-			}
-			$this->view->assignMultiple(array(
-				'locations' => $locations,
-				'addMapCanvas' => $addMapCanvas
-			));
-		}
-
 		/** Initialize new ObjectStorage to be filled with selectable regions */
 		$regions = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		/** @var \S3b0\T3locations\Domain\Model\Location $location */
@@ -144,6 +126,24 @@ class ActionController extends ExtensionController {
 					$regions->attach($location->getRegion());
 				}
 			}
+		}
+
+		/** Fetch locations if region is set */
+		if ( $region instanceof \S3b0\T3locations\Domain\Model\Region ) {
+			$locations = $this->locationRepository->findByRegion($region, TRUE);
+			$this->addMapMarkerJS($locations);
+			$addMapCanvas = FALSE;
+			/** @var \S3b0\T3locations\Domain\Model\Location $location */
+			foreach ( $locations as $location ) {
+				if ( $location->getGoogleMaps() instanceof \S3b0\T3locations\Domain\Model\Map ) {
+					$addMapCanvas = TRUE;
+					break;
+				}
+			}
+			$this->view->assignMultiple(array(
+				'locations' => $locations,
+				'addMapCanvas' => $addMapCanvas
+			));
 		}
 
 		$this->view->assignMultiple(array(

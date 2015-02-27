@@ -36,7 +36,7 @@ class LocationType extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * title
 	 *
 	 * @var string
-	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
+	 * @validate S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $title = '';
 

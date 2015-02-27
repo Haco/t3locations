@@ -36,7 +36,7 @@ class SocialMedia extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * title
 	 *
 	 * @var string
-	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
+	 * @validate S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $title = '';
 
@@ -44,7 +44,7 @@ class SocialMedia extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * mode
 	 *
 	 * @var integer
-	 * @validate $mode \S3b0\T3locations\Validation\Validator\InList(list="0,1")
+	 * @validate $mode S3b0\T3locations\Validation\Validator\InList(list="0,1")
 	 */
 	protected $mode = 0;
 
@@ -52,7 +52,7 @@ class SocialMedia extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * iconOrClassName
 	 *
 	 * @var string
-	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
+	 * @validate S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $iconOrClassName = '';
 

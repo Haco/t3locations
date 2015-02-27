@@ -46,7 +46,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * title
 	 *
 	 * @var string
-	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
+	 * @validate S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $title = '';
 
@@ -68,7 +68,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * fieldToUseInSearchMask
 	 *
 	 * @var integer
-	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
+	 * @validate S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $fieldToUseInSearchMask = 0;
 
@@ -189,7 +189,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * country
 	 *
 	 * @var \S3b0\T3locations\Domain\Model\Region
-	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
+	 * @validate S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $country = NULL;
 

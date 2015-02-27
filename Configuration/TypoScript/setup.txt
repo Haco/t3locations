@@ -4,10 +4,10 @@ page.includeCSSLibs {
 	fontawesome.external = 1
 }
 [global]
-page.includeJSFooterlibs.app = EXT:t3locations/Resources/Public/JavaScripts/app.min.js
+page.includeJSFooterlibs.t3locations = EXT:t3locations/Resources/Public/JavaScripts/app.min.js
 page.includeJSlibs.googlemaps = https://maps.googleapis.com/maps/api/js?v=3&sensor=true
 page.includeJSlibs.googlemaps.external = 1
-page.includeCSSLibs.main = EXT:t3locations/Resources/Public/Stylesheets/app.min.css
+page.includeCSSLibs.t3locations = EXT:t3locations/Resources/Public/Stylesheets/app.min.css
 
 plugin.tx_t3locations {
 	mvc.callDefaultActionIfActionCantBeResolved = 1

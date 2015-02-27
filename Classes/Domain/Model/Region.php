@@ -36,7 +36,7 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * title
 	 *
 	 * @var string
-	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
+	 * @validate S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $title = '';
 
@@ -44,7 +44,7 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * type
 	 *
 	 * @var integer
-	 * @validate $mode \S3b0\T3locations\Validation\Validator\InList(list="0,1")
+	 * @validate $mode S3b0\T3locations\Validation\Validator\InList(list="0,1")
 	 */
 	protected $type = 0;
 
@@ -87,7 +87,7 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Assign corresponding territory
 	 *
 	 * @var \S3b0\T3locations\Domain\Model\Territory
-	 * @validate \S3b0\T3locations\Validation\Validator\NotEmpty
+	 * @validate S3b0\T3locations\Validation\Validator\NotEmpty
 	 */
 	protected $territory = NULL;
 

@@ -3,6 +3,14 @@
 	padding: 15px;
 }
 
+.tx-t3locations address hr {
+	margin: 1.5em 0;
+}
+
+.tx-t3locations .no-line-break {
+	white-space: nowrap;
+}
+
 .tx-t3locations .spacer {
 	height: 3em;
 }

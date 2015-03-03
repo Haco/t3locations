@@ -800,12 +800,20 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return string
 	 */
 	public function getParsedPropertyAddress() {
-		$replace = preg_match_all('/\{\{([a-z0-9]+)\}\}/im', $this->address, $matches);
+		$replacePlain = preg_match_all('/\{\{\{([a-z0-9]+)\}\}\}/im', $this->address, $matches);
+		if ( $replacePlain ) {
+			foreach ( $matches[1] as $property ) {
+				if ( $this->_hasProperty($property) ) {
+					$this->address = str_replace('{{{' . $property . '}}}', $this->_getProperty($property), $this->address);
+				}
+			}
+		}
 
+		$replace = preg_match_all('/\{\{([a-z0-9]+)\}\}/im', $this->address, $matches);
 		if ( $replace ) {
 			foreach ( $matches[1] as $property ) {
 				if ( method_exists($this, 'getParsedProperty' . ucfirst($property)) ) {
-					$this->address = str_replace('{{' . $property . '}}', call_user_func(array($this, 'getParsedProperty' . ucfirst($property))), $this->address);
+					$this->address = str_replace('{{' . $property . '}}', call_user_func(array( $this, 'getParsedProperty' . ucfirst($property) )), $this->address);
 				} elseif ( $this->_hasProperty($property) ) {
 					$this->address = str_replace('{{' . $property . '}}', $this->_getProperty($property), $this->address);
 				}
@@ -847,7 +855,7 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return string
 	 */
 	private function getParsedPropertyStateAbbreviation() {
-		return '<span class="adr region">' . $this->state->getAbbreviation() . '</span>';
+		return '<span class="adr region"><abbr title="' . $this->state->getTitle() . '">' . $this->state->getAbbreviation() . '</abbr></span>';
 	}
 
 	/**
@@ -855,6 +863,20 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	private function getParsedPropertyCountry() {
 		return '<span class="adr country-name">' . $this->country->getTitle() . '</span>';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyCountryIsoCodeA2() {
+		return '<span class="adr country-name"><abbr title="' . $this->country->getTitle() . '">' . $this->country->getIsoCodeA2() . '</abbr></span>';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getParsedPropertyCountryIsoCodeA3() {
+		return '<span class="adr country-name"><abbr title="' . $this->country->getTitle() . '">' . $this->country->getIsoCodeA3() . '</abbr></span>';
 	}
 
 	/**

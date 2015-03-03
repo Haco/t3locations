@@ -1,27 +1,34 @@
 <f:if condition="{location.fieldToUseInHeadline} != 4">
 	<h2>
-		<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{location.country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+		<f:if condition="{location.region}">
 			<f:then>
-				<f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
+				<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{location.region.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+					<f:then><f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.region.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{location.region.isoCodeA3}" title="{location.region.title}" /></f:then>
+					<f:else>
+						<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{location.country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+							<f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
+						</f:if>
+					</f:else>
+				</f:if>
 			</f:then>
 			<f:else>
-				<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{location.country.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
-					<f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.country.title -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
+				<f:if condition="{f:s3b0.checkForExistingResource(source:'EXT:t3locations/Resources/Public/Images/FlagIcons/{location.country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}">
+					<f:image src="{f:uri.resource(path:'Images/FlagIcons/{location.country.flagIconName -> f:s3b0.string.convertUtf8ToAscii() -> f:s3b0.string.stripWhitespaces()}.png')}" class="t3locations-flag" alt="{location.country.isoCodeA3}" title="{location.country.title}" />
 				</f:if>
 			</f:else>
 		</f:if>
-		<f:format.html parseFuncTSPath="lib.parseFunc">{location.headline}</f:format.html>
+		&nbsp;<f:format.html parseFuncTSPath="lib.parseFunc">{location.headline}</f:format.html>&nbsp;
 		<small class="no-line-break">[{location.type.title}]</small>
 	</h2>
 </f:if>
 <f:if condition="{location.logo}">
 	<f:image src="{location.logo.uid}" class="logo" alt="{location.title}" width="200m" height="100m" treatIdAsReference="1" /><br />
 </f:if>
-<f:if condition="{location.freetext}"><br /><span class="t3locations-sectors"><strong><f:translate id="output.business_sectors" />:<br /><span class="t3locations-highlight">{location.freetext}</span></strong></span></f:if>
+<f:if condition="{location.freetext}"><br /><span class="t3locations-sectors"><f:translate id="output.business_sectors" />:<br /><span class="text-primary">{location.freetext}</span></span></f:if>
 <hr />
 <f:format.nl2br><f:format.html parseFuncTSPath="lib.parseFunc">{location.parsedPropertyAddress}</f:format.html></f:format.nl2br>
 <f:if condition="{location.coverage -> f:count()}">
-	<br /><small><em><f:translate id="output.coverage_prepend" /><f:for each="{location.coverage}" as="country" iteration="iterator"><f:if condition="{iterator.isFirst -> f:s3b0.negate()}"><f:if condition="{iterator.isLast}"><f:then> <f:translate id="conjunction.and" /> </f:then><f:else>, </f:else></f:if></f:if>{country.title}</f:for> <f:translate id="output.coverage_append" /></em></small>
+	<br /><small><em><f:translate id="output.coverage_prepend" /><f:for each="{location.coverage}" as="country" iteration="iterator"><f:if condition="{iterator.isFirst -> f:s3b0.negate()}"><f:if condition="{iterator.isLast}"><f:then> <f:translate id="conjunction.and" /> </f:then><f:else>, </f:else></f:if></f:if><f:if condition="{country} == {region}"><f:then><span class="text-primary">{country.title}</span></f:then><f:else>{country.title}</f:else></f:if></f:for> <f:translate id="output.coverage_append" /></em></small>
 </f:if>
 <br /><br />
 <f:if condition="{0:location.phone,1:location.mobile,2:location.facsimile,3:location.email->f:count(),4:location.web->f:count()} != {0:'',1:'',2:'',3:0,4:0}">

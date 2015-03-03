@@ -204,8 +204,8 @@ class Region extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 			/** @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObjectRenderer */
 			$contentObjectRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 			/** @var array $originalRecord */
-			if ( $originalRecord = $db->exec_SELECTgetSingleRow('title', 'tx_t3locations_domain_model_region', 'uid=' . $this->uid . $contentObjectRenderer->enableFields('tx_t3locations_domain_model_region')) ) {
-				return $this->flagIconName ?: $originalRecord['title'];
+			if ( $originalRecord = $db->exec_SELECTgetSingleRow('flag_icon_name,title', 'tx_t3locations_domain_model_region', 'uid=' . $this->uid . $contentObjectRenderer->enableFields('tx_t3locations_domain_model_region')) ) {
+				return $this->flagIconName ?: ($originalRecord['flag_icon_name'] ?: $originalRecord['title']);
 			}
 		}
 

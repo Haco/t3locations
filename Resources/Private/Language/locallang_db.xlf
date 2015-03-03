@@ -194,6 +194,12 @@
 			<trans-unit id="tx_t3locations_domain_model_location.country">
 				<source>Country</source>
 			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.country_iso_code_a2">
+				<source>Country (ISO 3166-1 alpha-2)</source>
+			</trans-unit>
+			<trans-unit id="tx_t3locations_domain_model_location.country_iso_code_a3">
+				<source>Country (ISO 3166-1 alpha-3)</source>
+			</trans-unit>
 			<trans-unit id="tx_t3locations_domain_model_location.coverage">
 				<source>Coverage</source>
 			</trans-unit>

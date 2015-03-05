@@ -217,7 +217,7 @@ class Map extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function getAdditionalFeatures() {
 		/** For all PHP versions 5.5+ use the boolval() method */
-		if ( PHP_MAJOR_VERSION > 5 || ( PHP_MAJOR_VERSION === 5 && PHP_MINOR_VERSION >= 5 ) ) {
+		if ( version_compare(PHP_VERSION, '5.5', '>=') ) {
 			return array(
 				boolval($this->additionalFeatures & 1),
 				boolval($this->additionalFeatures & 2),

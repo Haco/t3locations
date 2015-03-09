@@ -49,11 +49,11 @@ class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function findByRegion(\S3b0\T3locations\Domain\Model\Region $region, $filterByFieldToUseInSearchMask = FALSE) {
 		$query = $this->createQuery();
 		$result = $query->matching(
-			$query->logicalOr(
+			$query->logicalOr(array(
 				$query->equals('country', $region),
 				$query->contains('coverage', $region),
 				$query->equals('region', $region)
-			)
+			))
 		)->execute();
 
 		if ( $filterByFieldToUseInSearchMask && $result->count() ) {
@@ -130,10 +130,10 @@ class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query = $this->createQuery();
 
 		return $query->matching(
-			$query->logicalAnd(
-				$query->matching('pid', $location->getPid()),
+			$query->logicalAnd(array(
+				$query->equals('pid', $location->getPid()),
 				$query->lessThan('sorting', $location->getSorting())
-			)
+			))
 		)->setOrderings(
 			array(
 				'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
@@ -151,10 +151,10 @@ class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query = $this->createQuery();
 
 		return $query->matching(
-			$query->logicalAnd(
-				$query->matching('pid', $location->getPid()),
+			$query->logicalAnd(array(
+				$query->equals('pid', $location->getPid()),
 				$query->greaterThan('sorting', $location->getSorting())
-			)
+			))
 		)->setOrderings(
 			array(
 				'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING

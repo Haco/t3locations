@@ -10,6 +10,7 @@ if (!defined('TYPO3_MODE')) {
 	'sysext/t3skin/icons/gfx/i/tt_content_search.gif'*/
 );
 
+$TCA['tt_content']['types']['list']['subtypes_addlist']['t3locations_search'] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('t3locations_search', 'FILE:EXT:t3locations/Configuration/FlexForms/flexform_t3locations_search.xml');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(

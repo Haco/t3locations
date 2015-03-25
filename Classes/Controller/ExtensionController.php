@@ -182,13 +182,13 @@ class ExtensionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 						$location->getGoogleMaps()->getZoomControlPosition(),
 						$location->getGoogleMaps()->getAdditionalFeatures()
 					),
-					'"' . CoreUtility\GeneralUtility::slashJS($location->getHeadline()) . '"',
-					'"' . CoreUtility\GeneralUtility::slashJS($location->getType()->getTitle()) . '"',
-					'"' . CoreUtility\GeneralUtility::slashJS($location->getCountry()->getTitle()) . '"',
-					'"' . CoreUtility\GeneralUtility::slashJS('https://www.google.com/maps/dir//' . preg_replace('/\s+/i', '+', $location->getGoogleMaps()->getLinkQueryParam())) . '"',
-					'"' . CoreUtility\GeneralUtility::slashJS(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('output.map_link_text', $this->extensionName)) . '"',
-					'"' . CoreUtility\GeneralUtility::slashJS($location->getCountry()->getIsoCodeA2()) . '"',
-					'"' . ($location->getCoverage()->count() ? CoreUtility\GeneralUtility::slashJS(implode(',', \S3b0\T3locations\Utility\Div::getCoverageList($location->getCoverage()))) : '') . '"'
+					CoreUtility\GeneralUtility::slashJS($location->getHeadline()),
+					CoreUtility\GeneralUtility::slashJS($location->getType()->getTitle()),
+					CoreUtility\GeneralUtility::slashJS($location->getCountry()->getTitle()),
+					CoreUtility\GeneralUtility::slashJS('https://www.google.com/maps/dir//' . preg_replace('/\s+/i', '+', $location->getGoogleMaps()->getLinkQueryParam())),
+					CoreUtility\GeneralUtility::slashJS(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('output.map_link_text', $this->extensionName)),
+					CoreUtility\GeneralUtility::slashJS($location->getCountry()->getIsoCodeA2()),
+					($location->getCoverage()->count() ? CoreUtility\GeneralUtility::slashJS(implode(',', \S3b0\T3locations\Utility\Div::getCoverageList($location->getCoverage()))) : '')
 				);
 				$js .= 'mapData[' . $i . '] = ' . json_encode($data) . ';';
 				$i++;

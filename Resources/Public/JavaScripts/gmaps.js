@@ -7,6 +7,7 @@ function initializeMap(mapData) {
 	google.maps.visualRefresh = true;
 	var bounds = new google.maps.LatLngBounds();
 	var marker = []; // new google.maps.Marker()
+	var infowindow = []; // new google.maps.InfoWindow()
 	if (mapData.length > 0) {
 		var mapOptions = getMapOptions(mapData[0], mapData[0][3]);
 		map = new google.maps.Map($('#t3locations-map-canvas')[0], mapOptions);
@@ -23,6 +24,17 @@ function initializeMap(mapData) {
 				title: this[4],
 				index: this[2],
 			});
+			// Extend Marker Class for fetching index
+			marker[this[2]].getIndex = function(){return this.index;};
+			console.log(this);
+			infowindow[this[2]] = new google.maps.InfoWindow({
+				content: '<p><strong>' + this[4] + '</strong> <span style="font-size:.9em">(' + this[9] + ')</span><br />' + this[5] + '<br /><a href="' + this[7] + '" target="_blank">' + this[8] + '</a></p>'
+			});
+			// infowindow[businessmgmtmaps[i].uid].open(map,marker[businessmgmtmaps[i].uid]); // initially open info window
+			google.maps.event.addListener(marker[this[2]], 'click', function() {
+				infowindow[this.getIndex()].open(map,this);
+			});
+			infowindow[this[2]].open(map,marker[this[2]]);
 		});
 		if ( !bounds.isEmpty() && (bounds.toSpan().k !== 0 && bounds.toSpan().B !== 0) ) {
 			map.setCenter(bounds.getCenter());

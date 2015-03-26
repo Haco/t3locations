@@ -30,7 +30,7 @@ namespace S3b0\T3locations\Domain\Repository;
 /**
  * The repository for LocationTypes
  */
-class LocationTypeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class LocationTypeRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepository {
 
 	/**
 	 * Set repository wide settings

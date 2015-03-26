@@ -1,3 +1,7 @@
+#t3locations-ajax-indicator {
+	display: none;
+}
+
 .tx-t3locations p,
 .tx-t3locations .add-padding-15 {
 	padding: 15px;

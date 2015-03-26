@@ -30,7 +30,7 @@ namespace S3b0\T3locations\Domain\Repository;
 /**
  * The repository for SocialMedia
  */
-class SocialMediaRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class SocialMediaRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepository {
 
 	/**
 	 * Set repository wide settings

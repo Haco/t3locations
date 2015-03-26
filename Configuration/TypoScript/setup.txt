@@ -37,3 +37,40 @@ plugin.tx_t3locations {
 
 	}
 }
+
+############################################
+#           Add Ajax PAGE-Object           #
+############################################
+
+T3locationsJsonRequest = PAGE
+T3locationsJsonRequest {
+	typeNum = 1427289984
+
+	config {
+		disableAllHeaderCode = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+		additionalHeaders = Content-type:application/json|Cache-Control:no-cache, must-revalidate, max-age=0|Pragma:no-cache
+		linkVars = L
+	}
+
+	10 = USER
+	10 {
+		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		vendorName = S3b0
+		extensionName = T3locations
+		pluginName = Search
+		controller = JsonRequest
+		switchableControllerActions {
+			AjaxRequest {
+				1 = getData
+			}
+		}
+	}
+
+	view < plugin.tx_t3locations.view
+	persistence < plugin.tx_t3locations.persistence
+	settings < plugin.tx_t3locations.settings
+}

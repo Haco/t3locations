@@ -80,6 +80,10 @@ class ExtensionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 			$settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][ strtolower($this->extensionName) ]);
 			$view->assign('extSettings', $settings);
 		}
+		$view->assignMultiple(array(
+			'pageUid' => $GLOBALS['TSFE']->id,
+			'language' => $GLOBALS['TSFE']->sys_language_uid
+		));
 	}
 
 	/**
@@ -159,14 +163,18 @@ class ExtensionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * Add map markers prior to map creation (looped in gmaps.js)
 	 *
 	 * @param \Countable $locations
+	 * @param boolean    $returnData
+	 *
+	 * @return array|void
 	 */
-	protected function addMapMarkerJS(\Countable $locations) {
+	protected function addMapMarkerJS(\Countable $locations, $returnData = FALSE) {
+		$data = array();
 		$js = 'mapData = new Array();';
 		$i = 0;
 		/** @var \S3b0\T3locations\Domain\Model\Location $location */
 		foreach ( $locations as $location ) {
 			if ( $location instanceof \S3b0\T3locations\Domain\Model\Location && $location->getGoogleMaps() instanceof \S3b0\T3locations\Domain\Model\Map && $location->getGoogleMaps()->getCoordinates() ) {
-				$data = array(
+				$data[$i] = array(
 					$location->getGoogleMaps()->getCoordinates()[0],
 					$location->getGoogleMaps()->getCoordinates()[1],
 					$location->getUid(),
@@ -190,11 +198,16 @@ class ExtensionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 					CoreUtility\GeneralUtility::slashJS($location->getCountry()->getIsoCodeA2()),
 					($location->getCoverage()->count() ? CoreUtility\GeneralUtility::slashJS(implode(',', \S3b0\T3locations\Utility\Div::getCoverageList($location->getCoverage()))) : '')
 				);
-				$js .= 'mapData[' . $i . '] = ' . json_encode($data) . ';';
+				$js .= 'mapData[' . $i . '] = ' . json_encode($data[$i]) . ';';
 				$i++;
 			}
 		}
-		$GLOBALS['TSFE']->additionalHeaderData[] = '<script type="text/javascript">' . $js . '</script>';
+
+		if ( $returnData ) {
+			return $data;
+		} else {
+			$GLOBALS['TSFE']->additionalHeaderData[] = '<script type="text/javascript">' . $js . '</script>';
+		}
 	}
 
 	/**

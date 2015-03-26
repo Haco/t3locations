@@ -30,7 +30,7 @@ namespace S3b0\T3locations\Domain\Repository;
 /**
  * The repository for Territories
  */
-class TerritoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class TerritoryRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepository {
 
 	/**
 	 * @var array

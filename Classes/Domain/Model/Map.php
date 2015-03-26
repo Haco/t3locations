@@ -138,7 +138,7 @@ class Map extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return string $linkQueryParam
 	 */
 	public function getLinkQueryParam() {
-		return $this->linkQueryParam;
+		return $this->linkQueryParam ?: \TYPO3\CMS\Core\Utility\GeneralUtility::rawUrlEncodeJS($this->coordinates);
 	}
 
 	/**

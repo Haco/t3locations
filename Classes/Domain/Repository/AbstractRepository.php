@@ -6,7 +6,7 @@ namespace S3b0\T3locations\Domain\Repository;
  *
  *  Copyright notice
  *
- *  (c) 2014 Sebastian Iffland <Sebastian.Iffland@ecom-ex.com>, ecom instruments GmbH
+ *  (c) 2015 Sebastian Iffland <Sebastian.Iffland@ecom-ex.com>, ecom instruments GmbH
  *
  *  All rights reserved
  *
@@ -28,26 +28,20 @@ namespace S3b0\T3locations\Domain\Repository;
  ***************************************************************/
 
 /**
- * The repository for States
+ * Abstract repository
  */
-class StateRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepository {
+class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
-	 * @var array
+	 * @return \S3b0\T3locations\Domain\Repository\AbstractRepository
 	 */
-	protected $defaultOrderings = array(
-		'country.title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
-		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-	);
-
-	/**
-	 * Set repository wide settings
-	 */
-	public function initializeObject() {
+	public function setExtQuerySettings() {
 		/** @var \TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface $querySettings */
 		$querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\QuerySettingsInterface');
-		$querySettings->setRespectStoragePage(FALSE); // Disable storage pid
+		$querySettings
+			->setRespectStoragePage(FALSE)  // Disable storage pid
+			->setRespectSysLanguage(FALSE); // Disable sys_language
 		$this->setDefaultQuerySettings($querySettings);
+		return $this;
 	}
-
 }

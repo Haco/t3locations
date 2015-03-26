@@ -778,6 +778,34 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		}
 	}
 
+	public function getFlagIconSource() {
+		$source = NULL;
+		$countryFlag = preg_replace('/\s+/im', '', strtr(utf8_decode($this->country->getFlagIconName()),
+			utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
+			'SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy'));
+		if ( file_exists(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:t3locations/Resources/Public/Images/FlagIcons/' . $countryFlag . '.png')) ) {
+			$source = array(
+				\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:t3locations/Resources/Public/Images/FlagIcons/' . $countryFlag . '.png'),
+				$this->country->getIsoCodeA3(),
+				$this->country->getTitle()
+			);
+		}
+		if ( $this->region instanceof \S3b0\T3locations\Domain\Model\Region ) {
+			$regionFlag = preg_replace('/\s+/im', '', strtr(utf8_decode($this->region->getFlagIconName()),
+				utf8_decode('ŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ'),
+				'SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy'));
+			if ( file_exists(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:t3locations/Resources/Public/Images/FlagIcons/' . $regionFlag . '.png')) ) {
+				$source = array(
+					\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:t3locations/Resources/Public/Images/FlagIcons/' . $regionFlag . '.png'),
+					$this->region->getIsoCodeA3(),
+					$this->region->getTitle()
+				);
+			}
+		}
+
+		return $source;
+	}
+
 	/****************************************************
 	 * ParseFunctions for replacements in address field *
 	 ***************************************************/

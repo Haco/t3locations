@@ -10,11 +10,13 @@ if (!defined('TYPO3_MODE')) {
 		'Action' => 'search',
 		'Territory' => 'list',
 		'Region' => 'list',
-		'Location' => 'list, show'
+		'Location' => 'list, show',
+		'JsonRequest' => 'getData'
 	),
 	// non-cacheable actions
 	array(
 		'Action' => 'search',
+		'JsonRequest' => 'getData'
 	)
 );
 
@@ -43,3 +45,5 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerTypeConverter('S3b0\\T3locations\\Property\\TypeConverter\\IntegerConverter');
+
+$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['t3locations'] = 'EXT:t3locations/Classes/Utility/AjaxDispatcher.php';

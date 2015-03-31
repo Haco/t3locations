@@ -12,9 +12,9 @@ page.includeCSSLibs.t3locations = EXT:t3locations/Resources/Public/Stylesheets/a
 plugin.tx_t3locations {
 	mvc.callDefaultActionIfActionCantBeResolved = 1
 	view {
-		templateRootPaths = {$plugin.tx_t3locations.view.templateRootPaths}
-		partialRootPaths = {$plugin.tx_t3locations.view.partialRootPaths}
-		layoutRootPaths = {$plugin.tx_t3locations.view.layoutRootPaths}
+		templateRootPaths.100 = {$plugin.tx_t3locations.view.templateRootPath}
+		partialRootPaths.100 = {$plugin.tx_t3locations.view.partialRootPath}
+		layoutRootPaths.100 = {$plugin.tx_t3locations.view.layoutRootPath}
 	}
 	persistence {
 		storagePid = {$plugin.tx_t3locations.persistence.storagePid}

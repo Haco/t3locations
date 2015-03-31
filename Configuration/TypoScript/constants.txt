@@ -2,11 +2,11 @@
 plugin.tx_t3locations {
 	view {
 		# cat=plugin.tx_t3locations/file; type=string; label=Path to template root (FE)
-		templateRootPaths = EXT:t3locations/Resources/Private/Templates/
+		templateRootPath = EXT:t3locations/Resources/Private/Templates/
 		# cat=plugin.tx_t3locations/file; type=string; label=Path to template partials (FE)
-		partialRootPaths = EXT:t3locations/Resources/Private/Partials/
+		partialRootPath = EXT:t3locations/Resources/Private/Partials/
 		# cat=plugin.tx_t3locations/file; type=string; label=Path to template layouts (FE)
-		layoutRootPaths = EXT:t3locations/Resources/Private/Layouts/
+		layoutRootPath = EXT:t3locations/Resources/Private/Layouts/
 	}
 	persistence {
 		# cat=plugin.tx_t3locations//a; type=string; label=Default storage PID

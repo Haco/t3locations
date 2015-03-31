@@ -197,7 +197,7 @@
 				->setVendorName($this->requestArguments['vendorName'] ?: 'S3b0')
 				->setExtensionName($this->requestArguments['extensionName'] ?: 'T3locations')
 				->setPluginName($this->requestArguments['pluginName'] ?: 't3locations_search')
-				->setControllerName($this->requestArguments['controllerName'] ?: 'JsonRequest')
+				->setControllerName($this->requestArguments['controllerName'] ?: 'AjaxRequest')
 				->setActionName($this->requestArguments['actionName'] ?: 'getData')
 				->setArguments($this->requestArguments['arguments']);
 

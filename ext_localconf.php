@@ -11,12 +11,12 @@ if (!defined('TYPO3_MODE')) {
 		'Territory' => 'list',
 		'Region' => 'list',
 		'Location' => 'list, show',
-		'JsonRequest' => 'getData'
+		'AjaxRequest' => 'getData'
 	),
 	// non-cacheable actions
 	array(
 		'Action' => 'search',
-		'JsonRequest' => 'getData'
+		'AjaxRequest' => 'getData'
 	)
 );
 

@@ -62,7 +62,7 @@ T3locationsJsonRequest {
 		vendorName = S3b0
 		extensionName = T3locations
 		pluginName = Search
-		controller = JsonRequest
+		controller = AjaxRequest
 		switchableControllerActions {
 			AjaxRequest {
 				1 = getData

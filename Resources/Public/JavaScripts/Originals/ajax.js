@@ -70,7 +70,7 @@ function ajaxRequest(action, arguments, onSuccess) {
 			L: parseInt(langUid),
 			type: 1427289984,
 			request: {
-				controllerName: 'JsonRequest',
+				controllerName: 'AjaxRequest',
 				actionName: action,
 				arguments: arguments
 			}

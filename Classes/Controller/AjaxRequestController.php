@@ -27,9 +27,9 @@ namespace S3b0\T3locations\Controller;
  ***************************************************************/
 
 /**
- * JsonRequestController
+ * AjaxRequestController
  */
-class JsonRequestController extends \S3b0\T3locations\Controller\ExtensionController {
+class AjaxRequestController extends \S3b0\T3locations\Controller\ExtensionController {
 
 	/**
 	 * @var \TYPO3\CMS\Extbase\Mvc\View\JsonView $view

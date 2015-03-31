@@ -42,8 +42,8 @@ plugin.tx_t3locations {
 #           Add Ajax PAGE-Object           #
 ############################################
 
-T3locationsJsonRequest = PAGE
-T3locationsJsonRequest {
+T3locationsAjaxRequest = PAGE
+T3locationsAjaxRequest {
 	typeNum = 1427289984
 
 	config {

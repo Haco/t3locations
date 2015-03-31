@@ -176,11 +176,11 @@ class AjaxRequestController extends \S3b0\T3locations\Controller\ExtensionContro
 		$view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
 
 		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-		$templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPaths']);
-		$partialRootPaths = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['partialRootPaths']);
+		$templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath'] ?: end($extbaseFrameworkConfiguration['view']['templateRootPaths']));
+		$partialRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['partialRootPath'] ?: end($extbaseFrameworkConfiguration['view']['partialRootPaths']));
 		$templatePathAndFilename = $templateRootPath . 'StandAloneViews/' . $templateName . '.html';
 		$view->setTemplatePathAndFilename($templatePathAndFilename);
-		$view->setPartialRootPaths(is_array($partialRootPaths) ? $partialRootPaths : array($partialRootPaths));
+		$view->setPartialRootPaths(array($partialRootPath));
 		$view->assignMultiple($variables);
 		$view->setFormat('html');
 

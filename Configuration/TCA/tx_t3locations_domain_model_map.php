@@ -23,7 +23,6 @@ return array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'title,coordinates,link_query_param,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Configuration/TCA/Map.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_map.gif'
 	),
 	'interface' => array(

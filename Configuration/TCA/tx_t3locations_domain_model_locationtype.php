@@ -25,7 +25,6 @@ return array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'title,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Configuration/TCA/LocationType.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_locationtype.png'
 	),
 	'interface' => array(

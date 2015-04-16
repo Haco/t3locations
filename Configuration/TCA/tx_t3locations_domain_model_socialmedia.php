@@ -23,7 +23,6 @@ return array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'title,mode,icon_or_class_name,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Configuration/TCA/SocialMedia.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_socialmedia.gif'
 	),
 	'interface' => array(

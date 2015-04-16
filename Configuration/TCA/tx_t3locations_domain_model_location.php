@@ -29,7 +29,6 @@ return array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'title,logo,freetext,field_to_use_in_search_mask,field_to_use_in_headline,user_defined_headline,contact_person,address,street_address,zip,city,phone,facsimile,mobile,email,web,social_media,google_maps,state,country,coverage,region,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Configuration/TCA/Location.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_location.png'
 	),
 	'interface' => array(

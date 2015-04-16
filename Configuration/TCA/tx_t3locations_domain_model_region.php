@@ -31,7 +31,6 @@ return array(
 			'1' => 'extensions-t3locations-region-region'
 		),
 		'searchFields' => 'title,iso_code_a2,iso_code_a3,flag_icon_name,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Configuration/TCA/Region.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('static_info_tables') ? \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('static_info_tables') . 'Resources/Public/Images/Icons/icon_static_countries.gif' : \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_region.gif'
 	),
 	'interface' => array(
@@ -96,6 +95,7 @@ return array(
 				'type' => 'check',
 			),
 		),
+
 		'starttime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',

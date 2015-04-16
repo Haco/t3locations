@@ -24,7 +24,6 @@ return array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'link,social_media,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3locations') . 'Configuration/TCA/SocialMediaLink.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('t3locations') . 'Resources/Public/Icons/tx_t3locations_domain_model_socialmedialink.gif'
 	),
 	'interface' => array(

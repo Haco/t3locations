@@ -26,18 +26,19 @@ namespace S3b0\T3locations\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use Ecom\EcomToolbox\Domain\Repository\AbstractRepository;
 
 /**
  * The repository for Territories
  */
-class TerritoryRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepository {
+class TerritoryRepository extends AbstractRepository {
 
 	/**
 	 * @var array
 	 */
-	protected $defaultOrderings = array(
+	protected $defaultOrderings = [
 		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-	);
+	];
 
 	/**
 	 * Set repository wide settings
@@ -56,7 +57,7 @@ class TerritoryRepository extends \S3b0\T3locations\Domain\Repository\AbstractRe
 	 *
 	 * @return null|\TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
-	public function findByUidList(array $list = array()) {
+	public function findByUidList(array $list = []) {
 		if ( count($list) === 0 ) {
 			return NULL;
 		}

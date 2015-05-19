@@ -26,18 +26,19 @@ namespace S3b0\T3locations\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use Ecom\EcomToolbox\Domain\Repository\AbstractRepository;
 
 /**
  * The repository for Locations
  */
-class LocationRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepository {
+class LocationRepository extends AbstractRepository {
 
 	/**
 	 * @var array
 	 */
-	protected $defaultOrderings = array(
+	protected $defaultOrderings = [
 		'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-	);
+	];
 
 	/**
 	 * findByRegion - special function, because regions are defined in multiple fields in different relations (n:1|m:n)
@@ -49,11 +50,11 @@ class LocationRepository extends \S3b0\T3locations\Domain\Repository\AbstractRep
 	public function findByRegion(\S3b0\T3locations\Domain\Model\Region $region, $filterByFieldToUseInSearchMask = FALSE) {
 		$query = $this->createQuery();
 		$result = $query->matching(
-			$query->logicalOr(array(
+			$query->logicalOr([
 				$query->equals('country', $region),
 				$query->contains('coverage', $region),
 				$query->equals('region', $region)
-			))
+			])
 		)->execute();
 
 		if ( $filterByFieldToUseInSearchMask && $result->count() ) {
@@ -97,7 +98,7 @@ class LocationRepository extends \S3b0\T3locations\Domain\Repository\AbstractRep
 	 * @param integer $mode Current modes are 0=excludeList, default=addList
 	 * @return null|\TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
-	public function findByUidList(array $list = array(), $mode = 1) {
+	public function findByUidList(array $list = [], $mode = 1) {
 		/** In order to keep orderings as set in flexForm, we fetch record by record, storing them into an ObjectStorage */
 		$return = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		if ( $mode === 0 ) {
@@ -130,14 +131,14 @@ class LocationRepository extends \S3b0\T3locations\Domain\Repository\AbstractRep
 		$query = $this->createQuery();
 
 		return $query->matching(
-			$query->logicalAnd(array(
+			$query->logicalAnd([
 				$query->equals('pid', $location->getPid()),
 				$query->lessThan('sorting', $location->getSorting())
-			))
+			])
 		)->setOrderings(
-			array(
+			[
 				'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
-			)
+			]
 		)->execute()->getFirst();
 	}
 
@@ -151,14 +152,14 @@ class LocationRepository extends \S3b0\T3locations\Domain\Repository\AbstractRep
 		$query = $this->createQuery();
 
 		return $query->matching(
-			$query->logicalAnd(array(
+			$query->logicalAnd([
 				$query->equals('pid', $location->getPid()),
 				$query->greaterThan('sorting', $location->getSorting())
-			))
+			])
 		)->setOrderings(
-			array(
+			[
 				'sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-			)
+			]
 		)->execute()->getFirst();
 	}
 }

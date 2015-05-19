@@ -26,19 +26,20 @@ namespace S3b0\T3locations\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use Ecom\EcomToolbox\Domain\Repository\AbstractRepository;
 
 /**
  * The repository for States
  */
-class StateRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepository {
+class StateRepository extends AbstractRepository {
 
 	/**
 	 * @var array
 	 */
-	protected $defaultOrderings = array(
+	protected $defaultOrderings = [
 		'country.title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
 		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-	);
+	];
 
 	/**
 	 * Set repository wide settings

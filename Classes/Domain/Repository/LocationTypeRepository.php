@@ -26,11 +26,12 @@ namespace S3b0\T3locations\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use Ecom\EcomToolbox\Domain\Repository\AbstractRepository;
 
 /**
  * The repository for LocationTypes
  */
-class LocationTypeRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepository {
+class LocationTypeRepository extends AbstractRepository {
 
 	/**
 	 * Set repository wide settings

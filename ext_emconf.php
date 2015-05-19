@@ -21,11 +21,12 @@ $EM_CONF['t3locations'] = array(
 	'uploadfolder' => '0',
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
-	'version' => '1.2.2',
+	'version' => '1.3.0',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '6.2.4-7.1.99',
-			'php' => '5.4.0-5.5.99'
+			'typo3' => '6.2',
+			'php' => '5.4.0-5.5.99',
+			'ecom_toolbox' => '1.0.7'
 		),
 		'conflicts' => array(
 		),

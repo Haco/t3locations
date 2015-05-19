@@ -26,18 +26,19 @@ namespace S3b0\T3locations\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use Ecom\EcomToolbox\Domain\Repository\AbstractRepository;
 
 /**
  * The repository for Regions
  */
-class RegionRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepository {
+class RegionRepository extends AbstractRepository {
 
 	/**
 	 * @var array
 	 */
-	protected $defaultOrderings = array(
+	protected $defaultOrderings = [
 		'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-	);
+	];
 
 	/**
 	 * Set repository wide settings
@@ -57,7 +58,7 @@ class RegionRepository extends \S3b0\T3locations\Domain\Repository\AbstractRepos
 	 *
 	 * @return null|\TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
-	public function findByUidList(array $list = array(), $mode = 1) {
+	public function findByUidList(array $list = [], $mode = 1) {
 		/** In order to keep orderings as set in flexForm, we fetch record by record, storing them into an ObjectStorage */
 		$return = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		if ( $mode === 0 ) {

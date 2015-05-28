@@ -92,7 +92,7 @@ class AjaxRequestController extends \S3b0\T3locations\Controller\ExtensionContro
 	 * @return void
 	 */
 	public function getDataAction(\S3b0\T3locations\Domain\Model\Territory $territory, \S3b0\T3locations\Domain\Model\Region $region = NULL) {
-		if ( $locations = $this->locationRepository->setExtQuerySettings()->findAll() ) {
+		if ( $locations = $this->locationRepository->ignoreStoragePidAndSysLanguageUid()->findAll() ) {
 			if ( $locations->count() ) {
 				$this->getValue($locations, $territory, $region);
 			}

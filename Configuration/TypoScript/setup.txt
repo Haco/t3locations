@@ -5,7 +5,7 @@ page.includeCSSLibs {
 }
 [global]
 page.includeJSFooterlibs.t3locations = EXT:t3locations/Resources/Public/JavaScripts/app.min.js
-page.includeJSlibs.googlemaps = https://maps.googleapis.com/maps/api/js?v=3&sensor=true
+page.includeJSlibs.googlemaps = https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyA3R8nvZjj8ZVjkB21aUhJlepXeZLQ6UJk
 page.includeJSlibs.googlemaps.external = 1
 page.includeCSSLibs.t3locations = EXT:t3locations/Resources/Public/Stylesheets/app.min.css
 

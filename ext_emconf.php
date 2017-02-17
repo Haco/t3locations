@@ -14,19 +14,19 @@ $EM_CONF['t3locations'] = array(
 	'title' => 'Location Tools',
 	'description' => 'Provides you with various tools for displaying/managing your customers locations.',
 	'category' => 'plugin',
-	'author' => 'Sebastian Iffland',
-	'author_email' => 'Sebastian.Iffland@ecom-ex.com',
+	'author' => 'Sebastian Iffland, Nicolas Scheidler',
+	'author_email' => 'Nicolas.Scheidler@ecom-ex.com',
 	'state' => 'stable',
 	'internal' => '',
 	'uploadfolder' => '0',
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
-	'version' => '1.3.0',
+	'version' => '1.3.1',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '6.2',
+			'typo3' => '6.2.99-7.6.99',
 			'php' => '5.4.0-5.5.99',
-			'ecom_toolbox' => '1.0.7'
+			'ecom_toolbox' => '2.0.75'
 		),
 		'conflicts' => array(
 		),
